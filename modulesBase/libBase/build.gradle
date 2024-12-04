@@ -1,0 +1,46 @@
+plugins {
+    alias(libs.plugins.android.library)
+}
+
+def cfg = rootProject.ext
+android {
+    namespace cfg.applicationId.libBase
+    compileSdk cfg.android.compileSdkVersion
+
+    defaultConfig {
+        minSdk cfg.android.minSdkVersion
+        targetSdk cfg.android.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+
+    api cfg.BaseLib
+    api cfg.BaseAnnotation
+    api cfg.BaseNetwork
+
+    implementation libs.appcompat
+    implementation libs.material
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}

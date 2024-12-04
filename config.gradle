@@ -1,0 +1,50 @@
+ext {
+
+    isDebug = false;    //当为true时代表调试模式，组件可以单独运行。如果是false代表编译打包
+
+    /**
+     compileSdkVersion：指定用于编译应用程序的 Android SDK 版本。
+     minSdkVersion：指定应用程序可以运行的最低 Android 版本。
+     targetSdkVersion：指定应用程序目标的 Android 版本。
+     versionCode：用于标识应用程序版本的整数值。
+     versionName：用于标识应用程序版本的字符串值。
+     */
+
+    android = [
+            compileSdkVersion: 34,
+            minSdkVersion    : 28,
+            targetSdkVersion : 34,
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+
+    /**
+     * 这是每个模块的application地址
+     */
+    applicationId = [
+            "app"    : "com.example.agrivison",
+            "login"  : "com.example.module.login",
+            "libBase": "com.example.module.libBase"
+    ]
+
+    //定义了一些常见的 Android 库的依赖项，包括 AppCompat 库、Material Design 库和 ConstraintLayout 库。
+    BaseDeps = [
+            "appcompat"       : "androidx.appcompat:appcompat:1.7.0",
+            "material"        : "com.google.android.material:material:1.12.0",
+            "constraintlayout": "androidx.constraintlayout:constraintlayout:2.2.0",
+            "arouter": "com.alibaba:arouter-api:1.5.2"
+    ]
+
+    annotationDeps = [
+            "arouter_compiler": "com.alibaba:arouter-compiler:1.5.2"
+    ]
+
+    networkDeps = [
+            "gson"    : "com.google.code.gson:gson:2.10",
+            "retrofit": "com.squareup.retrofit2:retrofit:2.9.0"
+    ]
+
+    BaseLib = BaseDeps.values()
+    BaseAnnotation = annotationDeps.values()
+    BaseNetwork = networkDeps.values()
+}
