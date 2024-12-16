@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="green_1">#245d3c</color>
+    <color name="green_2">#3b7e55</color>
+    <color name="green_3">#73c088</color>
+    <color name="gray_1">#f8f9fd</color>
+    <color name="gray_2">#9096a2</color>
+    <color name="light_grenn">#edffef</color>
+    <color name="grenn_gray">#05a67e</color>
+    <color name="red">#e2420a</color>
+
 </resources>

@@ -35,7 +35,7 @@ android {
 dependencies {
 
     api cfg.BaseLib
-    api cfg.BaseAnnotation
+    annotationProcessor  cfg.BaseAnnotation
     api cfg.BaseNetwork
 
     implementation libs.appcompat

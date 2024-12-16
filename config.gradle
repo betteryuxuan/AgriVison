@@ -32,11 +32,15 @@ ext {
             "appcompat"       : "androidx.appcompat:appcompat:1.7.0",
             "material"        : "com.google.android.material:material:1.12.0",
             "constraintlayout": "androidx.constraintlayout:constraintlayout:2.2.0",
-            "arouter": "com.alibaba:arouter-api:1.5.2"
+            "arouter"         : "com.alibaba:arouter-api:1.5.2",
+            "eventbus"        : "org.greenrobot:eventbus:3.3.1",
+            "room"            : "androidx.room:room-runtime:2.6.1"
+
     ]
 
     annotationDeps = [
-            "arouter_compiler": "com.alibaba:arouter-compiler:1.5.2"
+            "arouter_compiler": "com.alibaba:arouter-compiler:1.5.2",
+            "room"            : "androidx.room:room-compiler:2.6.1"
     ]
 
     networkDeps = [
