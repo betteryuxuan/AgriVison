@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TabTextAppearance" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">19sp</item> <!-- 默认字体大小 -->
+        <item name="android:textStyle">bold</item> <!-- 默认字体加粗 -->
+    </style>
+
+    <style name="TabSelectedTextAppearance" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">19sp</item> <!-- 选中时的字体大小 -->
+        <item name="android:textStyle">bold</item> <!-- 默认字体加粗 -->
+    </style>
+
+</resources>
