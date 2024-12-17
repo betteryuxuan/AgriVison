@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.homepageview.contract.IHomeFirstContract;
 import com.example.homepageview.R;
 import com.example.homepageview.contract.IHomePageContract;
@@ -23,6 +24,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.ArrayList;
 import java.util.List;
 
+@Route(path = "/HomePageView/HomePageFragment")
 public class HomePageFragment extends Fragment implements IHomePageContract.IHomePageView {
 
     private IHomePageContract.IHomePagePresenter mPresenter;
