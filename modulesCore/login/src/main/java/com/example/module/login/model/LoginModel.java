@@ -97,7 +97,7 @@ public class LoginModel implements LoginContract.Model {
             }
         }).start();
 
-        return 1; // 任务已开始
+        return 1;
     }
 
     @Override

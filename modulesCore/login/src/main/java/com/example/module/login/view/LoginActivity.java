@@ -1,6 +1,7 @@
 package com.example.module.login.view;
 
 import android.animation.ObjectAnimator;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -43,6 +44,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     private TextView tvTop;
     private TextView tvtop1;
     private TextView tvtop2;
+    private TextView tvBack;
     private TextInputLayout tilUseremail;
     private TextInputLayout tilPassword;
     private TextInputLayout tilTwicePassword;
@@ -79,6 +81,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         tvTop = findViewById(R.id.tv_top);
         tvtop1 = findViewById(R.id.tv_login_1);
         tvtop2 = findViewById(R.id.tv_login_2);
+        tvBack = findViewById(R.id.tv_login_back);
         tilUseremail = findViewById(R.id.til_login_email);
         tilPassword = findViewById(R.id.til_login_password);
         tilUsername = findViewById(R.id.til_register_username);
@@ -94,6 +97,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
         mPresenter = new LoginPresenter(this, this);
 
+        Typeface iconfont = Typeface.createFromAsset(getAssets(), "fonts/iconfont.ttf");
+        tvBack.setTypeface(iconfont);
+
 
         tvLoginNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,26 +109,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         });
 
         tvRegister.setOnClickListener(v -> {
-            isRegistering = true;
-
-            tvTop.setText("注册");
-            btnLoginRegister.setText("注册");
-            btnSendCode.setVisibility(View.VISIBLE);
-            tilTwicePassword.setVisibility(View.VISIBLE);
-            tilUsername.setVisibility(View.VISIBLE);
-
-            tvRegister.setVisibility(View.INVISIBLE);
-            view.setVisibility(View.INVISIBLE);
-            ObjectAnimator.ofFloat(tvTop, "translationX", 0f, 600f).setDuration(1000).start();
-            ObjectAnimator.ofFloat(svLogin, "translationY", 0f, -600f).setDuration(800).start();
-            ObjectAnimator.ofFloat(btnLoginRegister, "alpha", 0f, 1f).setDuration(1200).start();
-            ObjectAnimator.ofFloat(btnSendCode, "alpha", 0f, 1f).setDuration(1200).start();
-            ObjectAnimator.ofFloat(tvRegister, "alpha", 1f, 0f).setDuration(1200).start();
-            ObjectAnimator.ofFloat(tvLoginNow, "alpha", 1f, 0f).setDuration(1200).start();
-            ObjectAnimator.ofFloat(tvtop1, "alpha", 1f, 0f).setDuration(1200).start();
-            ObjectAnimator.ofFloat(tvtop2, "alpha", 1f, 0f).setDuration(1200).start();
-            ObjectAnimator.ofFloat(tilUsername, "alpha", 0f, 1f).setDuration(1200).start();
-            ObjectAnimator.ofFloat(tilTwicePassword, "alpha", 0f, 1f).setDuration(1200).start();
+            toRegister();
         });
 
         btnLoginRegister.setOnClickListener(v -> {
@@ -162,7 +149,66 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             }
         });
 
+
+        tvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toLogin();
+            }
+        });
+
         setTextChangedListener();
+
+    }
+
+    private void toRegister() {
+        isRegistering = true;
+
+        tvTop.setText("注册");
+        btnLoginRegister.setText("注册");
+        btnSendCode.setVisibility(View.VISIBLE);
+        tilTwicePassword.setVisibility(View.VISIBLE);
+        tilUsername.setVisibility(View.VISIBLE);
+        tvBack.setVisibility(View.VISIBLE);
+
+        tvRegister.setVisibility(View.INVISIBLE);
+        view.setVisibility(View.INVISIBLE);
+        ObjectAnimator.ofFloat(tvTop, "translationX", 0f, 600f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(svLogin, "translationY", 0f, -600f).setDuration(800).start();
+        ObjectAnimator.ofFloat(tvBack, "alpha", 0f, 1f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(btnLoginRegister, "alpha", 0f, 1f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(btnSendCode, "alpha", 0f, 1f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(tvRegister, "alpha", 1f, 0f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(tvLoginNow, "alpha", 1f, 0f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(tvtop1, "alpha", 1f, 0f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(tvtop2, "alpha", 1f, 0f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(tilUsername, "alpha", 0f, 1f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(tilTwicePassword, "alpha", 0f, 1f).setDuration(1200).start();
+    }
+
+    private void toLogin() {
+        isRegistering = false;
+        tvTop.setText("登录");
+        btnLoginRegister.setText("登录");
+        tvRegister.setVisibility(View.VISIBLE);
+        view.setVisibility(View.VISIBLE);
+        ObjectAnimator.ofFloat(tvTop, "translationX", 600f, 0f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(svLogin, "translationY", -600f, 0f).setDuration(800).start();
+        ObjectAnimator.ofFloat(btnLoginRegister, "alpha", 0f, 1f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(tvLoginNow, "alpha", 0f, 1f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(tvtop1, "alpha", 0f, 1f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(tvtop2, "alpha", 0f, 1f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(tvRegister, "alpha", 0f, 1f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(tilUsername, "alpha", 1f, 0f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(tilVerificationCode, "alpha", 1f, 0f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(tilTwicePassword, "alpha", 1f, 0f).setDuration(1200).start();
+
+        tvBack.setVisibility(View.GONE);
+        tilTwicePassword.setVisibility(View.GONE);
+        tilUsername.setVisibility(View.GONE);
+        tilVerificationCode.setVisibility(View.GONE);
+        btnSendCode.setVisibility(View.GONE);
+
 
     }
 
@@ -248,30 +294,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
 
-    private void toLogin() {
-        isRegistering = false;
-        tvTop.setText("登录");
-        btnLoginRegister.setText("登录");
-        tvRegister.setVisibility(View.VISIBLE);
-        view.setVisibility(View.VISIBLE);
-        ObjectAnimator.ofFloat(tvTop, "translationX", 600f, 0f).setDuration(1000).start();
-        ObjectAnimator.ofFloat(svLogin, "translationY", -600f, 0f).setDuration(800).start();
-        ObjectAnimator.ofFloat(btnLoginRegister, "alpha", 0f, 1f).setDuration(1200).start();
-        ObjectAnimator.ofFloat(tvLoginNow, "alpha", 0f, 1f).setDuration(1200).start();
-        ObjectAnimator.ofFloat(tvtop1, "alpha", 0f, 1f).setDuration(1200).start();
-        ObjectAnimator.ofFloat(tvtop2, "alpha", 0f, 1f).setDuration(1200).start();
-        ObjectAnimator.ofFloat(tvRegister, "alpha", 0f, 1f).setDuration(1200).start();
-        ObjectAnimator.ofFloat(tilUsername, "alpha", 1f, 0f).setDuration(1200).start();
-        ObjectAnimator.ofFloat(tilVerificationCode, "alpha", 1f, 0f).setDuration(1200).start();
-        ObjectAnimator.ofFloat(tilTwicePassword, "alpha", 1f, 0f).setDuration(1200).start();
 
-        tilTwicePassword.setVisibility(View.GONE);
-        tilUsername.setVisibility(View.GONE);
-        tilVerificationCode.setVisibility(View.GONE);
-        btnSendCode.setVisibility(View.GONE);
-
-
-    }
 
     private boolean vaildEdit() {
         if (!vaildMail())

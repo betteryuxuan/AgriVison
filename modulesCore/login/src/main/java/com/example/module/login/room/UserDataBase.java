@@ -7,17 +7,17 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {User.class}, version = 1)
+@Database(entities = {User.class}, version = 1, exportSchema = false)
 public abstract class UserDataBase extends RoomDatabase {
     public abstract UserDao userDao();
 
     private static volatile UserDataBase INSTANCE;
 
     public static UserDataBase getINSTANCE(Context context) {
-        if (context == null){
+        if (context == null) {
             Log.d("UserDataBaseTAG", "context is null");
             return null;
-        }else {
+        } else {
             Log.d("UserDataBaseTAG", "context is not null");
         }
         if (INSTANCE == null) {
