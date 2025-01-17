@@ -1,6 +1,6 @@
 ext {
 
-    isDebug = true;    //当为true时代表调试模式，组件可以单独运行。如果是false代表编译打包
+    isDebug = false;    //当为true时代表调试模式，组件可以单独运行。如果是false代表编译打包
 
     /**
      compileSdkVersion：指定用于编译应用程序的 Android SDK 版本。
@@ -22,10 +22,10 @@ ext {
      * 这是每个模块的application地址
      */
     applicationId = [
-            "app"    : "com.example.agrivison",
-            "login"  : "com.example.module.login",
-            "libBase": "com.example.module.libBase",
-            "homepage" : "com.example.homepageview"
+            "app"     : "com.example.agrivison",
+            "login"   : "com.example.module.login",
+            "libBase" : "com.example.module.libBase",
+            "homepage": "com.example.homepageview"
     ]
 
     //定义了一些常见的 Android 库的依赖项，包括 AppCompat 库、Material Design 库和 ConstraintLayout 库。
@@ -33,10 +33,11 @@ ext {
             "appcompat"       : "androidx.appcompat:appcompat:1.7.0",
             "material"        : "com.google.android.material:material:1.12.0",
             "constraintlayout": "androidx.constraintlayout:constraintlayout:2.2.0",
-            "arouter": "com.alibaba:arouter-api:1.5.2",
+            "arouter"         : "com.alibaba:arouter-api:1.5.2",
             "eventbus"        : 'org.greenrobot:eventbus:3.3.1',
             "banner"          : "io.github.youth5201314:banner:2.2.3",
-            "room"            : "androidx.room:room-runtime:2.6.1"
+            "room"            : "androidx.room:room-runtime:2.6.1",
+            "softkeyboard"    : "com.github.boybeak:skb-global:0.2.0"
 
     ]
 

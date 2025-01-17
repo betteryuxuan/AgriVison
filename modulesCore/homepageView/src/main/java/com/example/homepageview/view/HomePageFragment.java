@@ -24,7 +24,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route(path = "/HomePageView/HomePageFragment")
+@Route(path = "/homepageView/HomePageFragment")
 public class HomePageFragment extends Fragment implements IHomePageContract.IHomePageView {
 
     private IHomePageContract.IHomePagePresenter mPresenter;
@@ -34,6 +34,9 @@ public class HomePageFragment extends Fragment implements IHomePageContract.IHom
     private HomeFirstFragment homeFirstFragment;
     private HomeFirstModel homeFirstModel;
     private HomeFirstPresenter homeFirstPresenter;
+
+    public HomePageFragment() {
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

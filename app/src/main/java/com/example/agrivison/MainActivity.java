@@ -25,7 +25,7 @@ import java.util.List;
 @Route(path = "/main/MainActivity")
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "MainActivityTAG";
     private BottomNavigationView bottomNavigationView;
     private List<Fragment> fragments;
     private ViewPager2 viewPager2;
@@ -37,18 +37,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         viewPager2 = findViewById(R.id.vp_main);
         bottomNavigationView = findViewById(R.id.bnv_main);
-        ARouter.getInstance()
-                .build("/login/LoginActivity")
-                .navigation();
-        Fragment fragment = (Fragment) ARouter.getInstance().build("/HomePageView/HomePageFragment").navigation();
-
-
-
+        Fragment fragment = (Fragment) ARouter.getInstance().build("/homepageView/HomePageFragment").navigation(this);
         fragments = new ArrayList<>();
-        fragments.add(fragment);
-        fragments.add(fragment);
-        fragments.add(fragment);
-        fragments.add(fragment);
         fragments.add(fragment);
 
         PagesAdapter pagesAdapter = new PagesAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
