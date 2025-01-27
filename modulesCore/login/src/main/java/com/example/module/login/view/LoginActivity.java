@@ -12,7 +12,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +24,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.example.module.login.LoginContract;
+import com.example.module.login.ILoginContract;
 import com.example.module.login.R;
 import com.example.module.login.presenter.LoginPresenter;
 import com.example.module.login.room.User;
@@ -34,10 +33,10 @@ import com.google.android.material.textfield.TextInputLayout;
 
 
 @Route(path = "/login/LoginActivity")
-public class LoginActivity extends AppCompatActivity implements LoginContract.View {
+public class LoginActivity extends AppCompatActivity implements ILoginContract.View {
     private static final String TAG = "LoginActivityTAG";
     private final Float svOffsetAmount = -500f;
-    private LoginContract.Presenter mPresenter;
+    private ILoginContract.Presenter mPresenter;
     private Button btnLoginRegister;
     private Button btnSendCode;
     private View view;

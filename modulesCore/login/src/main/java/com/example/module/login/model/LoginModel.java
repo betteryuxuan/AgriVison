@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
-import com.example.module.login.LoginContract;
+import com.example.module.login.ILoginContract;
 import com.example.module.login.room.User;
 import com.example.module.login.room.UserDao;
 import com.example.module.login.room.UserDataBase;
@@ -22,9 +22,9 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class LoginModel implements LoginContract.Model {
+public class LoginModel implements ILoginContract.Model {
     private final String TAG = "LoginModelTAG";
-    private LoginContract.Presenter mPresenter;
+    private ILoginContract.Presenter mPresenter;
     private Context mContext;
 
     private static final String fromEmail = "3885512625@qq.com";
@@ -32,7 +32,7 @@ public class LoginModel implements LoginContract.Model {
 
     private static long lastSendTime = 0;
 
-    public LoginModel(LoginContract.Presenter presenter, Context context) {
+    public LoginModel(ILoginContract.Presenter presenter, Context context) {
         mPresenter = presenter;
         mContext = context;
     }

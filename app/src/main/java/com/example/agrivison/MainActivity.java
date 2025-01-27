@@ -37,9 +37,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         viewPager2 = findViewById(R.id.vp_main);
         bottomNavigationView = findViewById(R.id.bnv_main);
+
         Fragment fragment = (Fragment) ARouter.getInstance().build("/homepageView/HomePageFragment").navigation(this);
+        Fragment personalInfoFragment = (Fragment) ARouter.getInstance().build("/personalinfoview/PersonalInfoFragment").navigation(this);
+
         fragments = new ArrayList<>();
         fragments.add(fragment);
+        if (personalInfoFragment != null) {
+            fragments.add(personalInfoFragment);
+        }else {
+            Log.d(TAG, "onCreate: personalInfoFragment is null");
+        }
+
 
         PagesAdapter pagesAdapter = new PagesAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         viewPager2.setAdapter(pagesAdapter);

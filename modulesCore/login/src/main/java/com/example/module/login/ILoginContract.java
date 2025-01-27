@@ -2,7 +2,7 @@ package com.example.module.login;
 
 import com.example.module.login.room.User;
 
-public interface LoginContract {
+public interface ILoginContract {
     interface View {
         void showToast(String msg);
 

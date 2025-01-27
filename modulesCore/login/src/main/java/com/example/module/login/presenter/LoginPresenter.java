@@ -3,18 +3,18 @@ package com.example.module.login.presenter;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.module.login.LoginContract;
+import com.example.module.login.ILoginContract;
 import com.example.module.login.model.LoginModel;
 import com.example.module.login.room.User;
 import com.example.module.login.view.LoginActivity;
 
 import java.util.Random;
 
-public class LoginPresenter implements LoginContract.Presenter {
+public class LoginPresenter implements ILoginContract.Presenter {
     private static final String TAG = "LoginPresenterTAG";
 
-    private LoginContract.Model mModel;
-    private LoginContract.View mView;
+    private ILoginContract.Model mModel;
+    private ILoginContract.View mView;
     private Context mContext;
     private int curVerificationCode;
 
@@ -51,7 +51,7 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void login(String email, String password) {
-        mModel.login(email, password, new LoginContract.Model.Callback() {
+        mModel.login(email, password, new ILoginContract.Model.Callback() {
             @Override
             public void onSuccess(User user) {
                 Log.d(TAG, "登录成功");
@@ -69,7 +69,7 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void register(String email, String password, String username) {
-        mModel.register(email, password, username, new LoginContract.Model.Callback() {
+        mModel.register(email, password, username, new ILoginContract.Model.Callback() {
             @Override
             public void onSuccess(User user) {
                 Log.d(TAG, "注册成功");

@@ -2,7 +2,7 @@ package com.example.module.login;
 
 import com.example.module.login.room.User;
 
-public interface ForgetContract {
+public interface IForgetContract {
     interface View {
         void showToast(String msg);
         void startMainActivity(User user);
