@@ -4,7 +4,7 @@
     <application>
         <activity
             android:name=".view.ForgetActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".view.LoginActivity"
             android:exported="true" />

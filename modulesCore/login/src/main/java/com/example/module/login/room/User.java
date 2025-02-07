@@ -17,6 +17,13 @@ public class User implements Serializable {
     public User() {
     }
 
+    @Ignore
+    public User(String email, String password, String userName) {
+        this.email = email;
+        this.password = password;
+        this.userName = userName;
+    }
+
     public String getEmail() {
         return email;
     }

@@ -43,6 +43,7 @@
 
 
         <net.center.blurview.ShapeBlurView
+            android:id="@+id/blur_login_view"
             android:layout_width="199dp"
             android:layout_height="123dp"
             android:layout_marginLeft="20dp"
@@ -91,7 +92,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="350dp"
-        android:layout_marginBottom="-300dp"
+        android:layout_marginBottom="-350dp"
         android:background="@drawable/shape_top_corners"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -180,7 +181,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/shape_all_corners"
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     android:padding="10dp"
                     android:textColor="@color/black"
                     android:textSize="20dp"
@@ -219,7 +220,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/shape_all_corners"
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     android:padding="10dp"
                     android:textColor="@color/black"
                     android:textSize="20dp"

@@ -1,12 +1,10 @@
 package com.example.module.login;
 
-import com.example.module.login.room.User;
-
 public interface ILoginContract {
     interface View {
         void showToast(String msg);
 
-        void startMainActivity(User user);
+        void startMainActivity();
     }
 
     interface Presenter {
@@ -16,23 +14,23 @@ public interface ILoginContract {
 
         void onVerificationCodeSentFailure();
 
-        boolean validateVerificationCode(String verificationCode);
-
         void login(String email, String password);
 
-        void register(String email, String password, String username);
+        void register(String email, String password, String username, String code);
 
     }
 
     interface Model {
-        int sendVerificationCode(String destinationEmail, String verificationCode);
+        void sendVerificationCode(String destinationEmail);
 
         void login(String email, String password, Callback callback);
 
-        void register(String email, String password, String username, Callback callback);
+        void register(String email, String password, String username, String code, Callback callback);
+
+        void saveLoginState(String email, String password, String token);
 
         interface Callback {
-            void onSuccess(User user);
+            void onSuccess(String token);
 
             void onFailure();
         }
