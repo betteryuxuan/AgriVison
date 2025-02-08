@@ -1,38 +1,46 @@
 package com.example.homepageview.presenter;
 
 import com.example.homepageview.contract.IHomeFirstContract;
-import com.example.homepageview.model.Corn;
+import com.example.homepageview.model.classes.Crop;
 import com.example.homepageview.model.HomeFirstModel;
-import com.example.homepageview.model.News;
+import com.example.homepageview.model.classes.News;
+import com.example.homepageview.model.classes.Proverb;
 import com.example.homepageview.view.HomeFirstFragment;
 
 import java.util.List;
 
 public class HomeFirstPresenter implements IHomeFirstContract.IHomeFirstPresenter {
 
-    private HomeFirstFragment homeFirstFragment;
-    private HomeFirstModel homeFirstModel;
+    private IHomeFirstContract.IHomeFirstView homeFirstView;
+    private IHomeFirstContract.IHomeFirstModel homeFirstModel;
 
-    public HomeFirstPresenter(HomeFirstFragment homeFirstFragment, HomeFirstModel homeFirstModel) {
-        this.homeFirstFragment = homeFirstFragment;
+    public HomeFirstPresenter(IHomeFirstContract.IHomeFirstView homeFirstView, IHomeFirstContract.IHomeFirstModel homeFirstModel) {
+        this.homeFirstView = homeFirstView;
         this.homeFirstModel = homeFirstModel;
     }
 
     @Override
     public void loadBannerDatas() {
         List<Integer> bannerDatas = homeFirstModel.getBannerDatas();
-        homeFirstFragment.setupBanner(bannerDatas);
+        homeFirstView.setupBanner(bannerDatas);
     }
 
     @Override
-    public void loadCornRecyclerViewDatas() {
-        List<Corn> corns = homeFirstModel.getCornRecyclerViewDatas();
-        homeFirstFragment.setupCornRecyclerView(corns);
+    public void loadCropRecyclerViewDatas() {
+        List<Crop> crops = homeFirstModel.getCropRecyclerViewDatas();
+        homeFirstView.setupCropRecyclerView(crops);
     }
 
     @Override
     public void loadNewsRecyclerViewDatas() {
         List<News> newsList = homeFirstModel.getNewsRecyclerViewDatas();
-        homeFirstFragment.setupNewsRecyclerView(newsList);
+        homeFirstView.setupNewsRecyclerView(newsList);
+    }
+
+    @Override
+    public void loadProverbViewPagerDatas() {
+        List<Proverb> proverbViewPagerDatas = homeFirstModel.getProverbViewPagerDatas();
+        homeFirstView.setupProverbViewPager(proverbViewPagerDatas);
     }
 }
+

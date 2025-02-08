@@ -28,7 +28,7 @@ public class MyView extends LinearLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        boolean shouldIntercept = false; // 默认不拦截
+//        boolean shouldIntercept = false; // 默认不拦截
 
 //        switch (event.getAction()) {
 //            case MotionEvent.ACTION_DOWN:
@@ -56,10 +56,9 @@ public class MyView extends LinearLayout {
 //        }
 
         // 告诉父视图是否需要拦截
-        getParent().requestDisallowInterceptTouchEvent(!shouldIntercept);
+        getParent().requestDisallowInterceptTouchEvent(true);
 
-        // 返回是否拦截事件：横向滑动拦截事件，竖向滑动不拦截
-        return shouldIntercept;
+        return false;
     }
 
 

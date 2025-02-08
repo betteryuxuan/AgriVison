@@ -15,7 +15,9 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.homepageview.contract.IHomeFirstContract;
 import com.example.homepageview.R;
 import com.example.homepageview.contract.IHomePageContract;
+import com.example.homepageview.model.CategoryModel;
 import com.example.homepageview.model.HomeFirstModel;
+import com.example.homepageview.presenter.CategoryPresenter;
 import com.example.homepageview.presenter.HomeFirstPresenter;
 import com.example.homepageview.view.adapter.MyViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -34,6 +36,9 @@ public class HomePageFragment extends Fragment implements IHomePageContract.IHom
     private HomeFirstFragment homeFirstFragment;
     private HomeFirstModel homeFirstModel;
     private HomeFirstPresenter homeFirstPresenter;
+    private CategoryFragment categoryFragment;
+    private CategoryPresenter categoryPresenter;
+    private CategoryModel categoryModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,12 +68,16 @@ public class HomePageFragment extends Fragment implements IHomePageContract.IHom
 
         homeFirstFragment = new HomeFirstFragment();
         homeFirstModel = new HomeFirstModel();
+        categoryFragment = new CategoryFragment();
+        categoryModel = new CategoryModel();
+        categoryPresenter = new CategoryPresenter(categoryFragment, categoryModel);
         homeFirstPresenter = new HomeFirstPresenter(homeFirstFragment, homeFirstModel);
         homeFirstFragment.setPresenter(homeFirstPresenter);
+        categoryFragment.setPresenter(categoryPresenter);
 
         fragmentList = new ArrayList<>();
         fragmentList.add(homeFirstFragment);
-        fragmentList.add(new CategoryFragment());
+        fragmentList.add(categoryFragment);
 
         MyViewPagerAdapter adapter = new MyViewPagerAdapter(this, fragmentList);
         viewPager2.setAdapter(adapter);
@@ -78,7 +87,7 @@ public class HomePageFragment extends Fragment implements IHomePageContract.IHom
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 switch (position) {
                     case 0:
-                        tab.setText("首页");
+                        tab.setText("推荐");
                         break;
                     case 1:
                         tab.setText("分类");

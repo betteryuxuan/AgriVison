@@ -40,7 +40,7 @@ dependencies {
 
     if (!cfg.isDebug) {
         implementation project(":modulesCore:login")
-
+        implementation project(":modulesCore:homepageView")
     }
 
     implementation 'com.alibaba:arouter-api:1.5.2'

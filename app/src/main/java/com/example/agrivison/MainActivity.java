@@ -40,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
         ARouter.getInstance()
                 .build("/login/LoginActivity")
                 .navigation();
-        Fragment fragment = (Fragment) ARouter.getInstance().build("/HomePageView/HomePageFragment").navigation();
-
-
+        Fragment fragment = (Fragment) ARouter.getInstance().build("/HomePageView/HomePageFragment").navigation(this);
 
         fragments = new ArrayList<>();
         fragments.add(fragment);

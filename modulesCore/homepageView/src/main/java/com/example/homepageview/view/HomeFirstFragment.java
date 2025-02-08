@@ -4,24 +4,25 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.homepageview.contract.IHomeFirstContract;
 import com.example.homepageview.R;
-import com.example.homepageview.model.Corn;
-import com.example.homepageview.model.News;
-import com.example.homepageview.view.adapter.CornRecyclerViewAdapter;
+import com.example.homepageview.model.classes.Crop;
+import com.example.homepageview.model.classes.News;
+import com.example.homepageview.model.classes.Proverb;
+import com.example.homepageview.view.adapter.CropRecyclerViewAdapter;
 import com.example.homepageview.view.adapter.NewsRecyclerViewAdapter;
+import com.example.homepageview.view.adapter.ProverbViewPagerAdapter;
 import com.youth.banner.Banner;
 import com.youth.banner.adapter.BannerImageAdapter;
+import com.youth.banner.config.IndicatorConfig;
 import com.youth.banner.holder.BannerImageHolder;
 import com.youth.banner.indicator.CircleIndicator;
 
@@ -33,7 +34,8 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
 
     private Banner banner;
     private IHomeFirstContract.IHomeFirstPresenter mPresenter;
-    private RecyclerView cornRecyclerView, newsRecyclerView;
+    private RecyclerView cropRecyclerView, newsRecyclerView;
+    private ViewPager2 viewPager2;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,8 +52,9 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         banner = view.findViewById(R.id.banner_homepage_top);
-        cornRecyclerView = view.findViewById(R.id.rv_homepage_crop);
+        cropRecyclerView = view.findViewById(R.id.rv_homepage_crop);
         newsRecyclerView = view.findViewById(R.id.rv_homepage_news);
+        viewPager2 = view.findViewById(R.id.vp_homepage_recommend);
         initView();
         initListener();
     }
@@ -59,8 +62,9 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
     @Override
     public void initView() {
         mPresenter.loadBannerDatas();
-        mPresenter.loadCornRecyclerViewDatas();
+        mPresenter.loadCropRecyclerViewDatas();
         mPresenter.loadNewsRecyclerViewDatas();
+        mPresenter.loadProverbViewPagerDatas();
     }
 
     @Override
@@ -70,11 +74,11 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
 
     @Override
     public void initAinm() {
-        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.my_anim);
-        LayoutAnimationController layoutAnimationController = new LayoutAnimationController(animation);
-        layoutAnimationController.setOrder(LayoutAnimationController.ORDER_NORMAL);
-        layoutAnimationController.setDelay(0.2f);
-        newsRecyclerView.setLayoutAnimation(layoutAnimationController);
+//        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.my_anim);
+//        LayoutAnimationController layoutAnimationController = new LayoutAnimationController(animation);
+//        layoutAnimationController.setOrder(LayoutAnimationController.ORDER_NORMAL);
+//        layoutAnimationController.setDelay(0.2f);
+//        newsRecyclerView.setLayoutAnimation(layoutAnimationController);
     }
 
     @Override
@@ -85,23 +89,32 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
                 holder.imageView.setImageResource(data);
             }
         }).setIndicator(new CircleIndicator(getContext()))
+                .addBannerLifecycleObserver(this)
                 .setIndicatorSelectedColor(getResources().getColor(R.color.white))
-                .setIndicatorNormalColor(getResources().getColor(R.color.white_shallow));
+                .setIndicatorNormalColor(getResources().getColor(R.color.white_shallow))
+                .setIndicatorGravity(IndicatorConfig.Direction.RIGHT)
+                .setLoopTime(3000);
     }
 
     @Override
-    public void setupCornRecyclerView(List<Corn> list) {
+    public void setupCropRecyclerView(List<Crop> list) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        cornRecyclerView.setAdapter(new CornRecyclerViewAdapter(list));
-        cornRecyclerView.setLayoutManager(linearLayoutManager);
+        cropRecyclerView.setAdapter(new CropRecyclerViewAdapter(list));
+        cropRecyclerView.setLayoutManager(linearLayoutManager);
     }
 
     @Override
     public void setupNewsRecyclerView(List<News> list) {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         newsRecyclerView.setAdapter(new NewsRecyclerViewAdapter(list));
-        newsRecyclerView.setLayoutManager(linearLayoutManager);
+        newsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         initAinm();
+    }
+
+    @Override
+    public void setupProverbViewPager(List<Proverb> list) {
+        ProverbViewPagerAdapter adapter = new ProverbViewPagerAdapter(getActivity(), list);
+        viewPager2.setAdapter(adapter);
     }
 
     @Override
