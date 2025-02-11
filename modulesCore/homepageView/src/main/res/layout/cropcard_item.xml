@@ -12,6 +12,7 @@
         android:id="@+id/cl_homepage_cropcard"
         android:layout_width="85dp"
         android:layout_height="110dp"
+        android:layout_gravity="center"
         android:background="@color/white">
 
         <ImageView

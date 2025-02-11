@@ -5,6 +5,13 @@
         <activity
             android:name=".view.HomePageActivity"
             android:exported="true" />
+        <activity
+            android:name=".view.NewsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.CategoryDetailsActivity"
+            android:exported="true" />
     </application>
+
 
 </manifest>

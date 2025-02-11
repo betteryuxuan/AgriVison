@@ -20,10 +20,17 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
 
     private final String TAG = "NewsRecyclerViewAdapter";
     List<News> newsList;
+    private OnItemClickListener clickListener;
 
-    public NewsRecyclerViewAdapter(List<News> newsList) {
+    public NewsRecyclerViewAdapter(List<News> newsList, OnItemClickListener clickListener) {
         this.newsList = newsList;
+        this.clickListener = clickListener;
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(News news);
+    }
+
 
     @NonNull
     @Override
@@ -39,6 +46,14 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
         holder.textView.setText(news.getText());
         holder.imageView.setImageResource(news.getImage());
         holder.newsLayout.startAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.my_anim));
+        holder.newsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (clickListener != null) {
+                    clickListener.onItemClick(news);
+                }
+            }
+        });
     }
 
     @Override

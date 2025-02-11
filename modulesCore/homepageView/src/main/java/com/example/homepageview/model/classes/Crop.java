@@ -1,6 +1,13 @@
 package com.example.homepageview.model.classes;
 
-public class Crop {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+import java.text.ParseException;
+
+public class Crop implements Parcelable {
 
     private String name;
     private int image;
@@ -12,6 +19,23 @@ public class Crop {
 
     public Crop() {
     }
+
+    protected Crop(Parcel in) {
+        name = in.readString();
+        image = in.readInt();
+    }
+
+    public static final Creator<Crop> CREATOR = new Creator<Crop>() {
+        @Override
+        public Crop createFromParcel(Parcel in) {
+            return new Crop(in);
+        }
+
+        @Override
+        public Crop[] newArray(int size) {
+            return new Crop[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -35,5 +59,16 @@ public class Crop {
                 "name='" + name + '\'' +
                 ", image=" + image +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeInt(image);
     }
 }

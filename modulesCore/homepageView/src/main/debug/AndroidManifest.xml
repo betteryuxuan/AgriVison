@@ -17,6 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.NewsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.CategoryDetailsActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

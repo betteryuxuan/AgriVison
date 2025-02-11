@@ -1,0 +1,32 @@
+<!-- fragment_bottom_sheet.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tv_homefirst_proverb_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="原文"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+
+
+    <TextView
+        android:id="@+id/tv_homefirst_proverb_meaning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="译文"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="40dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"/>
+</LinearLayout>

@@ -1,9 +1,12 @@
 package com.example.homepageview.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.homepageview.contract.IHomeFirstContract;
 import com.example.homepageview.R;
+import com.example.homepageview.custom.BottomSheetFragment;
 import com.example.homepageview.model.classes.Crop;
 import com.example.homepageview.model.classes.News;
 import com.example.homepageview.model.classes.Proverb;
@@ -106,9 +110,16 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
     @Override
     public void setupNewsRecyclerView(List<News> list) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        newsRecyclerView.setAdapter(new NewsRecyclerViewAdapter(list));
+        newsRecyclerView.setAdapter(new NewsRecyclerViewAdapter(list, new NewsRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(News news) {
+                Intent intent = new Intent(getContext(), NewsActivity.class);
+                intent.putExtra("image", news.getImage());
+                intent.putExtra("text", news.getText());
+                startActivity(intent);            }
+        }));
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        initAinm();
+//        initAinm();
     }
 
     @Override

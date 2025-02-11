@@ -1,9 +1,12 @@
 package com.example.homepageview.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,13 +19,15 @@ import com.example.homepageview.contract.ICategoryContract;
 import com.example.homepageview.model.classes.Crop;
 import com.example.homepageview.view.adapter.CropCategoryRecyclerViewAdapter;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryFragment extends Fragment implements ICategoryContract.ICategoryView {
 
     private ICategoryContract.ICategoryPresenter presenter;
     private RecyclerView foodRecyclerView, oilRecyclerView, vegetableRecyclerView, fruitRecyclerView, wildFruitRecyclerView, seedRecyclerView, medicinalRecyclerView;
-
+    private ImageView foodButton, oilButton, vegetableButton, fruitButton, wildFruitButton, seedButton, medicinalButton;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,6 +44,8 @@ public class CategoryFragment extends Fragment implements ICategoryContract.ICat
         wildFruitRecyclerView = view.findViewById(R.id.rv_category_wild_fruit);
         seedRecyclerView = view.findViewById(R.id.rv_category_seed);
         medicinalRecyclerView = view.findViewById(R.id.rv_category_medicinal);
+
+        foodButton = view.findViewById(R.id.iv_category_food);
         initView();
         initListener();
     }
@@ -64,6 +71,15 @@ public class CategoryFragment extends Fragment implements ICategoryContract.ICat
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         foodRecyclerView.setLayoutManager(linearLayoutManager);
         foodRecyclerView.setAdapter(new CropCategoryRecyclerViewAdapter(list));
+
+        foodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CategoryDetailsActivity.class);
+                intent.putParcelableArrayListExtra("list", (ArrayList<? extends Parcelable>) list);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

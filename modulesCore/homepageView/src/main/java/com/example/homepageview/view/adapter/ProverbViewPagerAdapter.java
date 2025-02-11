@@ -12,7 +12,12 @@ import java.util.List;
 
 public class ProverbViewPagerAdapter extends FragmentStateAdapter {
 
-    List<Proverb> proverbList;
+    private List<Proverb> proverbList;
+
+    // 定义一个接口来传递点击事件
+    public interface OnProverbClickListener {
+        void onProverbClick(Proverb proverb);
+    }
 
     public ProverbViewPagerAdapter(@NonNull FragmentActivity fragmentActivity, List<Proverb> proverbList) {
         super(fragmentActivity);
@@ -22,7 +27,7 @@ public class ProverbViewPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return ProverbFragment.newInstance(proverbList.get(position).getProverb());
+        return ProverbFragment.newInstance(proverbList.get(position).getProverb(), proverbList.get(position).getMeaning());
     }
 
     @Override
