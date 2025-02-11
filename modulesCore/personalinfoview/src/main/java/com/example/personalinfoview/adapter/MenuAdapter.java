@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.module.libBase.bean.AnimationUtil;
 import com.example.personalinfoview.R;
 import com.example.personalinfoview.bean.MenuItem;
 

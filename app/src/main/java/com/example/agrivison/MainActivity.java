@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate: personalInfoFragment is null");
         }
 
-
         PagesAdapter pagesAdapter = new PagesAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         viewPager2.setAdapter(pagesAdapter);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

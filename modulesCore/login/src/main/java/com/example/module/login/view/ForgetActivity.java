@@ -6,12 +6,9 @@ import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -26,9 +23,8 @@ import com.example.module.login.IForgetContract;
 import com.example.module.login.R;
 import com.example.module.login.databinding.ActivityForgetBinding;
 import com.example.module.login.presenter.ForgetPresenter;
-import com.example.module.login.room.User;
+import com.example.module.libBase.bean.User;
 import com.github.boybeak.skbglobal.SoftKeyboardGlobal;
-import com.google.android.material.textfield.TextInputLayout;
 
 @Route(path = "/login/ForgetActivity")
 public class ForgetActivity extends AppCompatActivity implements IForgetContract.View {
@@ -53,6 +49,11 @@ public class ForgetActivity extends AppCompatActivity implements IForgetContract
 
         mPresenter = new ForgetPresenter(this, this);
 
+
+        String lastEmail = getIntent().getStringExtra("email");
+        if (lastEmail != null) {
+            binding.etForgetEmail.setText(lastEmail);
+        }
 
         binding.btnForgetSendcode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,12 +83,10 @@ public class ForgetActivity extends AppCompatActivity implements IForgetContract
                 lastKeyboardHeight = height;
                 adjustLayoutForKeyboard(true, height);
             }
-
             public void onClose() {
                 // 在键盘关闭时恢复布局
                 adjustLayoutForKeyboard(false, 0);
             }
-
             public void onHeightChanged(int height) {
                 // 键盘高度变化时，动态调整布局
                 adjustLayoutForKeyboard(true, height);

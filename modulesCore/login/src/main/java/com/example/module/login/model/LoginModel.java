@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.example.module.libBase.SPUtils;
+import com.example.module.libBase.TokenManager;
 import com.example.module.login.ILoginContract;
 
 import org.json.JSONObject;
@@ -69,7 +71,8 @@ public class LoginModel implements ILoginContract.Model {
     }
 
     @Override
-    public void login(String email, String password, Callback callback) {
+    public void login(String email, String password, LoginCallback callback) {
+        SPUtils.clear(mContext);
 
         JSONObject json = new JSONObject();
         try {
@@ -103,7 +106,7 @@ public class LoginModel implements ILoginContract.Model {
                         JSONObject jsonResponse = new JSONObject(responseBody);
                         if (jsonResponse.getInt("code") == 1) {
                             String token = jsonResponse.getString("data");
-                            saveLoginState(email, password, token);
+                            saveLoginState(email, token);
                             callback.onSuccess(token);
                         } else {
                             callback.onFailure();
@@ -120,7 +123,7 @@ public class LoginModel implements ILoginContract.Model {
     }
 
     @Override
-    public void register(String email, String password, String username, String code, Callback callback) {
+    public void register(String email, String password, String username, String code, RegisterCallback callback) {
         JSONObject json = new JSONObject();
         try {
             json.put("email", email);
@@ -148,26 +151,28 @@ public class LoginModel implements ILoginContract.Model {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                SharedPreferences sp = mContext.getSharedPreferences("loggedInState", MODE_PRIVATE);
-                sp.edit()
-                        .putString("username", username)
-                        .apply();
-
-                callback.onSuccess("");
+                String responseBody = response.body().string();
+                try {
+                    JSONObject jsonResponse = new JSONObject(responseBody);
+                    if (jsonResponse.getInt("code") == 0) {
+                        callback.onFailure();
+                    } else {
+                        SPUtils.putString(mContext, SPUtils.EMAIL_KEY, email);
+                        callback.onSuccess();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    callback.onFailure();
+                }
             }
         });
 
     }
 
     @Override
-    public void saveLoginState(String email, String password, String token) {
-        SharedPreferences sp = mContext.getSharedPreferences("loggedInState", MODE_PRIVATE);
-        sp.edit()
-                .putBoolean("isLoggedIn", true)
-                .putString("userToken", token)
-                .putString("userEmail", email)
-                .putString("userPassword", password)
-                .apply();
+    public void saveLoginState(String email, String token) {
+        SPUtils.putString(mContext, SPUtils.EMAIL_KEY, email);
+        TokenManager.saveToken(mContext, token);
     }
 
 

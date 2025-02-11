@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgriVison">
         <activity
-            android:name=".view.InfoActivity"
+            android:name=".view.MyInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".view.PersonalInfoActivity"
+            android:name=".PersonalInfoActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -430,6 +430,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
         if (username.isEmpty()) {
             etUsername.setError("用户名不能为空");
             return false;
+        }else if (username.length() > 10) {
+            etUsername.setError("用户名长度不能大于10");
+            return false;
         }
         etUsername.setError(null);
         return true;

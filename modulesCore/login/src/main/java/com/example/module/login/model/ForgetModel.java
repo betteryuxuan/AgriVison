@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.example.module.libBase.SPUtils;
+import com.example.module.libBase.TokenManager;
 import com.example.module.login.IForgetContract;
 import com.example.module.login.ILoginContract;
 
@@ -55,7 +57,6 @@ public class ForgetModel implements IForgetContract.Model {
                 .post(requestBody)
                 .build();
         Log.d(TAG, "发送验证码1" + destinationEmail);
-        Log.d(TAG, "发送验证码2" + json.toString());
 
         client.newCall(request).enqueue(new okhttp3.Callback() {
             @Override
@@ -112,6 +113,8 @@ public class ForgetModel implements IForgetContract.Model {
 
     @Override
     public void login(String email, String password, Callback callback) {
+        SPUtils.clear(mContext);
+
         JSONObject json = new JSONObject();
         try {
             json.put("email", email);
@@ -142,7 +145,7 @@ public class ForgetModel implements IForgetContract.Model {
                         JSONObject jsonResponse = new JSONObject(responseBody);
                         if (jsonResponse.getInt("code") == 1) {
                             String token = jsonResponse.getString("data");
-                            saveLoginState(email, password, token);
+                            saveLoginState(email, token);
                             callback.onSuccess(token);
                         } else {
                             callback.onFailure();
@@ -160,14 +163,9 @@ public class ForgetModel implements IForgetContract.Model {
 
 
     @Override
-    public void saveLoginState(String email, String password, String token) {
-        SharedPreferences sp = mContext.getSharedPreferences("loggedInState", MODE_PRIVATE);
-        sp.edit()
-                .putBoolean("isLoggedIn", true)
-                .putString("userToken", token)
-                .putString("userEmail", email)
-                .putString("userPassword", password)
-                .apply();
+    public void saveLoginState(String email, String token) {
+        SPUtils.putString(mContext, SPUtils.EMAIL_KEY, email);
+        TokenManager.saveToken(mContext, token);
     }
 
 

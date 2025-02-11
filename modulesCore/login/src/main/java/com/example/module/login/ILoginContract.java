@@ -23,17 +23,21 @@ public interface ILoginContract {
     interface Model {
         void sendVerificationCode(String destinationEmail);
 
-        void login(String email, String password, Callback callback);
+        void login(String email, String password, LoginCallback callback);
 
-        void register(String email, String password, String username, String code, Callback callback);
+        void register(String email, String password, String username, String code, RegisterCallback callback);
 
-        void saveLoginState(String email, String password, String token);
+        void saveLoginState(String email, String token);
 
-        interface Callback {
+        public interface LoginCallback {
             void onSuccess(String token);
-
             void onFailure();
         }
+        public interface RegisterCallback {
+            void onSuccess();
+            void onFailure();
+        }
+
     }
 
 }

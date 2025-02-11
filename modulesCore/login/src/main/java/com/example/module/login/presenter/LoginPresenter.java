@@ -41,7 +41,7 @@ public class LoginPresenter implements ILoginContract.Presenter {
 
     @Override
     public void login(String email, String password) {
-        mModel.login(email, password, new ILoginContract.Model.Callback() {
+        mModel.login(email, password, new ILoginContract.Model.LoginCallback() {
             @Override
             public void onSuccess(String token) {
                 Log.d(TAG, "登录成功:" + token);
@@ -61,9 +61,9 @@ public class LoginPresenter implements ILoginContract.Presenter {
     @Override
     public void register(String email, String password, String username, String verificationCode) {
         mModel.register(email, password, username, verificationCode,
-                new ILoginContract.Model.Callback() {
+                new ILoginContract.Model.RegisterCallback() {
                     @Override
-                    public void onSuccess(String token) {
+                    public void onSuccess() {
                         Log.d(TAG, "注册成功");
 //                        mView.showToast("注册成功");
                         login(email, password);
@@ -72,7 +72,7 @@ public class LoginPresenter implements ILoginContract.Presenter {
                     @Override
                     public void onFailure() {
                         Log.d(TAG, "注册失败");
-                        mView.showToast("该邮箱已注册");
+                        mView.showToast("此邮箱已注册");
                     }
                 });
     }

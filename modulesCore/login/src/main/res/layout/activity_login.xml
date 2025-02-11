@@ -33,9 +33,9 @@
             android:layout_marginTop="15dp"
             android:layout_marginRight="25dp"
             android:shadowColor="@color/black2"
-            android:shadowDx="1"
-            android:shadowDy="-1"
-            android:shadowRadius="2"
+            android:shadowDx="0.5"
+            android:shadowDy="-0.5"
+            android:shadowRadius="3"
             android:text="立即体验"
             android:textColor="#cccccc"
             android:textSize="16sp"
@@ -44,15 +44,15 @@
 
         <net.center.blurview.ShapeBlurView
             android:id="@+id/blur_login_view"
-            android:layout_width="199dp"
-            android:layout_height="123dp"
+            android:layout_width="195dp"
+            android:layout_height="125dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="95dp"
-            app:blur_corner_radius="10dp"
+            app:blur_corner_radius="20dp"
             app:blur_down_sample="1.0"
             app:blur_mode="rectangle"
             app:blur_overlay_color="@color/gray_transparent"
-            app:blur_radius="30dp" />
+            app:blur_radius="25dp" />
 
         <TextView
             android:id="@+id/tv_login_1"
@@ -75,7 +75,7 @@
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="163dp"
             android:shadowColor="@color/black"
             android:shadowDx="1"
             android:shadowDy="1"

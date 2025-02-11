@@ -10,10 +10,13 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_info_avatar"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="90dp"
+        android:elevation="15dp"
+        android:translationZ="8dp"
+        android:outlineProvider="bounds"
         android:background="@drawable/default_user"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,11 +27,17 @@
         android:id="@+id/img_info_userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="25dp"
         android:text="@string/username_placeholder"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textColor="@color/black_blue"
+        android:textSize="22sp"
         android:textStyle="bold"
+        android:letterSpacing="0.1"
+        android:layout_gravity="center"
+        android:shadowColor="#ff000000"
+        android:shadowRadius="2"
+        android:shadowDx="1"
+        android:shadowDy="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_info_avatar" />
@@ -38,11 +47,15 @@
         android:id="@+id/rlv_menuList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/corner_bg"
+        android:paddingTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_info_userName" />
+        app:layout_constraintTop_toBottomOf="@id/img_info_userName"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

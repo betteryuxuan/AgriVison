@@ -17,7 +17,6 @@ public class App extends Application {
         }
         ARouter.init(this);
         SoftKeyboardGlobal.INSTANCE.install(this, false);
-
     }
 
 }

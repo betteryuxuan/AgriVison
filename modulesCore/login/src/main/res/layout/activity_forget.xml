@@ -84,7 +84,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="40dp"
-                android:hint="请输入邮箱"
+                android:hint="邮箱"
                 android:textColorHint="@color/gray_2"
                 app:errorTextColor="@color/red_error">
 
@@ -107,7 +107,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="40dp"
-                android:hint="密码"
+                android:hint="请输入新密码"
                 android:textColorHint="@color/gray_2"
                 app:errorTextColor="@color/red_error"
                 app:passwordToggleEnabled="true"

@@ -1,7 +1,5 @@
 package com.example.module.login;
 
-import com.example.module.login.room.User;
-
 public interface IForgetContract {
     interface View {
         void showToast(String msg);
@@ -29,7 +27,7 @@ public interface IForgetContract {
 
         void changePassword(String email, String password, String code, IForgetContract.Model.Callback callback);
 
-        void saveLoginState(String email, String password, String token);
+        void saveLoginState(String email, String token);
 
         interface Callback {
             void onSuccess(String token);
