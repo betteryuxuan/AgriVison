@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.HomePageActivity">
+    tools:context="com.example.module.homepageview.view.HomePageActivity">
 
     <FrameLayout
         android:id="@+id/fragment_container"

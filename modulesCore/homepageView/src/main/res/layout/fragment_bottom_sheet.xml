@@ -1,0 +1,55 @@
+<!-- fragment_bottom_sheet.xml -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/iv_proverb_close"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_homefirst_proverb_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="原文"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_homefirst_proverb_meaning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="译文"
+        android:textColor="@color/gray"
+        android:textSize="17sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_homefirst_proverb_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="100dp"
+        android:background="#00000000"
+        app:layout_constraintTop_toBottomOf="@+id/tv_homefirst_proverb_meaning"
+        tools:layout_editor_absoluteX="16dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

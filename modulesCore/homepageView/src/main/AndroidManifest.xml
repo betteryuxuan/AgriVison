@@ -3,7 +3,16 @@
 
     <application>
         <activity
-            android:name=".view.HomePageActivity"
+            android:name="com.example.module.homepageview.view.HomePageActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.module.homepageview.view.NewsActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.module.homepageview.view.CategoryDetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.module.homepageview.view.CropDetailsActivity"
             android:exported="true" />
     </application>
 

@@ -1,0 +1,67 @@
+if (rootProject.ext.isDebug) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+def cfg = rootProject.ext
+
+android {
+    namespace cfg.applicationId.shopping
+    compileSdk cfg.android.compileSdkVersion
+
+    defaultConfig {
+        if (cfg.isDebug) {
+            applicationId cfg.applicationId.shopping
+        }
+        minSdk cfg.android.minSdkVersion
+        targetSdk cfg.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    sourceSets {
+        main {
+            if (cfg.isDebug) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
+}
+
+dependencies {
+
+    implementation project(':modulesBase:libBase')
+
+    implementation 'com.alibaba:arouter-api:1.5.2'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
+
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}

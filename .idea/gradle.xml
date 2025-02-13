@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/modulesCore/homepageView" />
             <option value="$PROJECT_DIR$/modulesCore/login" />
             <option value="$PROJECT_DIR$/modulesCore/personalinfoview" />
+            <option value="$PROJECT_DIR$/modulesCore/shoppingview" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

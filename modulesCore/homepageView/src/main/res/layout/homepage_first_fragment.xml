@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="#F9FAFC">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -14,50 +14,40 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/corncard_color_selector"
                 android:orientation="vertical"
-                android:background="@drawable/homepage_top_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" >
+                app:layout_constraintTop_toTopOf="parent">
+
                 <View
-                    android:layout_marginTop="150dp"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_marginTop="120dp"
                     android:layout_weight="1"
-                    android:background="@drawable/corner_background"/>
+                    android:background="@drawable/corner_background" />
             </LinearLayout>
-            <TextView
-                android:id="@+id/homepage_text1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:text="今日推荐"
-                android:textColor="@color/black"
-                android:textSize="23sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <com.youth.banner.Banner
                 android:id="@+id/banner_homepage_top"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="30dp"
+                android:layout_height="180dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="30dp"
                 app:banner_auto_loop="true"
                 app:banner_indicator_normal_width="5dp"
                 app:banner_indicator_selected_width="7dp"
                 app:banner_radius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/homepage_text1" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/homepage_text2"
@@ -72,7 +62,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/banner_homepage_top" />
 
-            <com.example.homepageview.custom.MyView
+            <com.example.module.homepageview.custom.MyView
                 android:id="@+id/myView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,20 +93,57 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
                 </HorizontalScrollView>
-            </com.example.homepageview.custom.MyView>
+            </com.example.module.homepageview.custom.MyView>
+
+            <TextView
+                android:id="@+id/homepage_text4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="农谚智慧"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/myView" />
+
+            <com.example.module.homepageview.custom.MyView
+                android:id="@+id/myView1"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/homepage_text4">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp">
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/vp_homepage_recommend"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="false" />
+                </androidx.cardview.widget.CardView>
+            </com.example.module.homepageview.custom.MyView>
+
 
             <TextView
                 android:id="@+id/homepage_text3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
                 android:text="新闻快讯"
                 android:textColor="@color/black"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/myView" />
+                app:layout_constraintTop_toBottomOf="@+id/myView1" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_homepage_news"
