@@ -9,6 +9,7 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        maven { url 'https://jitpack.io' }
     }
 }
 dependencyResolutionManagement {
@@ -16,6 +17,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 
@@ -24,5 +26,7 @@ include ':app'
 include ':modulesBase'
 include ':modulesBase:libBase'
 include ':modulesCore:login'
+include ':modulesCore:homepageView'
+include ':modulesCore:personalinfoview'
+include ':modulesCore:chatpageview'
 include ':modulesCore:shoppingview'
-include ':modulesCore:homepageview'

@@ -41,11 +41,14 @@ dependencies {
     if (!cfg.isDebug) {
         implementation project(":modulesCore:login")
         implementation project(":modulesCore:homepageView")
+        implementation project(":modulesCore:chatpageview")
+        implementation project(":modulesCore:personalinfoview")
         implementation project(":modulesCore:shoppingview")
     }
 
-    implementation 'com.alibaba:arouter-api:1.5.2'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
+    implementation "com.alibaba:arouter-api:1.5.2"
+    annotationProcessor "com.alibaba:arouter-compiler:1.5.2"
+
 
     implementation libs.appcompat
     implementation libs.material

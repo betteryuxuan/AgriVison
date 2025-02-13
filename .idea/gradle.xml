@@ -14,8 +14,10 @@
             <option value="$PROJECT_DIR$/modulesBase" />
             <option value="$PROJECT_DIR$/modulesBase/libBase" />
             <option value="$PROJECT_DIR$/modulesCore" />
-            <option value="$PROJECT_DIR$/modulesCore/homepageview" />
+            <option value="$PROJECT_DIR$/modulesCore/chatpageview" />
+            <option value="$PROJECT_DIR$/modulesCore/homepageView" />
             <option value="$PROJECT_DIR$/modulesCore/login" />
+            <option value="$PROJECT_DIR$/modulesCore/personalinfoview" />
             <option value="$PROJECT_DIR$/modulesCore/shoppingview" />
           </set>
         </option>

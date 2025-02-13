@@ -3,7 +3,6 @@ package com.example.module.homepageview.custom;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;

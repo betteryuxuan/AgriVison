@@ -6,61 +6,94 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:fitsSystemWindows="true"
     tools:context=".view.LoginActivity">
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/ll_login_1"
-        android:layout_width="0dp"
-        android:layout_height="360dp"
-        android:background="@drawable/pic_login"
-        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#e8e2d4"
+        android:fitsSystemWindows="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/pic_bg_3"
+            android:scaleType="fitStart" />
+
         <TextView
             android:id="@+id/tv_login_now"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_marginTop="40dp"
-            android:layout_marginRight="30dp"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="25dp"
+            android:shadowColor="@color/black2"
+            android:shadowDx="0.5"
+            android:shadowDy="-0.5"
+            android:shadowRadius="3"
             android:text="立即体验"
-            android:textColor="#33515151"
+            android:textColor="#cccccc"
             android:textSize="16sp"
             android:textStyle="bold" />
+
+
+        <net.center.blurview.ShapeBlurView
+            android:id="@+id/blur_login_view"
+            android:layout_width="195dp"
+            android:layout_height="125dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="95dp"
+            app:blur_corner_radius="20dp"
+            app:blur_down_sample="1.0"
+            app:blur_mode="rectangle"
+            app:blur_overlay_color="@color/gray_transparent"
+            app:blur_radius="25dp" />
 
         <TextView
             android:id="@+id/tv_login_1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="-5dp"
-            android:text="你好！"
-            android:textColor="@color/green_2"
-            android:textSize="60sp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="3"
+            android:text="「农视界」"
+            android:textColor="@color/black2"
+            android:textSize="45sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_login_2"
-            android:layout_width="wrap_content"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="5dp"
-            android:text="欢迎来到农视界"
-            android:textColor="#b3ae60"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="163dp"
+            android:shadowColor="@color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="从这里开启\n你的农业学习之旅！"
+            android:textColor="@color/black2"
             android:textSize="16sp"
             android:textStyle="bold" />
-    </LinearLayout>
+
+    </FrameLayout>
 
     <ScrollView
         android:id="@+id/sv_login"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="-40dp"
-        android:layout_marginBottom="-150dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="350dp"
+        android:layout_marginBottom="-350dp"
         android:background="@drawable/shape_top_corners"
-        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,6 +102,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fillViewport="true"
             android:orientation="vertical">
 
             <FrameLayout
@@ -76,7 +110,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
-
 
                 <TextView
                     android:id="@+id/tv_login_back"
@@ -96,6 +129,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
+                    android:shadowColor="#666666"
+                    android:shadowDx="3"
+                    android:shadowDy="3"
+                    android:shadowRadius="1"
                     android:text="登录"
                     android:textColor="#666666"
                     android:textSize="45sp"
@@ -112,7 +149,7 @@
                 android:layout_marginRight="40dp"
                 android:hint="邮箱"
                 android:textColorHint="@color/gray_2"
-                app:errorTextColor="@color/red">
+                app:errorTextColor="@color/red_error">
 
                 <EditText
                     android:id="@+id/et_login_email"
@@ -135,7 +172,7 @@
                 android:layout_marginRight="40dp"
                 android:hint="密码"
                 android:textColorHint="@color/gray_2"
-                app:errorTextColor="@color/red"
+                app:errorTextColor="@color/red_error"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/gray_2">
 
@@ -151,6 +188,19 @@
                     android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/tv_login_forgetname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="40dp"
+                android:text="忘记密码"
+                android:textColor="#4E00EB"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_register_password"
                 android:layout_width="match_parent"
@@ -161,7 +211,7 @@
                 android:hint="请再次输入密码"
                 android:textColorHint="@color/gray_2"
                 android:visibility="gone"
-                app:errorTextColor="@color/red"
+                app:errorTextColor="@color/red_error"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/gray_2">
 
@@ -187,7 +237,7 @@
                 android:hint="用户名"
                 android:textColorHint="@color/gray_2"
                 android:visibility="gone"
-                app:errorTextColor="@color/red">
+                app:errorTextColor="@color/red_error">
 
                 <EditText
                     android:id="@+id/et_register_username"
@@ -225,8 +275,7 @@
                 android:hint="验证码"
                 android:textColorHint="@color/gray_2"
                 android:visibility="gone"
-
-                app:errorTextColor="@color/red">
+                app:errorTextColor="@color/red_error">
 
                 <EditText
                     android:id="@+id/et_register_verification_code"
@@ -246,7 +295,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="50dp"
                 android:background="@drawable/shape_button_bg"
                 android:text="登录"

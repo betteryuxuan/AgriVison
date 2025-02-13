@@ -3,20 +3,16 @@ package com.example.module.login.presenter;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.module.login.LoginContract;
+import com.example.module.login.ILoginContract;
 import com.example.module.login.model.LoginModel;
-import com.example.module.login.room.User;
 import com.example.module.login.view.LoginActivity;
 
-import java.util.Random;
-
-public class LoginPresenter implements LoginContract.Presenter {
+public class LoginPresenter implements ILoginContract.Presenter {
     private static final String TAG = "LoginPresenterTAG";
 
-    private LoginContract.Model mModel;
-    private LoginContract.View mView;
+    private ILoginContract.Model mModel;
+    private ILoginContract.View mView;
     private Context mContext;
-    private int curVerificationCode;
 
     public LoginPresenter(LoginActivity loginActivity, Context context) {
         mView = loginActivity;
@@ -26,11 +22,7 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void sendVerificationCode(String destinationEmail) {
-        Random random = new Random();
-        curVerificationCode = 100000 + random.nextInt(900000);
-        if (mModel.sendVerificationCode(destinationEmail, String.valueOf(curVerificationCode)) == 0) {
-            mView.showToast("一分钟内只能发送一次");
-        }
+        mModel.sendVerificationCode(destinationEmail);
     }
 
     @Override
@@ -45,18 +37,13 @@ public class LoginPresenter implements LoginContract.Presenter {
 
 
     @Override
-    public boolean validateVerificationCode(String verificationCode) {
-        return Integer.parseInt(verificationCode) == curVerificationCode;
-    }
-
-    @Override
     public void login(String email, String password) {
-        mModel.login(email, password, new LoginContract.Model.Callback() {
+        mModel.login(email, password, new ILoginContract.Model.LoginCallback() {
             @Override
-            public void onSuccess(User user) {
-                Log.d(TAG, "登录成功");
+            public void onSuccess(String token) {
+                Log.d(TAG, "登录成功:" + token);
                 mView.showToast("登录成功");
-                mView.startMainActivity(user);
+                mView.startMainActivity();
             }
 
             @Override
@@ -67,21 +54,23 @@ public class LoginPresenter implements LoginContract.Presenter {
         });
     }
 
-    @Override
-    public void register(String email, String password, String username) {
-        mModel.register(email, password, username, new LoginContract.Model.Callback() {
-            @Override
-            public void onSuccess(User user) {
-                Log.d(TAG, "注册成功");
-                mView.showToast("注册成功");
-                mView.startMainActivity(user);
-            }
 
-            @Override
-            public void onFailure() {
-                Log.d(TAG, "注册失败");
-                mView.showToast("该邮箱已注册");
-            }
-        });
+    @Override
+    public void register(String email, String password, String username, String verificationCode) {
+        mModel.register(email, password, username, verificationCode,
+                new ILoginContract.Model.RegisterCallback() {
+                    @Override
+                    public void onSuccess() {
+                        Log.d(TAG, "注册成功");
+//                        mView.showToast("注册成功");
+                        login(email, password);
+                    }
+
+                    @Override
+                    public void onFailure() {
+                        Log.d(TAG, "注册失败");
+                        mView.showToast("此邮箱已注册");
+                    }
+                });
     }
 }

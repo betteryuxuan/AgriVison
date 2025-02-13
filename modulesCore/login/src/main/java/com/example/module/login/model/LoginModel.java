@@ -1,153 +1,175 @@
 package com.example.module.login.model;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 
-import com.example.module.login.LoginContract;
-import com.example.module.login.room.User;
-import com.example.module.login.room.UserDao;
-import com.example.module.login.room.UserDataBase;
+import com.example.module.libBase.SPUtils;
+import com.example.module.libBase.TokenManager;
+import com.example.module.login.ILoginContract;
 
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
+import org.json.JSONObject;
 
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import java.io.IOException;
 
-public class LoginModel implements LoginContract.Model {
+import okhttp3.Call;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+public class LoginModel implements ILoginContract.Model {
     private final String TAG = "LoginModelTAG";
-    private LoginContract.Presenter mPresenter;
+
+    private ILoginContract.Presenter mPresenter;
     private Context mContext;
 
-    private static final String fromEmail = "3885512625@qq.com";
-    private static final String password = "bvqyxqknthpkcgbg";
+    private static final String LOGIN_URL = "http://101.200.122.3:8080/login";
+    private static final String SIGNUP_URL = "http://101.200.122.3:8080/signup";
+    private static final String EMAIL_URL = "http://101.200.122.3:8080/email";
 
-    private static long lastSendTime = 0;
+    private static final OkHttpClient client = new OkHttpClient();
 
-    public LoginModel(LoginContract.Presenter presenter, Context context) {
+    public LoginModel(ILoginContract.Presenter presenter, Context context) {
         mPresenter = presenter;
         mContext = context;
     }
 
-    public int sendVerificationCode(final String destinationEmail, final String verificationCode) {
-        long currentTime = System.currentTimeMillis();
-
-        if (currentTime - lastSendTime < TimeUnit.MINUTES.toMillis(1)) {
-            Log.d("Email", "请等待一分钟后再尝试发送邮件");
-            return 0;
+    public void sendVerificationCode(final String destinationEmail) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put("email", destinationEmail);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        lastSendTime = currentTime;
+        RequestBody requestBody = RequestBody
+                .create(MediaType.parse("application/json; charset=utf-8"), json.toString());
 
-        new Thread(new Runnable() {
+        Request request = new Request.Builder()
+                .url(EMAIL_URL)
+                .post(requestBody)
+                .build();
+
+        client.newCall(request).enqueue(new okhttp3.Callback() {
             @Override
-            public void run() {
-                // 配置SMTP服务器
-                Properties props = new Properties();
-                props.put("mail.smtp.auth", "true");
-                props.put("mail.smtp.starttls.enable", "true");
-                props.put("mail.smtp.host", "smtp.qq.com");
-                props.put("mail.smtp.port", "587");
-
-                // 创建会话
-                Session session = Session.getInstance(props, new Authenticator() {
-                    @Override
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(fromEmail, password);
-                    }
-                });
-                session.setDebug(true);
-
-                try {
-                    // 创建邮件
-                    Message message = new MimeMessage(session);
-                    message.setFrom(new InternetAddress(fromEmail));
-                    message.setSubject("【农视界】");
-                    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinationEmail));
-                    message.setText("您的验证码为： " + verificationCode + " ，请勿泄露。");
-
-                    Transport.send(message);
-                    Log.d("Email", "邮件发送成功");
-
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            mPresenter.onVerificationCodeSentSuccess();
-                        }
-                    });
-
-                } catch (MessagingException e) {
-                    Log.e("Email", "发送邮件时发生错误: " + e.getMessage());
-
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            mPresenter.onVerificationCodeSentFailure();
-                        }
-                    });
-                }
+            public void onFailure(Call call, IOException e) {
+                mPresenter.onVerificationCodeSentFailure();
+                Log.d(TAG, "发送验证码失败" + e.getMessage());
             }
-        }).start();
 
-        return 1;
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                mPresenter.onVerificationCodeSentSuccess();
+
+            }
+        });
+
     }
 
     @Override
-    public void login(String email, String password, Callback callback) {
-        UserDataBase userDataBase = UserDataBase.getINSTANCE(mContext);
-        UserDao userDao = userDataBase.userDao();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Log.d(TAG, "登录：email: " + email + " password: " + password);
+    public void login(String email, String password, LoginCallback callback) {
+        SPUtils.clear(mContext);
 
-                User user = userDao.validateAccount(email, password);
-                if (user != null) {
-                    callback.onSuccess(user);
+        JSONObject json = new JSONObject();
+        try {
+            json.put("email", email);
+            json.put("password", password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody
+                .create(MediaType.parse("application/json; charset=utf-8"), json.toString());
+
+        Request request = new Request.Builder()
+                .url(LOGIN_URL)
+                .post(requestBody)
+                .build();
+
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d(TAG, "登录失败" + e.getMessage());
+                callback.onFailure();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful() && response.body() != null) {
+                    String responseBody = response.body().string();
+                    Log.d(TAG, "登录成功" + responseBody);
+                    try {
+                        JSONObject jsonResponse = new JSONObject(responseBody);
+                        if (jsonResponse.getInt("code") == 1) {
+                            String token = jsonResponse.getString("data");
+                            saveLoginState(email, token);
+                            callback.onSuccess(token);
+                        } else {
+                            callback.onFailure();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        callback.onFailure();
+                    }
                 } else {
                     callback.onFailure();
                 }
             }
-        }).start();
+        });
     }
 
     @Override
-    public void register(String email, String password, String username, Callback callback) {
-        UserDataBase userDataBase = UserDataBase.getINSTANCE(mContext);
-        UserDao userDao = userDataBase.userDao();
+    public void register(String email, String password, String username, String code, RegisterCallback callback) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put("email", email);
+            json.put("password", password);
+            json.put("code", code);
+            json.put("username", username);
 
-        new Thread(new Runnable() {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody
+                .create(MediaType.parse("application/json; charset=utf-8"), json.toString());
+
+        Request request = new Request.Builder()
+                .url(SIGNUP_URL)
+                .post(requestBody)
+                .build();
+
+        client.newCall(request).enqueue(new okhttp3.Callback() {
             @Override
-            public void run() {
-                synchronized (UserDao.class) {
-                    Log.d(TAG, "检查邮箱是否已注册：email: " + email);
-                    int count = userDao.findUserByEmail(email);
-                    if (count > 0) {
-                        Log.d(TAG, "邮箱已存在：" + count);
-                        callback.onFailure(); // 邮箱已存在，返回失败
-                        return;
-                    }
+            public void onFailure(Call call, IOException e) {
+                callback.onFailure();
+            }
 
-                    // 如果邮箱不存在，执行注册操作
-                    Log.d(TAG, "注册：email: " + email + " password: " + password + " username: " + username);
-                    User user = new User();
-                    user.setEmail(email);
-                    user.setPassword(password);
-                    user.setUserName(username);
-                    userDao.insertUser(user);
-                    Log.d(TAG, "注册成功：" + user);
-                    callback.onSuccess(user);
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String responseBody = response.body().string();
+                try {
+                    JSONObject jsonResponse = new JSONObject(responseBody);
+                    if (jsonResponse.getInt("code") == 0) {
+                        callback.onFailure();
+                    } else {
+                        SPUtils.putString(mContext, SPUtils.EMAIL_KEY, email);
+                        callback.onSuccess();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    callback.onFailure();
                 }
             }
-        }).start();
+        });
+
+    }
+
+    @Override
+    public void saveLoginState(String email, String token) {
+        SPUtils.putString(mContext, SPUtils.EMAIL_KEY, email);
+        TokenManager.saveToken(mContext, token);
     }
 
 

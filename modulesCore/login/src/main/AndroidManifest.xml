@@ -3,6 +3,9 @@
 
     <application>
         <activity
+            android:name=".view.ForgetActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.LoginActivity"
             android:exported="true" />
     </application>
