@@ -4,9 +4,6 @@ package com.example.personalinfoview.contract;
 import android.net.Uri;
 
 import com.example.module.libBase.bean.User;
-import com.example.personalinfoview.bean.MenuItem;
-
-import java.util.List;
 
 public interface IMyInfoContract {
     interface View {

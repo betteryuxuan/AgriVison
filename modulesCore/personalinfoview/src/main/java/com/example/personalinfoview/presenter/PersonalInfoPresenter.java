@@ -2,19 +2,16 @@ package com.example.personalinfoview.presenter;
 
 import android.content.DialogInterface;
 import android.net.Uri;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.module.libBase.bean.User;
-import com.example.personalinfoview.contract.IInfoContract;
 import com.example.personalinfoview.R;
 import com.example.personalinfoview.bean.MenuItem;
+import com.example.personalinfoview.contract.IInfoContract;
 import com.example.personalinfoview.model.PersonalInfoModel;
-import com.example.personalinfoview.view.MyInfoActivity;
 import com.example.personalinfoview.view.PersonalInfoFragment;
 
 import java.util.ArrayList;

@@ -118,6 +118,7 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
                 if (user != null) {
                     ARouter.getInstance().build("/login/ForgetActivity")
                             .withString("email", user.getEmail())
+                            .withTransition(R.anim.slide_in_left, R.anim.slide_out_left)
                             .navigation();
                 } else {
                     Toast.makeText(MyInfoActivity.this, "请先登录", Toast.LENGTH_SHORT).show();
@@ -234,10 +235,9 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
                 Toast.makeText(MyInfoActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
                 finishAffinity();
                 ARouter.getInstance().build("/main/MainActivity")
+                        .withTransition(R.anim.slide_in_left, R.anim.slide_out_left)
                         .navigation();
             }
         });
     }
-
-
 }

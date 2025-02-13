@@ -26,7 +26,9 @@ ext {
             "login"           : "com.example.module.login",
             "libBase"         : "com.example.module.libBase",
             "homepage"        : "com.example.homepageview",
-            "personalinfopage": "com.example.personalinfoview"
+            "chatpage"        : "com.example.chatpageview",
+            "personalinfopage": "com.example.personalinfoview",
+
     ]
 
     //定义了一些常见的 Android 库的依赖项，包括 AppCompat 库、Material Design 库和 ConstraintLayout 库。
@@ -44,12 +46,12 @@ ext {
     ]
 
     annotationDeps = [
-            "arouter_compiler": "com.alibaba:arouter-compiler:1.5.2",
+            "arouter_compiler" : "com.alibaba:arouter-compiler:1.5.2",
     ]
 
     networkDeps = [
             "gson"    : "com.google.code.gson:gson:2.10",
-            "retrofit": "com.squareup.retrofit2:retrofit:2.9.0"
+            "okhttp3" : "com.squareup.okhttp3:okhttp:4.12.0",
     ]
 
     BaseLib = BaseDeps.values()

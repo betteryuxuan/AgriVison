@@ -1,9 +1,6 @@
 package com.example.module.login.model;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.module.libBase.SPUtils;

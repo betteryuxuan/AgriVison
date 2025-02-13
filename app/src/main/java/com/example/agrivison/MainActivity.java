@@ -1,17 +1,12 @@
 package com.example.agrivison;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -39,15 +34,13 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bnv_main);
 
         Fragment fragment = (Fragment) ARouter.getInstance().build("/homepageView/HomePageFragment").navigation(this);
+        Fragment chatpageFragment = (Fragment) ARouter.getInstance().build("/chatpageview/ChatpageFragment").navigation(this);
         Fragment personalInfoFragment = (Fragment) ARouter.getInstance().build("/personalinfoview/PersonalInfoFragment").navigation(this);
 
         fragments = new ArrayList<>();
         fragments.add(fragment);
-        if (personalInfoFragment != null) {
-            fragments.add(personalInfoFragment);
-        }else {
-            Log.d(TAG, "onCreate: personalInfoFragment is null");
-        }
+        fragments.add(chatpageFragment);
+        fragments.add(personalInfoFragment);
 
         PagesAdapter pagesAdapter = new PagesAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         viewPager2.setAdapter(pagesAdapter);
@@ -76,4 +69,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

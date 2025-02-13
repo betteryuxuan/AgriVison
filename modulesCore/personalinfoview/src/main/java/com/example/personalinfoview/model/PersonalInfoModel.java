@@ -1,7 +1,6 @@
 package com.example.personalinfoview.model;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.module.libBase.SPUtils;

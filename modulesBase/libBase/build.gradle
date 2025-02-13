@@ -33,7 +33,6 @@ android {
 }
 
 dependencies {
-
     api cfg.BaseLib
     annotationProcessor  cfg.BaseAnnotation
     api cfg.BaseNetwork

@@ -14,8 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.homepageview.contract.IHomeFirstContract;
 import com.example.homepageview.R;
+import com.example.homepageview.contract.IHomeFirstContract;
 import com.example.homepageview.model.Corn;
 import com.example.homepageview.model.News;
 import com.example.homepageview.view.adapter.CornRecyclerViewAdapter;

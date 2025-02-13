@@ -1,15 +1,11 @@
 package com.example.module.login.model;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.module.libBase.SPUtils;
 import com.example.module.libBase.TokenManager;
 import com.example.module.login.IForgetContract;
-import com.example.module.login.ILoginContract;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,7 +13,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

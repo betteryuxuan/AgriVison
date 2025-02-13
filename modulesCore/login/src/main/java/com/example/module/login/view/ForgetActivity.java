@@ -19,11 +19,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.module.libBase.bean.User;
 import com.example.module.login.IForgetContract;
 import com.example.module.login.R;
 import com.example.module.login.databinding.ActivityForgetBinding;
 import com.example.module.login.presenter.ForgetPresenter;
-import com.example.module.libBase.bean.User;
 import com.github.boybeak.skbglobal.SoftKeyboardGlobal;
 
 @Route(path = "/login/ForgetActivity")

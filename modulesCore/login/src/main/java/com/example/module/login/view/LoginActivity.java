@@ -25,9 +25,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.module.libBase.TokenManager;
 import com.example.module.login.ILoginContract;
 import com.example.module.login.R;
-import com.example.module.libBase.TokenManager;
 import com.example.module.login.presenter.LoginPresenter;
 import com.github.boybeak.skbglobal.SoftKeyboardGlobal;
 import com.google.android.material.textfield.TextInputLayout;

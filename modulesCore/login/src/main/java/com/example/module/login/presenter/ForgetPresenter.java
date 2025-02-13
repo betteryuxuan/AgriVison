@@ -4,14 +4,10 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.example.module.login.IForgetContract;
-import com.example.module.login.ILoginContract;
 import com.example.module.login.model.ForgetModel;
-import com.example.module.login.model.LoginModel;
 import com.example.module.login.view.ForgetActivity;
-import com.example.module.login.view.LoginActivity;
 
 public class ForgetPresenter implements IForgetContract.Presenter {
     private IForgetContract.Model mModel;

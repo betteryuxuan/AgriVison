@@ -1,7 +1,5 @@
 package com.example.personalinfoview.bean;
 
-import android.widget.ImageView;
-
 public class MenuItem {
     private int imageResId = 0;
     private String title = " ";

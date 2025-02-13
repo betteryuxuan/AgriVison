@@ -22,7 +22,3 @@
 -keep class com.alibaba.android.arouter.** { *; }
 -keep interface com.alibaba.android.arouter.** { *; }
 -keep public class * implements com.alibaba.android.arouter.facade.template.ISyringe { *; }
-
--keep class cn.finalteam.galleryfinal.widget.*{*;}
--keep class cn.finalteam.galleryfinal.widget.crop.*{*;}
--keep class cn.finalteam.galleryfinal.widget.zoonview.*{*;}

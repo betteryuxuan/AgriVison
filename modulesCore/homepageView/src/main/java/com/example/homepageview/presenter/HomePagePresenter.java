@@ -1,6 +1,5 @@
 package com.example.homepageview.presenter;
 
-import com.example.homepageview.contract.IHomeFirstContract;
 import com.example.homepageview.contract.IHomePageContract;
 
 public class HomePagePresenter implements IHomePageContract.IHomePagePresenter {

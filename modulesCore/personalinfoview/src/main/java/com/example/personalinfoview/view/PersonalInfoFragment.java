@@ -24,7 +24,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.example.module.libBase.bean.AnimationUtil;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.module.libBase.AnimationUtil;
 import com.example.module.libBase.bean.User;
 import com.example.personalinfoview.R;
 import com.example.personalinfoview.adapter.MenuAdapter;
@@ -91,14 +92,21 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
 
         imgAvatar.setOnClickListener(v -> {
             AnimationUtil.setAnimateView(v);
-            if(user == null){
+            if (user == null) {
                 Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
-            }else {
+            } else {
                 requestPermissions();
                 checkPermissionResult();
             }
         });
         tvUsername.setOnClickListener(v -> {
+            if (user == null) {
+                getActivity().finish();
+                ARouter.getInstance().build("/login/LoginActivity")
+                        .withTransition(R.anim.slide_in_left, R.anim.slide_out_left)
+                        .navigation();
+
+            }
             AnimationUtil.setShakeAnimateView(v);
         });
     }

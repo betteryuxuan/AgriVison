@@ -1,17 +1,13 @@
 package com.example.personalinfoview.model;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.util.Log;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.module.libBase.SPUtils;
 import com.example.module.libBase.TokenManager;
 import com.example.module.libBase.bean.User;
 import com.example.personalinfoview.contract.IMyInfoContract;
 import com.example.personalinfoview.presenter.MyInfoPresenter;
-import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -41,6 +41,7 @@ dependencies {
     if (!cfg.isDebug) {
         implementation project(":modulesCore:login")
         implementation project(":modulesCore:homepageView")
+        implementation project(":modulesCore:chatpageview")
         implementation project(":modulesCore:personalinfoview")
     }
 

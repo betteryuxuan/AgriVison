@@ -1,7 +1,6 @@
 package com.example.homepageview.view;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.example.homepageview.contract.IHomeFirstContract;
 import com.example.homepageview.R;
 import com.example.homepageview.contract.IHomePageContract;
 import com.example.homepageview.model.HomeFirstModel;
