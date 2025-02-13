@@ -25,7 +25,8 @@ ext {
             "app"    : "com.example.agrivison",
             "login"  : "com.example.module.login",
             "libBase": "com.example.module.libBase",
-            "homepage" : "com.example.homepageview"
+            "homepage" : "com.example.module.homepageview",
+            "shopping" : "com.example.module.shoppingview"
     ]
 
     //定义了一些常见的 Android 库的依赖项，包括 AppCompat 库、Material Design 库和 ConstraintLayout 库。

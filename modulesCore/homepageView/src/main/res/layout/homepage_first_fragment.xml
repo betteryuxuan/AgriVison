@@ -62,7 +62,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/banner_homepage_top" />
 
-            <com.example.homepageview.custom.MyView
+            <com.example.module.homepageview.custom.MyView
                 android:id="@+id/myView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
                 </HorizontalScrollView>
-            </com.example.homepageview.custom.MyView>
+            </com.example.module.homepageview.custom.MyView>
 
             <TextView
                 android:id="@+id/homepage_text4"
@@ -108,7 +108,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/myView" />
 
-            <com.example.homepageview.custom.MyView
+            <com.example.module.homepageview.custom.MyView
                 android:id="@+id/myView1"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
@@ -129,7 +129,7 @@
                         android:layout_height="match_parent"
                         android:nestedScrollingEnabled="false" />
                 </androidx.cardview.widget.CardView>
-            </com.example.homepageview.custom.MyView>
+            </com.example.module.homepageview.custom.MyView>
 
 
             <TextView

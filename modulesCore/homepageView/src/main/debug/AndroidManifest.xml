@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
-            android:name=".view.HomePageActivity"
+            android:name="com.example.module.homepageview.view.HomePageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,10 +18,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.NewsActivity"
+            android:name="com.example.module.homepageview.view.NewsActivity"
             android:exported="true" />
         <activity
-            android:name=".view.CategoryDetailsActivity"
+            android:name="com.example.module.homepageview.view.CategoryDetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.module.homepageview.view.CropDetailsActivity"
             android:exported="true" />
     </application>
 

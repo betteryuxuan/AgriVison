@@ -47,7 +47,7 @@
 
 
 
-            <com.example.homepageview.custom.MyView
+            <com.example.module.homepageview.custom.MyView
                 android:id="@+id/myView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
                 </HorizontalScrollView>
-            </com.example.homepageview.custom.MyView>
+            </com.example.module.homepageview.custom.MyView>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -98,6 +98,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/myView2" />
                 <ImageView
+                    android:id="@+id/iv_category_oil"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
@@ -106,7 +107,7 @@
             </LinearLayout>
 
 
-            <com.example.homepageview.custom.MyView
+            <com.example.module.homepageview.custom.MyView
                 android:id="@+id/myView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -138,7 +139,7 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
                 </HorizontalScrollView>
-            </com.example.homepageview.custom.MyView>
+            </com.example.module.homepageview.custom.MyView>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -157,6 +158,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/myView3" />
                 <ImageView
+                    android:id="@+id/iv_category_vegetable"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
@@ -164,7 +166,7 @@
                     android:background="@drawable/ic_more"/>
             </LinearLayout>
 
-            <com.example.homepageview.custom.MyView
+            <com.example.module.homepageview.custom.MyView
                 android:id="@+id/myView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -196,7 +198,7 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
                 </HorizontalScrollView>
-            </com.example.homepageview.custom.MyView>
+            </com.example.module.homepageview.custom.MyView>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -215,6 +217,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/myView4" />
                 <ImageView
+                    android:id="@+id/iv_category_fruit"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
@@ -222,7 +225,7 @@
                     android:background="@drawable/ic_more"/>
             </LinearLayout>
 
-            <com.example.homepageview.custom.MyView
+            <com.example.module.homepageview.custom.MyView
                 android:id="@+id/myView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -254,7 +257,7 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
                 </HorizontalScrollView>
-            </com.example.homepageview.custom.MyView>
+            </com.example.module.homepageview.custom.MyView>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -273,6 +276,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/myView5" />
                 <ImageView
+                    android:id="@+id/iv_category_wild_fruit"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
@@ -280,7 +284,7 @@
                     android:background="@drawable/ic_more"/>
             </LinearLayout>
 
-            <com.example.homepageview.custom.MyView
+            <com.example.module.homepageview.custom.MyView
                 android:id="@+id/myView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -312,7 +316,7 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
                 </HorizontalScrollView>
-            </com.example.homepageview.custom.MyView>
+            </com.example.module.homepageview.custom.MyView>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -331,6 +335,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/myView6" />
                 <ImageView
+                    android:id="@+id/iv_category_seed"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
@@ -338,7 +343,7 @@
                     android:background="@drawable/ic_more"/>
             </LinearLayout>
 
-            <com.example.homepageview.custom.MyView
+            <com.example.module.homepageview.custom.MyView
                 android:id="@+id/myView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -370,7 +375,7 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
                 </HorizontalScrollView>
-            </com.example.homepageview.custom.MyView>
+            </com.example.module.homepageview.custom.MyView>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -389,6 +394,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/myView7" />
                 <ImageView
+                    android:id="@+id/iv_category_medicinal"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
@@ -396,7 +402,7 @@
                     android:background="@drawable/ic_more"/>
             </LinearLayout>
 
-            <com.example.homepageview.custom.MyView
+            <com.example.module.homepageview.custom.MyView
                 android:id="@+id/myView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -428,7 +434,7 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
                 </HorizontalScrollView>
-            </com.example.homepageview.custom.MyView>
+            </com.example.module.homepageview.custom.MyView>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

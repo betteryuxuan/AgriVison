@@ -3,15 +3,26 @@
 
     <application>
         <activity
-            android:name=".view.HomePageActivity"
+            android:name=".view."
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.module.homepageview.view.HomePageActivity"
             android:exported="true" />
         <activity
-            android:name=".view.NewsActivity"
+            android:name="com.example.module.homepageview.view.NewsActivity"
             android:exported="true" />
         <activity
-            android:name=".view.CategoryDetailsActivity"
+            android:name="com.example.module.homepageview.view.CategoryDetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.module.homepageview.view.CropDetailsActivity"
             android:exported="true" />
     </application>
-
 
 </manifest>

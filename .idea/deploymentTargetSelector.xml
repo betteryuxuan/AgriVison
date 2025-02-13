@@ -27,6 +27,9 @@
       <SelectionState runConfigName="modulesCore.login">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="modulesCore.shoppingview">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>

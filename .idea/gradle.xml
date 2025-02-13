@@ -14,8 +14,9 @@
             <option value="$PROJECT_DIR$/modulesBase" />
             <option value="$PROJECT_DIR$/modulesBase/libBase" />
             <option value="$PROJECT_DIR$/modulesCore" />
-            <option value="$PROJECT_DIR$/modulesCore/homepageView" />
+            <option value="$PROJECT_DIR$/modulesCore/homepageview" />
             <option value="$PROJECT_DIR$/modulesCore/login" />
+            <option value="$PROJECT_DIR$/modulesCore/shoppingview" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

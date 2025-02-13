@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.HomePageActivity">
+    tools:context="com.example.module.homepageview.view.HomePageActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/titlebar"

@@ -21,4 +21,3 @@
 #-renamesourcefileattribute SourceFile
 -keep class com.alibaba.android.arouter.** { *; }
 -keep interface com.alibaba.android.arouter.** { *; }
--keep public class * implements com.alibaba.android.arouter.facade.template.ISyringe { *; }
