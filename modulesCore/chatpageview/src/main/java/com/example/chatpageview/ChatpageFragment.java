@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 
-@Route(path = "/chatpageview/ChatpageFragment ")
+@Route(path = "/chatpageview/ChatPageFragment ")
 public class ChatpageFragment extends Fragment {
     private static final String TAG = "ChatpageFragmentTAG";
 

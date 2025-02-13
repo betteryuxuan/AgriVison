@@ -1,5 +1,4 @@
 def cfg = rootProject.ext
-
 if (cfg.isDebug) {
     apply plugin: 'com.android.application'
 } else {

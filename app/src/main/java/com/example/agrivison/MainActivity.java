@@ -34,13 +34,13 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bnv_main);
 
         Fragment fragment = (Fragment) ARouter.getInstance().build("/homepageView/HomePageFragment").navigation(this);
-        Fragment chatpageFragment = (Fragment) ARouter.getInstance().build("/chatpageview/ChatpageFragment").navigation(this);
+        Fragment chatpageFragment = (Fragment) ARouter.getInstance().build("/chatpageview/ChatPageFragment").navigation(this);
         Fragment personalInfoFragment = (Fragment) ARouter.getInstance().build("/personalinfoview/PersonalInfoFragment").navigation(this);
 
         fragments = new ArrayList<>();
         fragments.add(fragment);
-        fragments.add(chatpageFragment);
         fragments.add(personalInfoFragment);
+        fragments.add(chatpageFragment);
 
         PagesAdapter pagesAdapter = new PagesAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         viewPager2.setAdapter(pagesAdapter);
