@@ -1,6 +1,6 @@
 ext {
 
-    isDebug = false;    //当为true时代表调试模式，组件可以单独运行。如果是false代表编译打包
+    isDebug = true;    //当为true时代表调试模式，组件可以单独运行。如果是false代表编译打包
 
     /**
      compileSdkVersion：指定用于编译应用程序的 Android SDK 版本。

@@ -121,7 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="10dp"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="0dp">
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/vp_homepage_recommend"
