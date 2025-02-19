@@ -111,22 +111,23 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
     }
 
     @Override
-    public void setupNewsRecyclerView(List<News> list) {
+    public void setupNewsRecyclerView(List<News.Item> list) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         newsRecyclerView.setAdapter(new NewsRecyclerViewAdapter(list, new NewsRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(News news) {
+            public void onItemClick(News.Item news) {
                 Intent intent = new Intent(getContext(), NewsActivity.class);
+                intent.putExtra("htmlContent", news.getContent());
+                intent.putExtra("title", news.getTitle());
                 intent.putExtra("image", news.getImage());
-                intent.putExtra("text", news.getText());
                 startActivity(intent);            }
-        }));
+        }, getContext()));
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 //        initAinm();
     }
 
     @Override
-    public void setupProverbViewPager(List<Proverb> list) {
+    public void setupProverbViewPager(List<Proverb.ProverbData> list) {
         ProverbViewPagerAdapter adapter = new ProverbViewPagerAdapter(getActivity(), list);
         viewPager2.setAdapter(adapter);
     }

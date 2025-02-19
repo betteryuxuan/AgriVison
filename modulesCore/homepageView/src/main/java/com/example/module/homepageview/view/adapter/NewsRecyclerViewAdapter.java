@@ -1,5 +1,6 @@
 package com.example.module.homepageview.view.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.module.homepageview.R;
 import com.example.module.homepageview.model.classes.News;
 
@@ -19,16 +21,18 @@ import java.util.List;
 public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerViewAdapter.NewsHolder> {
 
     private final String TAG = "NewsRecyclerViewAdapter";
-    List<News> newsList;
+    List<News.Item> newsList;
     private OnItemClickListener clickListener;
+    private Context mContext;
 
-    public NewsRecyclerViewAdapter(List<News> newsList, OnItemClickListener clickListener) {
+    public NewsRecyclerViewAdapter(List<News.Item> newsList, OnItemClickListener clickListener, Context mContext) {
         this.newsList = newsList;
         this.clickListener = clickListener;
+        this.mContext = mContext;
     }
 
     public interface OnItemClickListener {
-        void onItemClick(News news);
+        void onItemClick(News.Item news);
     }
 
 
@@ -42,9 +46,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull NewsRecyclerViewAdapter.NewsHolder holder, int position) {
-        News news = newsList.get(position);
-        holder.textView.setText(news.getText());
-        holder.imageView.setImageResource(news.getImage());
+        News.Item news = newsList.get(position);
         holder.newsLayout.startAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.my_anim));
         holder.newsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +56,10 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
                 }
             }
         });
+        Glide.with(mContext)
+                .load(news.getImage())  // news.getImage() 返回的是图片的 URL 或文件路径
+                .into(holder.imageView); // 将图片加载到 ImageView
+        holder.textView.setText(news.getTitle());
     }
 
     @Override

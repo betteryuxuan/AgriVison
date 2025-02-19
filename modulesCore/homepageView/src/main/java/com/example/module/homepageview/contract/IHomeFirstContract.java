@@ -5,6 +5,7 @@ import com.example.module.homepageview.model.classes.Crop;
 import com.example.module.homepageview.model.classes.News;
 import com.example.module.homepageview.model.classes.Proverb;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface IHomeFirstContract {
@@ -21,9 +22,9 @@ public interface IHomeFirstContract {
 
         void setupCropRecyclerView(List<Crop> list);
 
-        void setupNewsRecyclerView(List<News> list);
+        void setupNewsRecyclerView(List<News.Item> list);
 
-        void setupProverbViewPager(List<Proverb> list);
+        void setupProverbViewPager(List<Proverb.ProverbData> list);
     }
 
     interface IHomeFirstPresenter {
@@ -43,8 +44,19 @@ public interface IHomeFirstContract {
 
         List<Crop> getCropRecyclerViewDatas();
 
-        List<News> getNewsRecyclerViewDatas();
+        void getNewsRecyclerViewDatas(NewsCallback callback);
 
-        List<Proverb> getProverbViewPagerDatas();
+        void getProverbViewPagerDatas(ProverbCallback callback);
+
+        interface NewsCallback {
+            void onNewsLoaded(List<News.Item> data);
+            void onError(IOException e);
+        }
+
+        interface ProverbCallback {
+            void onProverbsLoaded(List<Proverb.ProverbData> data);
+            void onError(IOException e);
+        }
     }
+
 }

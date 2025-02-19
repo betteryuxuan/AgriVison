@@ -19,3 +19,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class com.alibaba.android.arouter.** { *; }
+-keep interface com.alibaba.android.arouter.** { *; }
+-keep public class * implements com.alibaba.android.arouter.facade.template.ISyringe { *; }

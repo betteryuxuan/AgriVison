@@ -1,6 +1,6 @@
 ext {
 
-    isDebug = true;    //当为true时代表调试模式，组件可以单独运行。如果是false代表编译打包
+    isDebug = false;    //当为true时代表调试模式，组件可以单独运行。如果是false代表编译打包
 
     /**
      compileSdkVersion：指定用于编译应用程序的 Android SDK 版本。
@@ -28,7 +28,8 @@ ext {
             "homepage"        : "com.example.module.homepageview",
             "chatpage"        : "com.example.chatpageview",
             "personalinfopage": "com.example.personalinfoview",
-            "shopping" : "com.example.module.shoppingview"
+            "shopping" : "com.example.module.shoppingview",
+            "videopage" : "com.example.module.videoview"
 
     ]
 
@@ -42,8 +43,7 @@ ext {
             "banner"          : "io.github.youth5201314:banner:2.2.3",
             "softkeyboard"    : "com.github.boybeak:skb-global:0.2.0",
             "glide"           : "com.github.bumptech.glide:glide:4.16.0",
-
-
+            "exoplayer"       : "com.google.android.exoplayer:exoplayer:2.18.1",
     ]
 
     annotationDeps = [

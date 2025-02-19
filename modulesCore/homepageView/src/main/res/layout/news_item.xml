@@ -4,6 +4,7 @@
     android:id="@+id/cl_homepage_newsList"
     android:layout_width="match_parent"
     android:layout_height="120dp"
+    android:background="@color/white"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -11,35 +12,23 @@
         android:id="@+id/tv_homepage_newstext"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
         android:ellipsize="end"
         android:maxLines="2"
-        android:text="在新疆阿克苏地区沙雅县古勒巴格镇，农用机械在一处采收完的棉田里进行残膜回收、秸秆粉碎还田作业（2020年10月23日摄，无人机照片）。阿克苏地区沙雅县地处塔里木盆地西北缘，是产棉大县。近年来，沙雅县先后吸引棉纺、农机制造、节水设备制造等多家企业落户。
-“十四五”时期，我国明确提出要全面推进乡村振兴，加快农业农村现代化，提高农业质量效益和竞争力，完善农业科技创新体系，建设智慧农业。在农业领域，无人化和人工智能技术正走进山间和田地。同时，智慧农业系统通过收集数据并分析，让农户更好了解农田的全方位信息，实现精准科学的农业生产管理规划，大幅提升农业生产效益。"
+        android:text="标题"
         android:textColor="#333333"
-        android:textSize="17sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_homepage_newstime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="2周前"
-        android:textColor="@color/gray"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_homepage_newstext" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,6 +38,7 @@
             android:id="@+id/iv_homepage_newsimage"
             android:layout_width="140dp"
             android:layout_height="90dp"
+            android:scaleType="center"
             android:src="@drawable/news1_pic" />
     </androidx.cardview.widget.CardView>
 
