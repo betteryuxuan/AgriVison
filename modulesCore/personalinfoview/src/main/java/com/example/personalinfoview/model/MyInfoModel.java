@@ -73,7 +73,6 @@ public class MyInfoModel implements IMyInfoContract.Model {
                 Log.d("MyInfoActivityTAG", "onResponse: " + response.body().string());
                 mPresenter.onModifyInfoSuccess(username);
                 SPUtils.putString(mContext, SPUtils.USERNAME_KEY, username);
-
             }
         });
     }

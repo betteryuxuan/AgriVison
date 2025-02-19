@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.example.module.libBase.AnimationUtil;
+import com.example.module.libBase.AnimationUtils;
 import com.example.module.libBase.bean.User;
 import com.example.personalinfoview.R;
 import com.example.personalinfoview.adapter.MenuAdapter;
@@ -46,6 +46,7 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
     private RecyclerView rlv;
     private List<MenuItem> items = new ArrayList<>();
     private TextView tvUsername;
+    private TextView tvEmail;
     private User user;
 
     private ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
@@ -65,8 +66,10 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
         super.onViewCreated(view, savedInstanceState);
 
         rlv = view.findViewById(R.id.rlv_menuList);
-        tvUsername = view.findViewById(R.id.img_info_userName);
-        imgAvatar = view.findViewById(R.id.img_info_avatar);
+        tvUsername = view.findViewById(R.id.tv_myinfo_name);
+        tvEmail = view.findViewById(R.id.tv_myinfo_email);
+        imgAvatar = view.findViewById(R.id.img_myinfo_avatar);
+
 
         pickMedia = registerForActivityResult(
                 new ActivityResultContracts.PickVisualMedia(),
@@ -79,8 +82,6 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
 
                         // 持久化URI访问权限
                         contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-
                     }
                 }
         );
@@ -91,9 +92,13 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
         presenter.setUserInfo();
 
         imgAvatar.setOnClickListener(v -> {
-            AnimationUtil.setAnimateView(v);
+            AnimationUtils.setAnimateView(v);
             if (user == null) {
                 Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
+//                getActivity().finish();
+                ARouter.getInstance().build("/login/LoginActivity")
+                        .withTransition(R.anim.slide_in_left, R.anim.slide_out_left)
+                        .navigation();
             } else {
                 requestPermissions();
                 checkPermissionResult();
@@ -101,13 +106,13 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
         });
         tvUsername.setOnClickListener(v -> {
             if (user == null) {
-                getActivity().finish();
+//                getActivity().finish();
                 ARouter.getInstance().build("/login/LoginActivity")
                         .withTransition(R.anim.slide_in_left, R.anim.slide_out_left)
                         .navigation();
-
             }
-            AnimationUtil.setShakeAnimateView(v);
+//            AnimationUtils.setShakeAnimateView(v);
+            AnimationUtils.setLikeAnimate(v);
         });
     }
 
@@ -174,11 +179,13 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
         rlv.setAdapter(new MenuAdapter(items, position -> presenter.onMenuItemClick(position)));
     }
 
-    public void UpdateUserName(String userName) {
-        if (userName != null) {
-            tvUsername.setText(userName);
+    public void UpdateUserInfo(User user) {
+        if (user != null) {
+            tvUsername.setText(user.getUserName());
+            tvEmail.setText(user.getEmail());
         } else {
             tvUsername.setText("未登录");
+            tvEmail.setText("");
         }
     }
 

@@ -344,7 +344,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
         ObjectAnimator.ofFloat(tilVerificationCode, "alpha", 1f, 0f).setDuration(1200).start();
         ObjectAnimator.ofFloat(tilTwicePassword, "alpha", 1f, 0f).setDuration(1200).start();
         ObjectAnimator.ofFloat(blurView, "alpha", 0f, 1f).setDuration(1200).start();
-
     }
 
     private boolean vaildEdit() {
@@ -450,10 +449,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
             etVerificationCode.setError("验证码长度不正确");
             return false;
         }
-//        if (!mPresenter.validateVerificationCode(verificationCode)) {
-//            tilVerificationCode.setError("验证码不正确");
-//            return false;
-//        }
         etVerificationCode.setError(null);
         return true;
     }

@@ -40,16 +40,14 @@ public class PersonalInfoModel implements IInfoContract.Model {
         String email = SPUtils.getString(mContext, "email", null);
 
         if (username != null && email != null) {
-            Log.d(TAG, "UserName: " + username);
-            // 本地已登录直接获取
-            mPresenter.updateUsername(username);
-
+            // 本地已登录直接获
             User user = new User(email, username);
             mPresenter.getUser(user);
+            mPresenter.updateUserInfo(user);
         } else if(username == null && email == null){
             // 未登录
-            mPresenter.updateUsername(null);
             mPresenter.getUser(null);
+            mPresenter.updateUserInfo(null);
         } else {
             fetchUserName();
         }
@@ -100,7 +98,7 @@ public class PersonalInfoModel implements IInfoContract.Model {
                         Log.d(TAG, "UserName: " + username + " Email: " + email);
 
                         mPresenter.getUser(user);
-                        mPresenter.updateUsername(username);
+                        mPresenter.updateUserInfo(user);
                     }
                 } catch (JSONException e) {
                     throw new RuntimeException(e);

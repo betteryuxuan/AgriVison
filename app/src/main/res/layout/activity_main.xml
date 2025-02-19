@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bnv_main"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_weight="1" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_main"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center_vertical"
+        android:background="@color/white_gray"
         app:itemIconTint="@color/main_color_selector"
-        android:background="@color/white"
-        app:elevation="0dp"
-        app:itemIconSize="25dp"
-        app:itemPaddingBottom="7dp"
-        app:itemPaddingTop="7dp"
+        app:itemRippleColor="@color/wx_green"
+
+        app:itemTextAppearanceActive="@style/BottomNavItemTextStyleActive"
+        app:itemTextAppearanceInactive="@style/BottomNavItemTextStyleInactive"
         app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/main_menu" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
