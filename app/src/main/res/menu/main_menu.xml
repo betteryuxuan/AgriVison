@@ -12,7 +12,7 @@
         android:id="@+id/navigation_item3"
         android:icon="@drawable/ic_chat_selector"
         android:tooltipText=""
-        android:title="对话" />
+        android:title="提问" />
     <item
         android:id="@+id/navigation_item4"
         android:icon="@drawable/ic_shop_selector"

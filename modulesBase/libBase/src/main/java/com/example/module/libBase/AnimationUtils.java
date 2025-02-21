@@ -17,7 +17,7 @@ public class AnimationUtils {
 
                 ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "scaleX", 1f, 0.95f).setDuration(200);
                 ObjectAnimator animator2 = ObjectAnimator.ofFloat(view, "scaleY", 1f, 0.95f).setDuration(200);
-                ObjectAnimator animator3 = ObjectAnimator.ofFloat(view, "alpha", 1f, 0.8f);
+                ObjectAnimator animator3 = ObjectAnimator.ofFloat(view, "alpha", 1f, 0.9f);
 
                 animator1.start();
                 animator2.start();
@@ -29,7 +29,7 @@ public class AnimationUtils {
                         super.onAnimationEnd(animation);
                         ObjectAnimator reverseAnimator1 = ObjectAnimator.ofFloat(view, "scaleX", 0.95f, 1f).setDuration(200);
                         ObjectAnimator reverseAnimator2 = ObjectAnimator.ofFloat(view, "scaleY", 0.95f, 1f).setDuration(200);
-                        ObjectAnimator reverseAnimator3 = ObjectAnimator.ofFloat(view, "alpha", 0.8f, 1f);
+                        ObjectAnimator reverseAnimator3 = ObjectAnimator.ofFloat(view, "alpha", 0.9f, 1f);
 
                         reverseAnimator1.start();
                         reverseAnimator2.start();

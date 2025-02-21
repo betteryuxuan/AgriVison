@@ -26,7 +26,7 @@ public class PersonalInfoModel implements IInfoContract.Model {
     private PersonalInfoPresenter mPresenter;
     private Context mContext;
 
-    private static final String USER_URL = "http://101.200.122.3:8080/user";
+    private static final String USER_URL = "http://101.200.122.3:8080/user/info";
     private OkHttpClient client = new OkHttpClient();
 
     public PersonalInfoModel(PersonalInfoPresenter presenter, Context context) {

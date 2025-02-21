@@ -25,6 +25,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.module.libBase.AnimationUtils;
 import com.example.module.libBase.TokenManager;
 import com.example.module.login.ILoginContract;
 import com.example.module.login.R;
@@ -133,6 +134,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
         tvLoginNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AnimationUtils.setonlyAnimateView(tvLoginNow);
                 startMainActivity();
             }
         });
@@ -193,6 +195,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
             }
         });
         setTextChangedListener();
+
+        AnimationUtils.setonlyAnimateView(findViewById(R.id.blur_login_view));
+        AnimationUtils.setonlyAnimateView(tvTop);
     }
 
     private void QueryLoginStatus() {

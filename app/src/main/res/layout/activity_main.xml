@@ -20,7 +20,6 @@
         android:background="@color/white_gray"
         app:itemIconTint="@color/main_color_selector"
         app:itemRippleColor="@color/wx_green"
-
         app:itemTextAppearanceActive="@style/BottomNavItemTextStyleActive"
         app:itemTextAppearanceInactive="@style/BottomNavItemTextStyleInactive"
         app:labelVisibilityMode="labeled"

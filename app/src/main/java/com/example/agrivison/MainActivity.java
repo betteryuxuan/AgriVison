@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         @SuppressLint("RestrictedApi")
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
         for (int i = 0; i < menuView.getChildCount(); i++) {
@@ -93,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
     }
 
 }
