@@ -94,14 +94,12 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
         imgAvatar.setOnClickListener(v -> {
             AnimationUtils.setAnimateView(v);
             if (user == null) {
-                Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
 //                getActivity().finish();
                 ARouter.getInstance().build("/login/LoginActivity")
                         .withTransition(R.anim.slide_in_left, R.anim.slide_out_left)
                         .navigation();
             } else {
                 requestPermissions();
-                checkPermissionResult();
             }
         });
         tvUsername.setOnClickListener(v -> {
@@ -124,6 +122,18 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
 
     private ActivityResultLauncher<String[]> permissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
+                boolean granted = true;
+                for (Boolean value : result.values()) {
+                    if (!value) {
+                        granted = false;
+                        break;
+                    }
+                }
+                if (granted) {
+                    launchImagePicker();
+                } else {
+                    Toast.makeText(getContext(), "请允许权限以选择头像", Toast.LENGTH_SHORT).show();
+                }
             });
 
     private void requestPermissions() {
