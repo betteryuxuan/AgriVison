@@ -1,7 +1,6 @@
 package com.example.module.homepageview.presenter;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.example.module.homepageview.contract.IHomeFirstContract;
 import com.example.module.homepageview.model.classes.Crop;
@@ -59,7 +58,7 @@ public class HomeFirstPresenter implements IHomeFirstContract.IHomeFirstPresente
             @Override
             public void onError(IOException e) {
                 e.printStackTrace();
-                Toast.makeText(mContext, "数据加载错误，请检查网络设置", Toast.LENGTH_SHORT).show();
+
             }
         });
     }

@@ -33,7 +33,7 @@ public class VideoActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         mVideoFragment = new VideoFragment();
-        mVideoModel = new VideoModel();
+        mVideoModel = new VideoModel(this);
         mVideoPresenter = new VideoPresenter(mVideoFragment, mVideoModel);
         mVideoFragment.setPresenter(mVideoPresenter);
 

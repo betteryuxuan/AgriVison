@@ -36,9 +36,13 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = (Fragment) ARouter.getInstance().build("/HomePageView/HomePageFragment").navigation(this);
         Fragment chatpageFragment = (Fragment) ARouter.getInstance().build("/chatpageview/ChatpageFragment").navigation(this);
         Fragment personalInfoFragment = (Fragment) ARouter.getInstance().build("/personalinfoview/PersonalInfoFragment").navigation(this);
+        Fragment shoppingFragment = (Fragment) ARouter.getInstance().build("/shoppingview/ShoppingFragment").navigation(this);
+        Fragment videoFragment = (Fragment) ARouter.getInstance().build("/videoview/VideoFragment").navigation(this);
 
         fragments = new ArrayList<>();
         fragments.add(fragment);
+        fragments.add(videoFragment);
+        fragments.add(shoppingFragment);
 
 //        fragments.add(chatpageFragment);
         fragments.add(personalInfoFragment);
