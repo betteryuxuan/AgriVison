@@ -130,7 +130,6 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
             public void onClick(View v) {
                 if (user != null) {
                     requestPermissions();
-                    launchImagePicker();
                 } else {
                     Toast.makeText(MyInfoActivity.this, "请先登录", Toast.LENGTH_SHORT).show();
                 }
@@ -141,7 +140,16 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
 
     private ActivityResultLauncher<String[]> permissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
-                if (result.containsValue(false)) {
+                boolean granted = true;
+                for (Boolean value : result.values()) {
+                    if (!value) {
+                        granted = false;
+                        break;
+                    }
+                }
+                if (granted) {
+                    launchImagePicker();
+                } else {
                     Toast.makeText(MyInfoActivity.this, "请允许权限以选择头像", Toast.LENGTH_SHORT).show();
                 }
             });

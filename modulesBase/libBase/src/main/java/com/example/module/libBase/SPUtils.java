@@ -10,6 +10,7 @@ public class SPUtils {
     public static final String EMAIL_KEY = "email";
     public static final String USERNAME_KEY = "username";
     public static final String AVATAR_KEY = "avatar";
+    public static final String MSGLIST_KEY = "msglist";
 
     public static void putString(Context context, String key, String value) {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME, MODE_PRIVATE);
@@ -49,4 +50,12 @@ public class SPUtils {
                 .clear()
                 .apply();
     }
+
+    public static void clearMsgList(Context context) {
+        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, MODE_PRIVATE);
+        sp.edit()
+                .remove(MSGLIST_KEY)
+                .apply();
+    }
+
 }

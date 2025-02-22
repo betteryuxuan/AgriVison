@@ -24,9 +24,9 @@ public class LoginModel implements ILoginContract.Model {
     private ILoginContract.Presenter mPresenter;
     private Context mContext;
 
-    private static final String LOGIN_URL = "http://101.200.122.3:8080/login";
-    private static final String SIGNUP_URL = "http://101.200.122.3:8080/signup";
-    private static final String EMAIL_URL = "http://101.200.122.3:8080/email";
+    private static final String LOGIN_URL = "http://101.200.122.3:8080/user/login";
+    private static final String SIGNUP_URL = "http://101.200.122.3:8080/user/signup";
+    private static final String EMAIL_URL = "http://101.200.122.3:8080/user/email";
 
     private static final OkHttpClient client = new OkHttpClient();
 

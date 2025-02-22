@@ -28,8 +28,7 @@ ext {
             "homepage"        : "com.example.module.homepageview",
             "chatpage"        : "com.example.chatpageview",
             "personalinfopage": "com.example.personalinfoview",
-            "shopping" : "com.example.module.shoppingview",
-            "videopage" : "com.example.module.videoview"
+            "shopping" : "com.example.module.shoppingview"
 
     ]
 
@@ -44,6 +43,9 @@ ext {
             "softkeyboard"    : "com.github.boybeak:skb-global:0.2.0",
             "glide"           : "com.github.bumptech.glide:glide:4.16.0",
             "exoplayer"       : "com.google.android.exoplayer:exoplayer:2.18.1",
+            "circleimage"     : "de.hdodenhof:circleimageview:3.1.0",
+
+
     ]
 
     annotationDeps = [

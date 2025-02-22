@@ -65,9 +65,6 @@ dependencies {
 
     implementation 'com.github.centerzx:ShapeBlurView:1.0.5'
 
-    // 圆形图片
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
-
     implementation  'com.github.dhaval2404:imagepicker:2.1'
 
     implementation libs.appcompat

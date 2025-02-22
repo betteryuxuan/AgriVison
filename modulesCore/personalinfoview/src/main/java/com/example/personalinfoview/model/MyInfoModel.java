@@ -27,7 +27,7 @@ public class MyInfoModel implements IMyInfoContract.Model {
     private MyInfoPresenter mPresenter;
     private Context mContext;
 
-    private static final String USER_URL = "http://101.200.122.3:8080/user";
+    private static final String USER_URL = "http://101.200.122.3:8080/user/info";
     private OkHttpClient client = new OkHttpClient();
 
     public MyInfoModel(MyInfoPresenter presenter, Context context) {
@@ -73,7 +73,6 @@ public class MyInfoModel implements IMyInfoContract.Model {
                 Log.d("MyInfoActivityTAG", "onResponse: " + response.body().string());
                 mPresenter.onModifyInfoSuccess(username);
                 SPUtils.putString(mContext, SPUtils.USERNAME_KEY, username);
-
             }
         });
     }

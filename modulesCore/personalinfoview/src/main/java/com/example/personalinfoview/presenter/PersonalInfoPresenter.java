@@ -109,11 +109,11 @@ public class PersonalInfoPresenter implements IInfoContract.Presenter {
         return mModel.getUserAvatar();
     }
 
-    public void updateUsername(String username) {
+    public void updateUserInfo(User  user) {
         mView.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mView.UpdateUserName(username);
+                mView.UpdateUserInfo(user);
             }
         });
     }

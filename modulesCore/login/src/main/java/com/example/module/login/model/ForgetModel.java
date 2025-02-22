@@ -25,9 +25,9 @@ public class ForgetModel implements IForgetContract.Model {
     private IForgetContract.Presenter mPresenter;
     private Context mContext;
 
-    private static final String LOGIN_URL = "http://101.200.122.3:8080/login";
-    private static final String EMAIL_URL = "http://101.200.122.3:8080/email";
-    private static final String CHANGEPASSWORD_URL = "http://101.200.122.3:8080/changePassword";
+    private static final String LOGIN_URL = "http://101.200.122.3:8080/user/login";
+    private static final String EMAIL_URL = "http://101.200.122.3:8080/user/email";
+    private static final String CHANGEPASSWORD_URL = "http://101.200.122.3:8080/user/change-password";
 
     private static final OkHttpClient client = new OkHttpClient();
 

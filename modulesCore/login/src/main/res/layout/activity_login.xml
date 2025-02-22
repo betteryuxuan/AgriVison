@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
+    android:fitsSystemWindows="true"
     tools:context=".view.LoginActivity">
 
     <FrameLayout
@@ -26,19 +27,20 @@
 
         <TextView
             android:id="@+id/tv_login_now"
-            android:layout_width="70dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:gravity="center"
             android:layout_marginTop="15dp"
             android:layout_marginRight="25dp"
-            android:shadowColor="@color/black2"
-            android:shadowDx="0.5"
-            android:shadowDy="-0.5"
+            android:gravity="center"
+            android:letterSpacing="0.04"
+            android:shadowColor="@color/green_1"
+            android:shadowDx="0.1"
+            android:shadowDy="-0.1"
             android:shadowRadius="3"
             android:text="立即体验"
             android:textColor="#cccccc"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:textStyle="bold" />
 
 
@@ -297,6 +299,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="50dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/shape_button_bg"
                 android:text="登录"
                 android:textColor="@color/white"
@@ -308,7 +311,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginLeft="100dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="100dp"
                 android:background="@color/gray_1"
                 android:visibility="visible" />

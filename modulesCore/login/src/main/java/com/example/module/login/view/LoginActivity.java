@@ -25,6 +25,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.module.libBase.AnimationUtils;
 import com.example.module.libBase.TokenManager;
 import com.example.module.login.ILoginContract;
 import com.example.module.login.R;
@@ -133,6 +134,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
         tvLoginNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AnimationUtils.setonlyAnimateView(tvLoginNow);
                 startMainActivity();
             }
         });
@@ -193,6 +195,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
             }
         });
         setTextChangedListener();
+
+        AnimationUtils.setonlyAnimateView(findViewById(R.id.blur_login_view));
+        AnimationUtils.setonlyAnimateView(tvTop);
     }
 
     private void QueryLoginStatus() {
@@ -344,7 +349,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
         ObjectAnimator.ofFloat(tilVerificationCode, "alpha", 1f, 0f).setDuration(1200).start();
         ObjectAnimator.ofFloat(tilTwicePassword, "alpha", 1f, 0f).setDuration(1200).start();
         ObjectAnimator.ofFloat(blurView, "alpha", 0f, 1f).setDuration(1200).start();
-
     }
 
     private boolean vaildEdit() {
@@ -450,10 +454,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
             etVerificationCode.setError("验证码长度不正确");
             return false;
         }
-//        if (!mPresenter.validateVerificationCode(verificationCode)) {
-//            tilVerificationCode.setError("验证码不正确");
-//            return false;
-//        }
         etVerificationCode.setError(null);
         return true;
     }

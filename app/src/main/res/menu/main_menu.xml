@@ -6,19 +6,20 @@
         android:title="首页" />
     <item
         android:id="@+id/navigation_item2"
-        android:icon="@drawable/ic_main_selector"
+        android:icon="@drawable/ic_video_selector"
         android:title="视频" />
     <item
         android:id="@+id/navigation_item3"
-        android:icon="@drawable/ic_main_selector"
-        android:title="社区" />
+        android:icon="@drawable/ic_chat_selector"
+        android:tooltipText=""
+        android:title="提问" />
     <item
         android:id="@+id/navigation_item4"
-        android:icon="@drawable/ic_main_selector"
-        android:title="AI" />
+        android:icon="@drawable/ic_shop_selector"
+        android:title="商城" />
     <item
         android:id="@+id/navigation_item5"
-        android:icon="@drawable/ic_main_selector"
+        android:icon="@drawable/ic_my_selector"
         android:title="我的" />
 
 </menu>
