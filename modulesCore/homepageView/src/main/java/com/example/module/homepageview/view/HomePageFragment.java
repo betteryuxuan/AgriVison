@@ -68,8 +68,8 @@ public class HomePageFragment extends Fragment implements IHomePageContract.IHom
         homeFirstModel = new HomeFirstModel(getContext());
         categoryFragment = new CategoryFragment();
         categoryModel = new CategoryModel();
-        categoryPresenter = new CategoryPresenter(categoryFragment, categoryModel);
         homeFirstPresenter = new HomeFirstPresenter(homeFirstFragment, homeFirstModel, getContext());
+        categoryPresenter = new CategoryPresenter(categoryFragment, categoryModel);
         homeFirstFragment.setPresenter(homeFirstPresenter);
         categoryFragment.setPresenter(categoryPresenter);
 

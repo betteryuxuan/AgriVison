@@ -15,9 +15,11 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.module.homepageview.R;
 import com.example.module.homepageview.contract.IHomeFirstContract;
+import com.example.module.homepageview.model.HomeFirstModel;
 import com.example.module.homepageview.model.classes.Crop;
 import com.example.module.homepageview.model.classes.News;
 import com.example.module.homepageview.model.classes.Proverb;
+import com.example.module.homepageview.presenter.HomeFirstPresenter;
 import com.example.module.homepageview.view.adapter.CropRecyclerViewAdapter;
 import com.example.module.homepageview.view.adapter.NewsRecyclerViewAdapter;
 import com.example.module.homepageview.view.adapter.ProverbViewPagerAdapter;
@@ -52,6 +54,13 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // 确保 mPresenter 被初始化
+        if (mPresenter == null) {
+            // 如果 mPresenter 为 null，初始化它
+            mPresenter = new HomeFirstPresenter(this, new HomeFirstModel(getContext()), getContext());
+        }
+
         banner = view.findViewById(R.id.banner_homepage_top);
         cropRecyclerView = view.findViewById(R.id.rv_homepage_crop);
         newsRecyclerView = view.findViewById(R.id.rv_homepage_news);

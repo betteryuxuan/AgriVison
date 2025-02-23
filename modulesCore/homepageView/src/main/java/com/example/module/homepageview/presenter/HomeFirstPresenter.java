@@ -39,7 +39,9 @@ public class HomeFirstPresenter implements IHomeFirstContract.IHomeFirstPresente
         homeFirstModel.getNewsRecyclerViewDatas(new IHomeFirstContract.IHomeFirstModel.NewsCallback() {
             @Override
             public void onNewsLoaded(List<News.Item> data) {
-                homeFirstView.setupNewsRecyclerView(data);
+                if (homeFirstView != null) {
+                    homeFirstView.setupNewsRecyclerView(data);
+                }
             }
             @Override
             public void onError(IOException e) {
@@ -53,7 +55,9 @@ public class HomeFirstPresenter implements IHomeFirstContract.IHomeFirstPresente
         homeFirstModel.getProverbViewPagerDatas(new IHomeFirstContract.IHomeFirstModel.ProverbCallback() {
             @Override
             public void onProverbsLoaded(List<Proverb.ProverbData> data) {
-                homeFirstView.setupProverbViewPager(data);
+                if (homeFirstView != null) {
+                    homeFirstView.setupProverbViewPager(data);
+                }
             }
             @Override
             public void onError(IOException e) {
