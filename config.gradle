@@ -28,7 +28,8 @@ ext {
             "homepage"        : "com.example.module.homepageview",
             "chatpage"        : "com.example.chatpageview",
             "personalinfopage": "com.example.personalinfoview",
-            "shopping" : "com.example.module.shoppingview"
+            "shopping" : "com.example.module.shoppingview",
+            "videopage":"com.example.module.videoview"
 
     ]
 

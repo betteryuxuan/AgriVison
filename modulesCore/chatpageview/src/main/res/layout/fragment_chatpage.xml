@@ -93,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/bottom_input_layout"
-            android:background="@drawable/pic_chatbg3" />
+            android:background="@drawable/chat_background" />
 
         <LinearLayout
             android:id="@+id/bottom_input_layout"
