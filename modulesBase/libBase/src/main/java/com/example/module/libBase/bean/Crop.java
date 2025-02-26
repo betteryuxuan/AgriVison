@@ -1,4 +1,4 @@
-package com.example.module.homepageview.model.classes;
+package com.example.module.libBase.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -13,9 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.module.homepageview.R;
 import com.example.module.homepageview.contract.IHomeFirstContract;
-import com.example.module.homepageview.model.classes.Crop;
+import com.example.module.libBase.bean.Crop;
 import com.example.module.homepageview.model.classes.News;
 import com.example.module.homepageview.model.classes.Proverb;
 import com.example.module.homepageview.view.adapter.CropRecyclerViewAdapter;
@@ -103,8 +104,9 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
         cropRecyclerView.setAdapter(new CropRecyclerViewAdapter(list, new CropRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Crop crop) {
-                Intent intent = new Intent(getContext(), CropDetailsActivity.class);
-                startActivity(intent);
+                ARouter.getInstance()
+                        .build("/HomePageView/CropDetailsActivity")
+                        .navigation();
             }
         }));
         cropRecyclerView.setLayoutManager(linearLayoutManager);

@@ -1,4 +1,4 @@
-package com.example.module.homepageview.view.adapter;
+package com.example.personalinfoview.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.module.homepageview.R;
+
 import com.example.module.libBase.bean.Crop;
+import com.example.personalinfoview.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CropRecyclerViewAdapter extends RecyclerView.Adapter<CropRecyclerViewAdapter.CropViewHolder> {
+public class CropAdapter extends RecyclerView.Adapter<CropAdapter.CropViewHolder> {
 
     private List<Crop> cropList;
     private List<String> colors;
@@ -26,12 +27,12 @@ public class CropRecyclerViewAdapter extends RecyclerView.Adapter<CropRecyclerVi
         void onItemClick(Crop crop);
     }
 
-    public CropRecyclerViewAdapter(List<Crop> cropList, OnItemClickListener clickListener) {
+    public CropAdapter(List<Crop> cropList, OnItemClickListener clickListener) {
         this.cropList = cropList;
         this.clickListener = clickListener;
     }
 
-    public CropRecyclerViewAdapter(List<Crop> cornList) {
+    public CropAdapter(List<Crop> cornList) {
         this.cropList = cornList;
         colors = new ArrayList<>();
         colors.add("#9EC840");
@@ -45,15 +46,18 @@ public class CropRecyclerViewAdapter extends RecyclerView.Adapter<CropRecyclerVi
 
     @NonNull
     @Override
-    public CropRecyclerViewAdapter.CropViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cropcard_item, parent, false);
-        CropRecyclerViewAdapter.CropViewHolder viewHolder = new CropViewHolder(view);
+    public CropAdapter.CropViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cropcard_personal_item, parent, false);
+        CropAdapter.CropViewHolder viewHolder = new CropAdapter.CropViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CropRecyclerViewAdapter.CropViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CropAdapter.CropViewHolder holder, int position) {
+//        ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
+//        params.height = (int) (Math.random() * 500 + 400); // 400-900dp随机高度
+//        holder.itemView.setLayoutParams(params);
+
         Crop crop = cropList.get(position);
         holder.imageView.setImageResource(crop.getImage());
         holder.textView.setText(crop.getName());
@@ -74,15 +78,15 @@ public class CropRecyclerViewAdapter extends RecyclerView.Adapter<CropRecyclerVi
     }
 
     public class CropViewHolder extends RecyclerView.ViewHolder {
-
         private TextView textView;
         private ImageView imageView;
         private ConstraintLayout constraintLayout;
+
         public CropViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.tv_homepage_cropname);
-            imageView = itemView.findViewById(R.id.iv_homepage_cropimage);
-            constraintLayout = itemView.findViewById(R.id.cl_homepage_cropcard);
+            textView = itemView.findViewById(R.id.tv_personal_cropname);
+            imageView = itemView.findViewById(R.id.iv_personal_cropimage);
+            constraintLayout = itemView.findViewById(R.id.cl_personal_cropcard);
         }
     }
 }

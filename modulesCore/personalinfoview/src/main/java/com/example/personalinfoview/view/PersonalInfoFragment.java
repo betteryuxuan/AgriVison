@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.module.libBase.AnimationUtils;
+import com.example.module.libBase.SPUtils;
 import com.example.module.libBase.bean.User;
 import com.example.personalinfoview.R;
 import com.example.personalinfoview.adapter.MenuAdapter;
@@ -82,6 +83,8 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
 
                         // 持久化URI访问权限
                         contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                        SPUtils.putString(getContext(), SPUtils.USER_AVATAR_URI_KEY, uri.toString());
                     }
                 }
         );

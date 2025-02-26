@@ -48,7 +48,9 @@ public class PersonalInfoPresenter implements IInfoContract.Presenter {
                         .navigation();
                 break;
             case 1:
-                Toast.makeText(mView.getContext(), "快去收藏吧", Toast.LENGTH_SHORT).show();
+                ARouter.getInstance()
+                        .build( "/personalinfoview/MyFavoritesActivity")
+                        .navigation();
                 break;
             case 2:
                 Toast.makeText(mView.getContext(), "暂无消息", Toast.LENGTH_SHORT).show();
