@@ -48,6 +48,11 @@ public interface IHomeFirstContract {
 
         void getProverbViewPagerDatas(ProverbCallback callback);
 
+        interface CropsCallback {
+            void onCropsLoaded(List<Crop> data);
+            void onError(IOException e);
+        }
+
         interface NewsCallback {
             void onNewsLoaded(List<News.Item> data);
             void onError(IOException e);

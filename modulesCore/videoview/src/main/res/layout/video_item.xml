@@ -17,18 +17,18 @@
 
     <ImageView
         android:id="@+id/iv_video_collect"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="200dp"
-        android:background="@drawable/ic_collect"
+        android:src="@drawable/ic_collect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/iv_video_message"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="60dp"
         android:background="@drawable/ic_message"
@@ -37,19 +37,20 @@
 
     <ImageView
         android:id="@+id/iv_video_like"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="60dp"
-        android:background="@drawable/ic_heart"
+        android:src="@drawable/ic_heart"
         app:layout_constraintBottom_toTopOf="@+id/iv_video_message"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
+        android:id="@+id/tv_video_like_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:layout_marginRight="22dp"
+        android:layout_marginRight="18dp"
         android:text="666"
         android:textColor="@color/white"
         android:textSize="15sp"
@@ -58,11 +59,12 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_video_like" />
 
     <TextView
+        android:id="@+id/tv_video_message_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:layout_marginRight="22dp"
-        android:text="666"
+        android:layout_marginRight="28dp"
+        android:text="3"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -70,16 +72,30 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_video_message" />
 
     <TextView
+        android:id="@+id/tv_video_collect_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:layout_marginRight="22dp"
+        android:layout_marginRight="18dp"
         android:text="666"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_video_collect" />
+
+    <ImageView
+        android:id="@+id/iv_video_pause"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/ic_pause"
+        android:visibility="gone"
+        android:backgroundTint="#F8F8F8"
+        android:alpha="0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"

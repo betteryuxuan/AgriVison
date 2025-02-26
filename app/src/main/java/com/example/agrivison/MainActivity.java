@@ -2,15 +2,15 @@ package com.example.agrivison;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -22,6 +22,8 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @Route(path = "/main/MainActivity")
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private List<Fragment> fragments;
     private ViewPager2 viewPager2;
+    private boolean isExit = false;
+    private static final long TIME = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.navigation_item1) {
-                    viewPager2.setCurrentItem(0);
+                    viewPager2.setCurrentItem(0, false);
                 } else if (item.getItemId() == R.id.navigation_item2) {
                     viewPager2.setCurrentItem(1);
                 } else if (item.getItemId() == R.id.navigation_item3) {
@@ -81,8 +85,13 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
+                viewPager2.setUserInputEnabled(position != 0);
             }
         });
+
+        viewPager2.setOffscreenPageLimit(5);
+
+
 
         @SuppressLint("RestrictedApi")
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
@@ -96,6 +105,31 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exitByTwoClick();      //调用双击退出函数
+        }
+        return false;
+    }
+
+    private void exitByTwoClick() {
+        if (!isExit) {
+            isExit = true;
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            Timer tExit = new Timer();
+            tExit.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isExit = false;
+                }
+            }, TIME);
+        } else {
+            System.exit(0);
+        }
     }
 
 }

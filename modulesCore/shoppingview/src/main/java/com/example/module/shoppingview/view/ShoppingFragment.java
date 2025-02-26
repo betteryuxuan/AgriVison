@@ -60,7 +60,7 @@ public class ShoppingFragment extends Fragment implements IShoppingContract.ISho
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShoppingCartFragment shoppingCartFragment = ShoppingCartFragment.newInstance("购物车", "");
+                ShoppingCartFragment shoppingCartFragment = ShoppingCartFragment.newInstance();
                 shoppingCartFragment.show(getChildFragmentManager(), "shoppingCartFragment");
             }
         });
