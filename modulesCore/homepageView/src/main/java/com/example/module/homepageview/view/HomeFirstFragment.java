@@ -13,9 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.module.homepageview.R;
 import com.example.module.homepageview.contract.IHomeFirstContract;
-import com.example.module.homepageview.model.classes.Crop;
+import com.example.module.libBase.bean.Crop;
 import com.example.module.homepageview.model.classes.News;
 import com.example.module.homepageview.model.classes.Proverb;
 import com.example.module.homepageview.view.adapter.CropRecyclerViewAdapter;
@@ -103,30 +104,32 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
         cropRecyclerView.setAdapter(new CropRecyclerViewAdapter(list, new CropRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Crop crop) {
-                Intent intent = new Intent(getContext(), CropDetailsActivity.class);
-                startActivity(intent);
+                ARouter.getInstance()
+                        .build("/HomePageView/CropDetailsActivity")
+                        .navigation();
             }
         }));
         cropRecyclerView.setLayoutManager(linearLayoutManager);
     }
 
     @Override
-    public void setupNewsRecyclerView(List<News> list) {
+    public void setupNewsRecyclerView(List<News.Item> list) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         newsRecyclerView.setAdapter(new NewsRecyclerViewAdapter(list, new NewsRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(News news) {
+            public void onItemClick(News.Item news) {
                 Intent intent = new Intent(getContext(), NewsActivity.class);
+                intent.putExtra("htmlContent", news.getContent());
+                intent.putExtra("title", news.getTitle());
                 intent.putExtra("image", news.getImage());
-                intent.putExtra("text", news.getText());
                 startActivity(intent);            }
-        }));
+        }, getContext()));
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 //        initAinm();
     }
 
     @Override
-    public void setupProverbViewPager(List<Proverb> list) {
+    public void setupProverbViewPager(List<Proverb.ProverbData> list) {
         ProverbViewPagerAdapter adapter = new ProverbViewPagerAdapter(getActivity(), list);
         viewPager2.setAdapter(adapter);
     }

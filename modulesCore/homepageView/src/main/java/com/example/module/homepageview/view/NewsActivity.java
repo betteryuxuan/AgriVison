@@ -1,11 +1,12 @@
 package com.example.module.homepageview.view;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
@@ -15,13 +16,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.module.homepageview.R;
+import com.example.module.libBase.KnowledgeStorage;
+import com.example.module.libBase.bean.Knowledge;
 
 
 public class NewsActivity extends AppCompatActivity {
 
     private ImageView back;
-    private ImageView image;
-    private TextView text, updateTime;
+    private ImageView collect;
+
+    private static final String TAG = "NewsActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +41,25 @@ public class NewsActivity extends AppCompatActivity {
 
         initView();
         initListenter();
+
+        WebView webView = findViewById(R.id.wv_news_webview);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        // 启用缩放支持
+        webView.getSettings().setSupportZoom(true);  // 支持缩放
+        webView.getSettings().setBuiltInZoomControls(true);  // 内置缩放控制
+        webView.getSettings().setDisplayZoomControls(false);  // 不显示缩放按钮
+
+        // 启用适应屏幕的功能
+        webView.getSettings().setLoadWithOverviewMode(true); // 加载时自适应
+        webView.getSettings().setUseWideViewPort(true); // 设置网页的视口大小
+        webView.setWebViewClient(new WebViewClient());
+
+        String htmlContent = getIntent().getStringExtra("htmlContent");
+
+        webView.loadDataWithBaseURL(null, htmlContent, "text/html", "utf-8", null);
     }
 
     private void initListenter() {
@@ -46,21 +69,32 @@ public class NewsActivity extends AppCompatActivity {
                 finish();
             }
         });
+        collect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (collect.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.ic_collect).getConstantState())){
+                    Knowledge newKnowledge = new Knowledge(getIntent().getStringExtra("title"), getIntent().getStringExtra("htmlContent"), getIntent().getStringExtra("image"));
+
+                    // 使用 KnowledgeStorage 来更新 knowledgeList
+                    KnowledgeStorage knowledgeStorage = new KnowledgeStorage(getApplicationContext());
+                    knowledgeStorage.updateKnowledgeList(newKnowledge);
+
+                    Log.d(TAG, "KnowledgeStorage: " + knowledgeStorage.loadKnowledgeList());
+
+                    collect.setImageResource(R.drawable.ic_collected);
+                }else {
+                    KnowledgeStorage knowledgeStorage = new KnowledgeStorage(getApplicationContext());
+                    knowledgeStorage.deleteKnowledge(getIntent().getStringExtra("title"));
+                    Log.d(TAG, "KnowledgeStorage: " + knowledgeStorage.loadKnowledgeList());
+                    collect.setImageResource(R.drawable.ic_collect);
+                }
+            }
+        });
     }
 
     private void initView() {
         back = findViewById(R.id.iv_news_back);
-        image = findViewById(R.id.iv_news_image);
-        text = findViewById(R.id.tv_news_text);
-        updateTime = findViewById(R.id.tv_news_time);
-
-        Intent intent = getIntent();
-        if (intent != null) {
-            String text1 = intent.getStringExtra("text");
-            int image1 = intent.getIntExtra("image", 0);
-            image.setImageResource(image1);
-            text.setText(text1);
-            updateTime.setText("更新时间：2周前");
-        }
+        collect = findViewById(R.id.iv_news_collect);
     }
 }
+

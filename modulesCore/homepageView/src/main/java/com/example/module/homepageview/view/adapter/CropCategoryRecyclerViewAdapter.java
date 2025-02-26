@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.module.homepageview.R;
-import com.example.module.homepageview.model.classes.Crop;
+import com.example.module.libBase.bean.Crop;
 
 import java.util.List;
 

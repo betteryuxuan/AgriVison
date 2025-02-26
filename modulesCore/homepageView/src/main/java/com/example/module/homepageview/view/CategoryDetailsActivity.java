@@ -13,12 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.module.homepageview.R;
-import com.example.module.homepageview.model.classes.Crop;
+import com.example.module.libBase.bean.Crop;
 import com.example.module.homepageview.view.adapter.CategoryDetailsRecyclerViewAdapter;
 import com.example.module.homepageview.view.adapter.CropCategoryRecyclerViewAdapter;
 

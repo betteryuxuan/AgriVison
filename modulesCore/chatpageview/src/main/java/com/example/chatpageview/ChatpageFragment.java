@@ -61,7 +61,7 @@ public class ChatpageFragment extends Fragment implements IChatContract.View {
         adapter = new MsgAdapter(msgList);
         binding.msgRecyclerView.setAdapter(adapter);
 
-        getRandomBackground();
+//        getRandomBackground();
         binding.imgSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +98,7 @@ public class ChatpageFragment extends Fragment implements IChatContract.View {
                 binding.msgRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 adapter = new MsgAdapter(msgList);
                 binding.msgRecyclerView.setAdapter(adapter);
-                getRandomBackground();
+//                getRandomBackground();
             }
         });
     }

@@ -11,6 +11,7 @@ public class SPUtils {
     public static final String USERNAME_KEY = "username";
     public static final String AVATAR_KEY = "avatar";
     public static final String MSGLIST_KEY = "msglist";
+    public static final String USER_AVATAR_URI_KEY = "useravataruri";
 
     public static void putString(Context context, String key, String value) {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME, MODE_PRIVATE);

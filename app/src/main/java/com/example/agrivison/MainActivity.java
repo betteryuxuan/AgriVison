@@ -45,15 +45,18 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = (Fragment) ARouter.getInstance().build("/HomePageView/HomePageFragment").navigation(this);
         Fragment chatpageFragment = (Fragment) ARouter.getInstance().build("/chatpageview/chatPage").navigation(this);
         Fragment personalInfoFragment = (Fragment) ARouter.getInstance().build("/personalinfoview/PersonalInfoFragment").navigation(this);
+        Fragment shoppingFragment = (Fragment) ARouter.getInstance().build("/shoppingview/ShoppingFragment").navigation(this);
+        Fragment videoFragment = (Fragment) ARouter.getInstance().build("/videoview/VideoFragment").navigation(this);
 
         fragments = new ArrayList<>();
         fragments.add(fragment);
+        fragments.add(videoFragment);
         fragments.add(chatpageFragment);
+        fragments.add(shoppingFragment);
         fragments.add(personalInfoFragment);
 
         PagesAdapter pagesAdapter = new PagesAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         viewPager2.setAdapter(pagesAdapter);
-//        viewPager2.setCurrentItem(1);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
