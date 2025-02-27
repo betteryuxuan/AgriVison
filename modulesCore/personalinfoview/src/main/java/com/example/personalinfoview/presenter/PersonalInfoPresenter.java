@@ -32,6 +32,7 @@ public class PersonalInfoPresenter implements IInfoContract.Presenter {
         List<MenuItem> items = new ArrayList<>();
         items.add(new MenuItem(R.drawable.ic_info, "个人信息"));
         items.add(new MenuItem(R.drawable.ic_star, "我的收藏"));
+        items.add(new MenuItem(R.drawable.ic_shopping, "我的订单"));
         items.add(new MenuItem(R.drawable.ic_mail, "我的消息"));
         items.add(new MenuItem(R.drawable.ic_setup, "退出登录"));
         mView.showMenuItems(items);
@@ -47,12 +48,17 @@ public class PersonalInfoPresenter implements IInfoContract.Presenter {
                         .navigation();
                 break;
             case 1:
-                Toast.makeText(mView.getContext(), "快去收藏吧", Toast.LENGTH_SHORT).show();
+                ARouter.getInstance()
+                        .build( "/personalinfoview/MyFavoritesActivity")
+                        .navigation();
                 break;
             case 2:
                 Toast.makeText(mView.getContext(), "暂无消息", Toast.LENGTH_SHORT).show();
                 break;
             case 3:
+                Toast.makeText(mView.getContext(), "暂无订单", Toast.LENGTH_SHORT).show();
+                break;
+            case 4:
                 if (mView.getUser() == null) {
                     Toast.makeText(mView.getContext(), "请先登录", Toast.LENGTH_SHORT).show();
                     Logout();
@@ -81,7 +87,7 @@ public class PersonalInfoPresenter implements IInfoContract.Presenter {
         mView.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mView.getActivity().finishAffinity();
+                mView.getActivity().finish();
             }
         });
         ARouter.getInstance()

@@ -1,7 +1,7 @@
 package com.example.module.homepageview.contract;
 
 import com.example.module.homepageview.base.BaseView;
-import com.example.module.homepageview.model.classes.Crop;
+import com.example.module.libBase.bean.Crop;
 
 import java.util.List;
 

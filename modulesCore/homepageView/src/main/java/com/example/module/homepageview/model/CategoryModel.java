@@ -2,7 +2,7 @@ package com.example.module.homepageview.model;
 
 import com.example.module.homepageview.R;
 import com.example.module.homepageview.contract.ICategoryContract;
-import com.example.module.homepageview.model.classes.Crop;
+import com.example.module.libBase.bean.Crop;
 
 import java.util.ArrayList;
 import java.util.List;

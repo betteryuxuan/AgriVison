@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.module.homepageview.R;
-import com.example.module.homepageview.model.classes.Crop;
+import com.example.module.libBase.bean.Crop;
 import com.example.module.homepageview.view.adapter.CategoryDetailsRecyclerViewAdapter;
 import com.example.module.homepageview.view.adapter.CropCategoryRecyclerViewAdapter;
 
