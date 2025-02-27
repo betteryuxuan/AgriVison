@@ -1,6 +1,7 @@
 package com.example.personalinfoview.view;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 
 import androidx.activity.EdgeToEdge;
@@ -44,6 +45,13 @@ public class MyFavoritesActivity extends AppCompatActivity {
         initData();
 
         setupCropRecyclerView(favoritesCropsList);
+
+        binding.imgFavoritesBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void initData() {

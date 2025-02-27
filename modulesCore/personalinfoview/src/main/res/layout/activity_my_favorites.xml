@@ -11,8 +11,9 @@
 
     <ImageView
         android:id="@+id/img_favorites_back"
-        android:layout_width="21dp"
-        android:layout_height="21dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:padding="6dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="60dp"
         android:src="@drawable/ic_back"
