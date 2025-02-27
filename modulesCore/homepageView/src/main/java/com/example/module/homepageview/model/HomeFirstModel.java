@@ -52,7 +52,6 @@ public class HomeFirstModel implements IHomeFirstContract.IHomeFirstModel<HomePa
 
     @Override
     public List<Crop> getCropRecyclerViewDatas() {
-
         List<Crop> crops = new ArrayList<>();
         crops.add(new Crop("小麦", R.drawable.ic_wheat));
         crops.add(new Crop("玉米", R.drawable.ic_corn));
