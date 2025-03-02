@@ -1,7 +1,6 @@
 package com.example.module.homepageview.view;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
@@ -16,15 +15,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.module.homepageview.R;
-import com.example.module.libBase.KnowledgeStorage;
-import com.example.module.libBase.bean.Knowledge;
 
 
 public class NewsActivity extends AppCompatActivity {
 
     private ImageView back;
-    private ImageView collect;
-
     private static final String TAG = "NewsActivity";
 
     @Override
@@ -69,32 +64,10 @@ public class NewsActivity extends AppCompatActivity {
                 finish();
             }
         });
-        collect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (collect.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.ic_collect).getConstantState())){
-                    Knowledge newKnowledge = new Knowledge(getIntent().getStringExtra("title"), getIntent().getStringExtra("htmlContent"), getIntent().getStringExtra("image"));
-
-                    // 使用 KnowledgeStorage 来更新 knowledgeList
-                    KnowledgeStorage knowledgeStorage = new KnowledgeStorage(getApplicationContext());
-                    knowledgeStorage.updateKnowledgeList(newKnowledge);
-
-                    Log.d(TAG, "KnowledgeStorage: " + knowledgeStorage.loadKnowledgeList());
-
-                    collect.setImageResource(R.drawable.ic_collected);
-                }else {
-                    KnowledgeStorage knowledgeStorage = new KnowledgeStorage(getApplicationContext());
-                    knowledgeStorage.deleteKnowledge(getIntent().getStringExtra("title"));
-                    Log.d(TAG, "KnowledgeStorage: " + knowledgeStorage.loadKnowledgeList());
-                    collect.setImageResource(R.drawable.ic_collect);
-                }
-            }
-        });
     }
 
     private void initView() {
         back = findViewById(R.id.iv_news_back);
-        collect = findViewById(R.id.iv_news_collect);
     }
 }
 

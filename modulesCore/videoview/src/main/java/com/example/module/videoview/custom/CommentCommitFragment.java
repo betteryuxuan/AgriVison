@@ -1,11 +1,13 @@
 package com.example.module.videoview.custom;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -50,6 +52,14 @@ public class CommentCommitFragment extends BottomSheetDialogFragment {
         etComment = view.findViewById(R.id.et_video_input);
         commit = view.findViewById(R.id.tv_video_send);
         commit.setEnabled(false);
+
+        etComment.requestFocus();
+        etComment.postDelayed(() -> {
+            InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
+                imm.showSoftInput(etComment, InputMethodManager.SHOW_IMPLICIT);
+            }
+        }, 100);
 
         initView();
         initListener();

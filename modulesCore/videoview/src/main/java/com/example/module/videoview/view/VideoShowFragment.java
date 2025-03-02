@@ -1,11 +1,16 @@
 package com.example.module.videoview.view;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,7 +47,9 @@ public class VideoShowFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        exoPlayer.pause();
+        if (exoPlayer != null) {
+            exoPlayer.pause();
+        }
     }
 
     @Override
@@ -95,6 +102,7 @@ public class VideoShowFragment extends Fragment {
                 likeCount.setText(String.valueOf(Integer.parseInt(likeCount.getText().toString()) - 1));
             } else {
                 like.setImageResource(R.drawable.ic_heart_full);
+                showHeartAnimation(like, R.drawable.ic_heart_full);
                 like.setTag("liked");
                 likeCount.setText(String.valueOf(Integer.parseInt(likeCount.getText().toString()) + 1));
 
@@ -104,10 +112,12 @@ public class VideoShowFragment extends Fragment {
         collect.setOnClickListener(v -> {
             if (collect.getTag() != null && collect.getTag().equals("collected")) {
                 collect.setImageResource(R.drawable.ic_collect);
+                Toast.makeText(getContext(), "已取消收藏", Toast.LENGTH_LONG).show();
                 collect.setTag("uncollected");
                 collectCount.setText(String.valueOf(Integer.parseInt(collectCount.getText().toString()) - 1));
             } else {
                 collect.setImageResource(R.drawable.ic_collected);
+                showHeartAnimation(collect, R.drawable.ic_collected);
                 collect.setTag("collected");
                 collectCount.setText(String.valueOf(Integer.parseInt(collectCount.getText().toString()) + 1));
             }
@@ -139,4 +149,44 @@ public class VideoShowFragment extends Fragment {
     public void initView() {
 
     }
+
+    private void showHeartAnimation(View likeButton, int drawableResId) {
+        ImageView heart = new ImageView(likeButton.getContext());
+        heart.setImageResource(drawableResId);
+
+        // 获取 likeButton 在屏幕上的绝对位置
+        int[] location = new int[2];
+        likeButton.getLocationInWindow(location);
+        int x = location[0] + likeButton.getWidth() / 2 - 50; // 让心形居中
+        int y = location[1] - 50; // 上移一点，避免重叠
+
+        // 创建 LayoutParams 并设置正确的位置
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(100, 100);
+        params.leftMargin = x;
+        params.topMargin = y;
+
+        // 添加到父布局
+        ViewGroup parent = (ViewGroup) likeButton.getRootView();
+        parent.addView(heart, params);
+
+        // 执行动画
+        ValueAnimator animator = ValueAnimator.ofFloat(0f, -200f);
+        animator.setDuration(800);
+        animator.addUpdateListener(animation -> {
+            heart.setTranslationY((float) animation.getAnimatedValue());
+            heart.setAlpha(1 - animation.getAnimatedFraction());
+        });
+
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                parent.removeView(heart); // 动画结束后移除
+            }
+        });
+
+        animator.start();
+    }
+
+
+
 }

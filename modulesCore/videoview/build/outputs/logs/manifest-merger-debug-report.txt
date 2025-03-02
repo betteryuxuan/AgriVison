@@ -1,7 +1,7 @@
 -- Merging decision tree log ---
 manifest
-ADDED from F:\AgriVison\modulesCore\videoview\src\main\AndroidManifest.xml:2:1-10:12
-INJECTED from F:\AgriVison\modulesCore\videoview\src\main\AndroidManifest.xml:2:1-10:12
+ADDED from F:\AgriVison\modulesCore\videoview\src\main\AndroidManifest.xml:2:1-11:12
+INJECTED from F:\AgriVison\modulesCore\videoview\src\main\AndroidManifest.xml:2:1-11:12
 	package
 		INJECTED from F:\AgriVison\modulesCore\videoview\src\main\AndroidManifest.xml
 	xmlns:android
@@ -11,9 +11,11 @@ ADDED from F:\AgriVison\modulesCore\videoview\src\main\AndroidManifest.xml:3:5-6
 	android:name
 		ADDED from F:\AgriVison\modulesCore\videoview\src\main\AndroidManifest.xml:3:22-64
 application
-ADDED from F:\AgriVison\modulesCore\videoview\src\main\AndroidManifest.xml:4:5-9:19
+ADDED from F:\AgriVison\modulesCore\videoview\src\main\AndroidManifest.xml:4:5-10:19
 activity#com.example.module.videoview.view.VideoActivity
-ADDED from F:\AgriVison\modulesCore\videoview\src\main\AndroidManifest.xml:5:9-8:20
+ADDED from F:\AgriVison\modulesCore\videoview\src\main\AndroidManifest.xml:5:9-9:20
+	android:windowSoftInputMode
+		ADDED from F:\AgriVison\modulesCore\videoview\src\main\AndroidManifest.xml:8:13-55
 	android:exported
 		ADDED from F:\AgriVison\modulesCore\videoview\src\main\AndroidManifest.xml:7:13-36
 	android:name

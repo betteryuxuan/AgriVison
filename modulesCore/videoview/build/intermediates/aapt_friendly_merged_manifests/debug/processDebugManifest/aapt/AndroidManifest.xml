@@ -9,7 +9,8 @@
     <application>
         <activity
             android:name="com.example.module.videoview.view.VideoActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" >
         </activity>
     </application>
 
