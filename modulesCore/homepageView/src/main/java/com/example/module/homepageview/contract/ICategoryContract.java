@@ -3,6 +3,7 @@ package com.example.module.homepageview.contract;
 import com.example.module.homepageview.base.BaseView;
 import com.example.module.libBase.bean.Crop;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface ICategoryContract {
@@ -13,53 +14,36 @@ public interface ICategoryContract {
 
         void initListener();
 
-        void setupFoodCatrgoryRecyclerView(List<Crop> list);
+        void setupFoodCatergoryRecyclerView(List<Crop.CropDetail> list);
 
-        void setupOilCatrgoryRecyclerView(List<Crop> list);
+        void setupOilCatergoryRecyclerView(List<Crop.CropDetail> list);
 
-        void setupVegetableCatrgoryRecyclerView(List<Crop> list);
+        void setupVegetableCatergoryRecyclerView(List<Crop.CropDetail> list);
 
-        void setupFruitCatrgoryRecyclerView(List<Crop> list);
+        void setupFruitCatergoryRecyclerView(List<Crop.CropDetail> list);
 
-        void setupWildFruitCatrgoryRecyclerView(List<Crop> list);
+        void setupWildFruitCatergoryRecyclerView(List<Crop.CropDetail> list);
 
-        void setupSeedCatrgoryRecyclerView(List<Crop> list);
+        void setupSeedCatergoryRecyclerView(List<Crop.CropDetail> list);
 
-        void setupMedicinalCatrgoryRecyclerView(List<Crop> list);
+        void setupMedicinalCatergoryRecyclerView(List<Crop.CropDetail> list);
     }
 
     interface ICategoryPresenter {
 
-        void loadFoodCategoryData();
+        void loadCategoryDatas();
 
-        void loadOilCategoryData();
-
-        void loadVegetableCategoryData();
-
-        void loadFruitCategoryData();
-
-        void loadWildFruitCategoryData();
-
-        void loadSeedCategoryData();
-
-        void loadMedicinalCategoryData();
     }
 
     interface ICategoryModel {
 
-        List<Crop> getFoodCategoryData();
+        void loadCategoryDatas(CropsCallback callback);
 
-        List<Crop> getOilCategoryData();
 
-        List<Crop> getVegetableCategoryData();
-
-        List<Crop> getFruitCategoryData();
-
-        List<Crop> getWildFruitCategoryData();
-
-        List<Crop> getSeedCategoryData();
-
-        List<Crop> getMedicinalCategoryData();
+        interface CropsCallback {
+            void onCropsLoaded(Crop data);
+            void onError(IOException e);
+        }
     }
 
 }

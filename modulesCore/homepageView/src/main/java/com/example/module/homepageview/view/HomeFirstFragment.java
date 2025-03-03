@@ -108,16 +108,17 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
     }
 
     @Override
-    public void setupCropRecyclerView(List<Crop> list) {
+    public void setupCropRecyclerView(List<Crop.DataItem> list) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         cropRecyclerView.setAdapter(new CropRecyclerViewAdapter(list, new CropRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Crop crop) {
+            public void onItemClick(Crop.DataItem crop) {
                 ARouter.getInstance()
                         .build("/HomePageView/CropDetailsActivity")
+                        .withParcelable("dataItem", crop)
                         .navigation();
             }
-        }));
+        }, getContext()));
         cropRecyclerView.setLayoutManager(linearLayoutManager);
     }
 

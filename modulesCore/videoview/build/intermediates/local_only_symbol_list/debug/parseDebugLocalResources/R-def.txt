@@ -41,7 +41,6 @@ id comment_section
 id et_video_input
 id exo_progress
 id fragment_container
-id fragment_container_base
 id iv_video_collect
 id iv_video_comment_close
 id iv_video_find
@@ -69,7 +68,6 @@ layout custom_player_control_view
 layout fragment_bottom_sheet_commit
 layout fragment_bottom_sheet_video
 layout fragment_video
-layout fragment_video_base
 layout video_item
 mipmap ic_launcher
 mipmap ic_launcher_round

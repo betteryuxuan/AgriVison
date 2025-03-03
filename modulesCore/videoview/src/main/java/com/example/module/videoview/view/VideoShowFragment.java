@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.ui.PlayerView;
 
 public class VideoShowFragment extends Fragment {
+
+    private static final String TAG = "VideoShowFragment";
 
     private String url;
     private PlayerView playerView;
@@ -47,6 +50,7 @@ public class VideoShowFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        Log.d(TAG, "onPause: ");
         if (exoPlayer != null) {
             exoPlayer.pause();
         }
@@ -55,17 +59,27 @@ public class VideoShowFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        exoPlayer.play();
-        if (pause != null) {
-            pause.setVisibility(View.GONE);
+        Log.d(TAG, "onResume: ");
+        if (exoPlayer != null) {
+            exoPlayer.play();
         }
     }
 
+
     @Override
-    public void onStart() {
-        super.onStart();
-        if (exoPlayer != null) {
-            exoPlayer.play();
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        Log.d(TAG, "onHiddenChanged: ");
+        if (hidden) {
+            // 当 Fragment 被隐藏时暂停视频
+            if (exoPlayer != null) {
+                exoPlayer.pause();
+            }
+        } else {
+            // 当 Fragment 重新显示时恢复视频播放
+            if (exoPlayer != null) {
+                exoPlayer.play();
+            }
         }
     }
 
@@ -85,7 +99,6 @@ public class VideoShowFragment extends Fragment {
         MediaItem mediaItem = MediaItem.fromUri(url);
         exoPlayer.setMediaItem(mediaItem);
         exoPlayer.prepare();
-        exoPlayer.play();
 
 
 

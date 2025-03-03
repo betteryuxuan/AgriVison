@@ -30,8 +30,17 @@ public class HomeFirstPresenter implements IHomeFirstContract.IHomeFirstPresente
 
     @Override
     public void loadCropRecyclerViewDatas() {
-        List<Crop> crops = homeFirstModel.getCropRecyclerViewDatas();
-        homeFirstView.setupCropRecyclerView(crops);
+        homeFirstModel.getCropRecyclerViewDatas(new IHomeFirstContract.IHomeFirstModel.CropsCallback() {
+            @Override
+            public void onCropsLoaded(List<Crop.DataItem> data) {
+                homeFirstView.setupCropRecyclerView(data);
+            }
+
+            @Override
+            public void onError(IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override

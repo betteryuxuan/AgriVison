@@ -39,7 +39,6 @@ int id comment_section 0x0
 int id et_video_input 0x0
 int id exo_progress 0x0
 int id fragment_container 0x0
-int id fragment_container_base 0x0
 int id iv_video_collect 0x0
 int id iv_video_comment_close 0x0
 int id iv_video_find 0x0
@@ -67,7 +66,6 @@ int layout custom_player_control_view 0x0
 int layout fragment_bottom_sheet_commit 0x0
 int layout fragment_bottom_sheet_video 0x0
 int layout fragment_video 0x0
-int layout fragment_video_base 0x0
 int layout video_item 0x0
 int mipmap ic_launcher 0x0
 int mipmap ic_launcher_round 0x0

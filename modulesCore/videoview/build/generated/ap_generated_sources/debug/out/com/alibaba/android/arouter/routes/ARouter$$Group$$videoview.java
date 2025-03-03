@@ -3,7 +3,7 @@ package com.alibaba.android.arouter.routes;
 import com.alibaba.android.arouter.facade.enums.RouteType;
 import com.alibaba.android.arouter.facade.model.RouteMeta;
 import com.alibaba.android.arouter.facade.template.IRouteGroup;
-import com.example.module.videoview.view.BaseVideoFragment;
+import com.example.module.videoview.view.VideoFragment;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
@@ -13,6 +13,6 @@ import java.util.Map;
 public class ARouter$$Group$$videoview implements IRouteGroup {
   @Override
   public void loadInto(Map<String, RouteMeta> atlas) {
-    atlas.put("/videoview/VideoFragment", RouteMeta.build(RouteType.FRAGMENT, BaseVideoFragment.class, "/videoview/videofragment", "videoview", null, -1, -2147483648));
+    atlas.put("/videoview/VideoFragment", RouteMeta.build(RouteType.FRAGMENT, VideoFragment.class, "/videoview/videofragment", "videoview", null, -1, -2147483648));
   }
 }
