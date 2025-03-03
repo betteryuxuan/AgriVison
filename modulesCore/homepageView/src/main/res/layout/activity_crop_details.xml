@@ -55,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
+                android:fontFamily="@font/ziti1"
                 android:text="小麦"
                 android:textColor="@color/black"
                 android:textSize="30sp"
@@ -63,14 +64,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_cropdetails_name_writing"
+                android:id="@+id/tv_cropdetails_name_spell"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="2dp"
                 android:text="xiao mai"
-                android:textColor="@color/gray"
+                android:textColor="#FF3030"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_cropdetails_name" />
 
@@ -87,7 +89,7 @@
                 app:banner_radius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_cropdetails_name_writing" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_cropdetails_name_spell" />
 
             <TextView
                 android:id="@+id/tv_cropdetails_text"
@@ -96,28 +98,30 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:text="        小麦是一种重要的粮食作物，具有丰富的营养价值和广泛的用途。它富含碳水化合物、蛋白质、膳食纤维以及多种维生素和矿物质，如维生素B群和矿物质如铁、锌、镁等，对维持身体健康至关重要。小麦的用途不仅限于食品加工，如制作面包、面条、饼干、糕点等，还在饲料生产、工业制造和环保应用中发挥着重要作用。\n
-       在种植技术方面，小麦的种植包括选种、整地、施肥、灌溉和病虫害防治等关键步骤。例如，精细整地是确保麦田达到耕层深厚、土壤松紧适度、地面平整，为苗全、苗壮及植株良好生长创造条件。此外，小麦的规范化播种技术，包括耕作整地、深松、耕翻等，也是提高小麦产量的重要措施。"
+                android:fontFamily="@font/ziti3"
+                android:text="  小麦是一种重要的粮食作物，具有丰富的营养价值和广泛的用途。它富含碳水化合物、蛋白质、膳食纤维以及多种维生素和矿物质，如维生素B群和矿物质如铁、锌、镁等，对维持身体健康至关重要。小麦的用途不仅限于食品加工，如制作面包、面条、饼干、糕点等，还在饲料生产、工业制造和环保应用中发挥着重要作用。\n
+  在种植技术方面，小麦的种植包括选种、整地、施肥、。例如，精细整地是确保麦田达到耕层深厚、土壤松紧适度、地面平整，为苗全、苗壮及植株良好生长创造条件。此外，小麦的规范化播种技术，包括耕作整地、深松、耕翻等，也是提高小麦产量的重要措施。"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="19sp"
+                android:lineSpacingExtra="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/banner_crop_details" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
                 app:cardBackgroundColor="#F8F8F8"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_cropdetails_text"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/tv_cropdetails_text">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -126,29 +130,42 @@
                         android:id="@+id/text1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="基本信息"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="20dp"
-                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="基本信息"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:textColor="@color/black"/>
+                        app:layout_constraintTop_toTopOf="parent"/>
                     <TextView
                         android:id="@+id/tv_cropdetails_introduce"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="简介"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="20dp"
-                        app:layout_constraintTop_toBottomOf="@id/text1"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:text="简介"
+                        android:textColor="@color/gray"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text1" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/iv_cropdetails_collect"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_collect"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardView4"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

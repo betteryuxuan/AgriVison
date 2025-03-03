@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.module.homepageview.R;
 import com.example.module.homepageview.view.adapter.CategoryDetailsRecyclerViewAdapter;
 import com.example.module.homepageview.view.adapter.CropCategoryRecyclerViewAdapter;
@@ -69,8 +70,10 @@ public class CategoryDetailsActivity extends AppCompatActivity {
         cropsRecyclerView.setAdapter(new CategoryDetailsRecyclerViewAdapter(list, new CropCategoryRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Crop.CropDetail crop) {
-                Intent intent = new Intent(getApplicationContext(), CropDetailsActivity.class);
-                startActivity(intent);
+                ARouter.getInstance()
+                        .build("/HomePageView/CropDetailsActivity")
+                        .withParcelable("cropDetail", crop)
+                        .navigation();
             }
         }, getApplicationContext()));
         cropsRecyclerView.setLayoutManager(staggeredGridLayoutManager);

@@ -36,6 +36,8 @@ public class VideoShowFragment extends Fragment {
 
     private ImageView pause;
 
+    public VideoShowFragment() {
+    }
 
     public VideoShowFragment(String url) {
         this.url = url;
@@ -62,6 +64,7 @@ public class VideoShowFragment extends Fragment {
         Log.d(TAG, "onResume: ");
         if (exoPlayer != null) {
             exoPlayer.play();
+            pause.setVisibility(View.GONE);
         }
     }
 

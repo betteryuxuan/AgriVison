@@ -141,10 +141,12 @@ public class Crop implements Parcelable {
 
         private String name;
         private String icon;
+        private String spell;
         private String description;
         private String introduction;
         private String image1;
         private String image2;
+        private Boolean isCollected = false;
 
         public CropDetail() {
         }
@@ -152,6 +154,7 @@ public class Crop implements Parcelable {
         protected CropDetail(Parcel in) {
             name = in.readString();
             icon = in.readString();
+            spell = in.readString();
             description = in.readString();
             introduction = in.readString();
             image1 = in.readString();
@@ -162,6 +165,7 @@ public class Crop implements Parcelable {
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeString(name);
             dest.writeString(icon);
+            dest.writeString(spell);
             dest.writeString(description);
             dest.writeString(introduction);
             dest.writeString(image1);
@@ -190,11 +194,28 @@ public class Crop implements Parcelable {
             return "CropDetail{" +
                     "name='" + name + '\'' +
                     ", icon='" + icon + '\'' +
+                    ", spell='" + spell + '\'' +
                     ", description='" + description + '\'' +
                     ", introduction='" + introduction + '\'' +
                     ", image1='" + image1 + '\'' +
                     ", image2='" + image2 + '\'' +
                     '}';
+        }
+
+        public Boolean getCollected() {
+            return isCollected;
+        }
+
+        public void setCollected(Boolean collected) {
+            isCollected = collected;
+        }
+
+        public String getSpell() {
+            return spell;
+        }
+
+        public void setSpell(String spell) {
+            this.spell = spell;
         }
 
         public String getName() {
