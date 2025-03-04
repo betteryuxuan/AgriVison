@@ -5,11 +5,19 @@ import java.io.Serializable;
 public class User implements Serializable {
     private String email;
     private String userName;
+    private String avatar;
+
 
     public User() {
     }
 
     public User(String email, String userName) {
+        this.email = email;
+        this.userName = userName;
+    }
+
+    public User( String email, String userName,String avatar) {
+        this.avatar = avatar;
         this.email = email;
         this.userName = userName;
     }
@@ -30,9 +38,20 @@ public class User implements Serializable {
         this.userName = userName;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     @Override
     public String toString() {
-        return "email='" + email + '\'' +
-                        ", userName='" + userName;
+        return "User{" +
+                "avatar='" + avatar + '\'' +
+                ", email='" + email + '\'' +
+                ", userName='" + userName + '\'' +
+                '}';
     }
 }

@@ -155,6 +155,7 @@ public class LoginModel implements ILoginContract.Model {
                         callback.onFailure();
                     } else {
                         SPUtils.putString(mContext, SPUtils.EMAIL_KEY, email);
+                        SPUtils.putString(mContext, SPUtils.USERNAME_KEY, username);
                         callback.onSuccess();
                     }
                 } catch (Exception e) {

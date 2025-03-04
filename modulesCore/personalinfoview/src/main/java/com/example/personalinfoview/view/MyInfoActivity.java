@@ -28,7 +28,9 @@ import androidx.core.view.WindowInsetsCompat;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bumptech.glide.Glide;
 import com.example.module.libBase.bean.User;
+import com.example.personalinfoview.FileUtils;
 import com.example.personalinfoview.R;
 import com.example.personalinfoview.contract.IMyInfoContract;
 import com.example.personalinfoview.databinding.ActivityInfoBinding;
@@ -72,9 +74,17 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
         if (user != null) {
             binding.tvInfoMail.setText(user.getEmail());
             binding.tvInfoUsername.setText(user.getUserName());
-            String avatarUri = mPresenter.getUserAvatar();
+            String avatarUri = user.getAvatar();
             if (avatarUri != null) {
-                binding.imgInfoPhoto.setImageURI(Uri.parse(avatarUri));
+                Log.d(TAG, "有图片 " + avatarUri);
+                Glide.with(this)
+                        .load(avatarUri)
+                        .into(binding.imgInfoPhoto);
+            }else {
+                Log.d(TAG, "无图片: " + avatarUri);
+                Glide.with(this)
+                        .load(R.drawable.default_user2)
+                        .into(binding.imgInfoPhoto);
             }
         } else {
             binding.tvInfoMail.setText("未登录");
@@ -90,6 +100,7 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
 
                 // 持久化URI访问权限
                 contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                mPresenter.modifyUserAvatar(FileUtils.getRealPathFromUri(MyInfoActivity.this, uri));
             }
         });
 

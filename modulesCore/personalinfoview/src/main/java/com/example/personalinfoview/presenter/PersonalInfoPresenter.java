@@ -106,11 +106,6 @@ public class PersonalInfoPresenter implements IInfoContract.Presenter {
     }
 
     @Override
-    public void saveUserAvatar(Uri avatarUri) {
-        mModel.saveUserAvatar(avatarUri.toString());
-    }
-
-    @Override
     public String getUserAvatar() {
         return mModel.getUserAvatar();
     }

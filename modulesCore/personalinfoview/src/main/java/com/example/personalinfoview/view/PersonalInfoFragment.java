@@ -1,32 +1,25 @@
 package com.example.personalinfoview.view;
 
-import android.Manifest;
-import android.content.ContentResolver;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bumptech.glide.Glide;
 import com.example.module.libBase.AnimationUtils;
-import com.example.module.libBase.SPUtils;
 import com.example.module.libBase.bean.User;
 import com.example.personalinfoview.R;
 import com.example.personalinfoview.adapter.MenuAdapter;
@@ -71,24 +64,6 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
         tvEmail = view.findViewById(R.id.tv_myinfo_email);
         imgAvatar = view.findViewById(R.id.img_myinfo_avatar);
 
-
-        pickMedia = registerForActivityResult(
-                new ActivityResultContracts.PickVisualMedia(),
-                uri -> {
-                    if (uri != null) {
-                        imgAvatar.setImageURI(uri);
-                        presenter.saveUserAvatar(uri);
-                        // 获取 ContentResolver 实例
-                        ContentResolver contentResolver = getContext().getContentResolver();
-
-                        // 持久化URI访问权限
-                        contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-                        SPUtils.putString(getContext(), SPUtils.USER_AVATAR_URI_KEY, uri.toString());
-                    }
-                }
-        );
-
         rlv.setLayoutManager(new LinearLayoutManager(getContext()));
         presenter.loadMenuItems();
 
@@ -101,8 +76,6 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
                 ARouter.getInstance().build("/login/LoginActivity")
                         .withTransition(R.anim.slide_in_left, R.anim.slide_out_left)
                         .navigation();
-            } else {
-                requestPermissions();
             }
         });
         tvUsername.setOnClickListener(v -> {
@@ -121,60 +94,6 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_personal_info, container, false);
-    }
-
-    private ActivityResultLauncher<String[]> permissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
-                boolean granted = true;
-                for (Boolean value : result.values()) {
-                    if (!value) {
-                        granted = false;
-                        break;
-                    }
-                }
-                if (granted) {
-                    launchImagePicker();
-                } else {
-                    Toast.makeText(getContext(), "请允许权限以选择头像", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-    private void requestPermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            permissionLauncher.launch(new String[]{
-                    Manifest.permission.READ_MEDIA_IMAGES,
-                    Manifest.permission.READ_MEDIA_VIDEO,
-                    Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED
-            });
-        } else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.TIRAMISU) {
-            permissionLauncher.launch(new String[]{
-                    Manifest.permission.READ_MEDIA_IMAGES,
-                    Manifest.permission.READ_MEDIA_VIDEO
-            });
-        } else {
-            permissionLauncher.launch(new String[]{
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-            });
-        }
-    }
-
-    private void checkPermissionResult() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-                && (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED
-                || ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_MEDIA_VIDEO) == PackageManager.PERMISSION_GRANTED)) {
-            launchImagePicker();
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE
-                && ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED) == PackageManager.PERMISSION_GRANTED) {
-            launchImagePicker();
-        } else if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            launchImagePicker();
-        }
-    }
-
-    private void launchImagePicker() {
-        pickMedia.launch(new PickVisualMediaRequest.Builder()
-                .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
-                .build());
     }
 
     @Override
@@ -196,6 +115,19 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
         if (user != null) {
             tvUsername.setText(user.getUserName());
             tvEmail.setText(user.getEmail());
+
+            String avatarUri = user.getAvatar();
+            if (avatarUri != null) {
+                Log.d(TAG, "有图片 " + avatarUri);
+                Glide.with(this)
+                        .load(avatarUri)
+                        .into(imgAvatar);
+            } else {
+                Log.d(TAG, "无图片: " + avatarUri);
+                Glide.with(this)
+                        .load(R.drawable.default_user2)
+                        .into(imgAvatar);
+            }
         } else {
             tvUsername.setText("未登录");
             tvEmail.setText("");

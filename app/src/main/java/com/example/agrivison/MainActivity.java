@@ -1,16 +1,25 @@
 package com.example.agrivison;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -56,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
         fragments = new ArrayList<>();
         fragments.add(fragment);
-        fragments.add(videoFragment);
         fragments.add(chatpageFragment);
+        fragments.add(videoFragment);
         fragments.add(shoppingFragment);
         fragments.add(personalInfoFragment);
 
@@ -91,8 +100,6 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager2.setOffscreenPageLimit(5);
 
-
-
         @SuppressLint("RestrictedApi")
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
         for (int i = 0; i < menuView.getChildCount(); i++) {
@@ -104,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
 
     }
 
@@ -131,5 +137,25 @@ public class MainActivity extends AppCompatActivity {
             System.exit(0);
         }
     }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int)ev.getRawX(), (int)ev.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    }
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
 
 }

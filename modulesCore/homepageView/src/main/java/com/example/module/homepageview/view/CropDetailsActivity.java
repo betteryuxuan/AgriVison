@@ -22,6 +22,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.example.module.homepageview.R;
+import com.example.module.libBase.SPUtils;
 import com.example.module.libBase.bean.Crop;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -82,12 +83,11 @@ public class CropDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isCollected) {
-                    SharedPreferences sharedPreferences = getSharedPreferences("CROP_PREFS", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    String jsonList = sharedPreferences.getString("crop_detail_list", "");
+                    String jsonList = SPUtils.getString(CropDetailsActivity.this, SPUtils.CROP_DETAIL_LIST_KEY, "");
                     // 使用 Gson 将 JSON 字符串转换回 List
                     Gson gson = new Gson();
-                    Type listType = new TypeToken<List<Crop.CropDetail>>(){}.getType();
+                    Type listType = new TypeToken<List<Crop.CropDetail>>() {
+                    }.getType();
                     List<Crop.CropDetail> cropDetailList = gson.fromJson(jsonList, listType);
                     Log.d(TAG, "cropDetailList1: " + cropDetailList);
                     if (cropDetailList == null) {
@@ -100,18 +100,16 @@ public class CropDetailsActivity extends AppCompatActivity {
                         }
                     }
                     String jsonListAfterDelete = gson.toJson(cropDetailList);
-                    editor.putString("crop_detail_list", jsonListAfterDelete);
-                    editor.apply();
+                    SPUtils.putString(CropDetailsActivity.this, SPUtils.CROP_DETAIL_LIST_KEY,  jsonListAfterDelete);
                     collect.setImageResource(R.drawable.ic_collect);
                     isCollected = false;
                 } else {
                     if (cropDetail != null) {
-                        SharedPreferences sharedPreferences = getSharedPreferences("CROP_PREFS", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        String jsonList = sharedPreferences.getString("crop_detail_list", "");
+                        String jsonList = SPUtils.getString(CropDetailsActivity.this, SPUtils.CROP_DETAIL_LIST_KEY, "");
                         // 使用 Gson 将 JSON 字符串转换回 List
                         Gson gson = new Gson();
-                        Type listType = new TypeToken<List<Crop.CropDetail>>(){}.getType();
+                        Type listType = new TypeToken<List<Crop.CropDetail>>() {
+                        }.getType();
                         List<Crop.CropDetail> cropDetailList = gson.fromJson(jsonList, listType);
                         Log.d(TAG, "cropDetailList2: " + cropDetailList);
                         if (cropDetailList == null) {
@@ -119,8 +117,7 @@ public class CropDetailsActivity extends AppCompatActivity {
                         }
                         cropDetailList.add(cropDetail);
                         String jsonListAfterAdd = gson.toJson(cropDetailList);
-                        editor.putString("crop_detail_list", jsonListAfterAdd);
-                        editor.apply();
+                        SPUtils.putString(CropDetailsActivity.this, SPUtils.CROP_DETAIL_LIST_KEY, jsonListAfterAdd);
                         collect.setImageResource(R.drawable.ic_collected);
                         isCollected = true;
                     }
@@ -139,7 +136,6 @@ public class CropDetailsActivity extends AppCompatActivity {
         collect = findViewById(R.id.iv_cropdetails_collect);
 
         ARouter.getInstance().inject(this);
-
 
 
         if (dataItem != null) {
@@ -165,13 +161,12 @@ public class CropDetailsActivity extends AppCompatActivity {
             spell.setText(dataItem.getCropDetail().get(0).getSpell());
             collect.setVisibility(View.GONE);
         } else if (cropDetail != null) {
-
-            SharedPreferences sharedPreferences = getSharedPreferences("CROP_PREFS", Context.MODE_PRIVATE);
-            String jsonList = sharedPreferences.getString("crop_detail_list", ""); // 默认值为空字符串
+            String jsonList = SPUtils.getString( CropDetailsActivity.this, SPUtils.CROP_DETAIL_LIST_KEY, "");
 
             // 使用 Gson 将 JSON 字符串转换回 List<Crop.CropDetail>
             Gson gson = new Gson();
-            Type listType = new TypeToken<List<Crop.CropDetail>>(){}.getType();
+            Type listType = new TypeToken<List<Crop.CropDetail>>() {
+            }.getType();
             List<Crop.CropDetail> cropDetailList = gson.fromJson(jsonList, listType);
             if (cropDetailList == null) {
                 cropDetailList = new ArrayList<>();
@@ -192,13 +187,13 @@ public class CropDetailsActivity extends AppCompatActivity {
             list.add(cropDetail.getImage1());
             list.add(cropDetail.getImage2());
             banner.setAdapter(new BannerImageAdapter<String>(list) {
-                @Override
-                public void onBindView(BannerImageHolder holder, String data, int position, int size) {
-                    Glide.with(holder.itemView)
-                            .load(data)  // 这里的 data 就是 URL
-                            .into(holder.imageView);
-                }
-            }).setIndicator(new CircleIndicator(this))
+                        @Override
+                        public void onBindView(BannerImageHolder holder, String data, int position, int size) {
+                            Glide.with(holder.itemView)
+                                    .load(data)  // 这里的 data 就是 URL
+                                    .into(holder.imageView);
+                        }
+                    }).setIndicator(new CircleIndicator(this))
                     .addBannerLifecycleObserver(this)
                     .setIndicatorSelectedColor(getResources().getColor(R.color.white))
                     .setIndicatorNormalColor(getResources().getColor(R.color.white_shallow))
@@ -208,6 +203,5 @@ public class CropDetailsActivity extends AppCompatActivity {
             introduction.setText(cropDetail.getIntroduction());
             spell.setText(cropDetail.getSpell());
         }
-
     }
 }

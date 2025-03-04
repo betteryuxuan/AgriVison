@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bumptech.glide.Glide;
 import com.example.module.libBase.bean.Crop;
 import com.example.personalinfoview.R;
 
@@ -19,30 +20,17 @@ import java.util.List;
 
 public class CropAdapter extends RecyclerView.Adapter<CropAdapter.CropViewHolder> {
 
-    private List<Crop> cropList;
-    private List<String> colors;
+    private List<Crop.CropDetail> cropList;
     private OnItemClickListener clickListener;
 
     public interface OnItemClickListener {
-        void onItemClick(Crop crop);
+        void onItemClick(Crop.CropDetail crop);
     }
 
-    public CropAdapter(List<Crop> cropList, OnItemClickListener clickListener) {
+    public CropAdapter(List<Crop.CropDetail> cropList, OnItemClickListener clickListener) {
         this.cropList = cropList;
         this.clickListener = clickListener;
     }
-
-    public CropAdapter(List<Crop> cornList) {
-        this.cropList = cornList;
-        colors = new ArrayList<>();
-        colors.add("#9EC840");
-        colors.add("#C1D14D");
-        colors.add("#CADA4F");
-        colors.add("#CC9D5D");
-        colors.add("#93BF2A");
-    }
-
-
 
     @NonNull
     @Override
@@ -58,7 +46,11 @@ public class CropAdapter extends RecyclerView.Adapter<CropAdapter.CropViewHolder
 //        params.height = (int) (Math.random() * 500 + 400); // 400-900dp随机高度
 //        holder.itemView.setLayoutParams(params);
 
-        Crop crop = cropList.get(position);
+        Crop.CropDetail crop = cropList.get(position);
+        holder.textView.setText(crop.getName());
+        Glide.with(holder.itemView.getContext())
+                .load(crop.getIcon())
+                .into(holder.imageView);
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

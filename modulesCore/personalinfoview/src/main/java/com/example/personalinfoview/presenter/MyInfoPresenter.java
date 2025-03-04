@@ -31,6 +31,11 @@ public class MyInfoPresenter implements IMyInfoContract.Presenter {
         return mModel.getUserAvatar();
     }
 
+    @Override
+    public void modifyUserAvatar(String avatarPath) {
+        mModel.modifyUserAvatar(avatarPath);
+    }
+
     public void onModifyInfoSuccess(String username) {
 
         mView.onModifyInfoSuccess(username);

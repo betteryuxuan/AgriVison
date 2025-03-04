@@ -24,15 +24,11 @@ public interface IInfoContract {
 
         void getUser(User user);
 
-        void saveUserAvatar(Uri avatarUri);
-
         String getUserAvatar();
     }
 
     interface Model {
         void getUserInfo();
-
-        void saveUserAvatar(String avatarUri);
 
         String getUserAvatar();
     }

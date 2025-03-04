@@ -101,6 +101,7 @@ public class ChatpageFragment extends Fragment implements IChatContract.View {
 //                getRandomBackground();
             }
         });
+
     }
 
 

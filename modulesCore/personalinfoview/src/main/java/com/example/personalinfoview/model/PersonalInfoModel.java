@@ -27,6 +27,7 @@ public class PersonalInfoModel implements IInfoContract.Model {
     private Context mContext;
 
     private static final String USER_URL = "http://101.200.122.3:8080/user/info";
+    private static final String AVATAR_URL = "http://101.200.122.3:8080/user/avatar";
     private OkHttpClient client = new OkHttpClient();
 
     public PersonalInfoModel(PersonalInfoPresenter presenter, Context context) {
@@ -38,24 +39,20 @@ public class PersonalInfoModel implements IInfoContract.Model {
     public void getUserInfo() {
         String username = SPUtils.getString(mContext, "username", null);
         String email = SPUtils.getString(mContext, "email", null);
+        String avatar = SPUtils.getString(mContext, "avatar", null);
 
         if (username != null && email != null) {
             // 本地已登录直接获
-            User user = new User(email, username);
+            User user = new User(email, username, avatar);
             mPresenter.getUser(user);
             mPresenter.updateUserInfo(user);
-        } else if(username == null && email == null){
+        } else if (username == null && email == null) {
             // 未登录
             mPresenter.getUser(null);
             mPresenter.updateUserInfo(null);
         } else {
             fetchUserName();
         }
-    }
-
-    @Override
-    public void saveUserAvatar(String avatarUri) {
-        SPUtils.putString(mContext, SPUtils.AVATAR_KEY, avatarUri);
     }
 
     @Override
@@ -90,12 +87,18 @@ public class PersonalInfoModel implements IInfoContract.Model {
 
                         String username = data.getString("username");
                         String email = data.getString("email");
-                        User user = new User(email, username);
+                        String avatar = data.getString("avatar");
+                        if (avatar.equals("")) {
+                            avatar = null;
+                            Log.d(TAG, "avatar is null");
+                        }
+                        User user = new User(email, username, avatar);
 
                         SPUtils.putString(mContext, SPUtils.USERNAME_KEY, username);
                         SPUtils.putString(mContext, SPUtils.EMAIL_KEY, email);
+                        SPUtils.putString(mContext, SPUtils.AVATAR_KEY, avatar);
 
-                        Log.d(TAG, "UserName: " + username + " Email: " + email);
+                        Log.d(TAG, responseBody);
 
                         mPresenter.getUser(user);
                         mPresenter.updateUserInfo(user);

@@ -15,16 +15,18 @@ public interface IMyInfoContract {
         void saveUserAvatar(Uri avatarUri);
 
         String getUserAvatar();
+
+        void modifyUserAvatar(String avatarPath);
     }
 
     interface Model {
-        User getMyInfo();
-
         void modifyInfo(String username, String email);
 
         void saveUserAvatar(String avatarUri);
 
         String getUserAvatar();
+
+        void modifyUserAvatar(String avatarPath);
     }
 
 }

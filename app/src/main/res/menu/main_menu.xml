@@ -6,13 +6,12 @@
         android:title="首页" />
     <item
         android:id="@+id/navigation_item2"
-        android:icon="@drawable/ic_video_selector"
-        android:title="视频" />
+        android:icon="@drawable/ic_chat_selector"
+        android:title="提问" />
     <item
         android:id="@+id/navigation_item3"
-        android:icon="@drawable/ic_chat_selector"
-        android:tooltipText=""
-        android:title="提问" />
+        android:icon="@drawable/ic_video_selector"
+        android:title="视频" />
     <item
         android:id="@+id/navigation_item4"
         android:icon="@drawable/ic_shop_selector"
