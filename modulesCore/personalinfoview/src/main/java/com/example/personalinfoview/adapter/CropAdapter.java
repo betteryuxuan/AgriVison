@@ -59,8 +59,6 @@ public class CropAdapter extends RecyclerView.Adapter<CropAdapter.CropViewHolder
 //        holder.itemView.setLayoutParams(params);
 
         Crop crop = cropList.get(position);
-        holder.imageView.setImageResource(crop.getImage());
-        holder.textView.setText(crop.getName());
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

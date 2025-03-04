@@ -53,10 +53,10 @@ public class PersonalInfoPresenter implements IInfoContract.Presenter {
                         .navigation();
                 break;
             case 2:
-                Toast.makeText(mView.getContext(), "暂无消息", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mView.getContext(), "暂无订单", Toast.LENGTH_SHORT).show();
                 break;
             case 3:
-                Toast.makeText(mView.getContext(), "暂无订单", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mView.getContext(), "暂无消息", Toast.LENGTH_SHORT).show();
                 break;
             case 4:
                 if (mView.getUser() == null) {

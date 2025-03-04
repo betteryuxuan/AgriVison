@@ -1,5 +1,6 @@
 package com.example.module.homepageview.view.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,26 +11,29 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.module.homepageview.R;
 import com.example.module.libBase.bean.Crop;
 
 import java.util.List;
 
 public class CategoryDetailsRecyclerViewAdapter extends RecyclerView.Adapter<CategoryDetailsRecyclerViewAdapter.CategoryDetailsRecyclerViewHolder> {
-    List<Crop> list;
+    List<Crop.CropDetail> list;
     private CropCategoryRecyclerViewAdapter.OnItemClickListener clickListener;
+    private Context context;
 
     public interface OnItemClickListener {
-        void onItemClick(Crop crop);
+        void onItemClick(Crop.CropDetail crop);
     }
 
-    public CategoryDetailsRecyclerViewAdapter(List<Crop> list) {
+    public CategoryDetailsRecyclerViewAdapter(List<Crop.CropDetail> list) {
         this.list = list;
     }
 
-    public CategoryDetailsRecyclerViewAdapter(List<Crop> list, CropCategoryRecyclerViewAdapter.OnItemClickListener clickListener) {
+    public CategoryDetailsRecyclerViewAdapter(List<Crop.CropDetail> list, CropCategoryRecyclerViewAdapter.OnItemClickListener clickListener, Context context) {
         this.list = list;
         this.clickListener = clickListener;
+        this.context = context;
     }
 
     @NonNull
@@ -42,9 +46,11 @@ public class CategoryDetailsRecyclerViewAdapter extends RecyclerView.Adapter<Cat
 
     @Override
     public void onBindViewHolder(@NonNull CategoryDetailsRecyclerViewAdapter.CategoryDetailsRecyclerViewHolder holder, int position) {
-        Crop crop = list.get(position);
-        holder.image.setImageResource(crop.getImage());
+        Crop.CropDetail crop = list.get(position);
         holder.name.setText(crop.getName());
+        Glide.with(context)
+                .load(crop.getIcon())  // news.getImage() 返回的是图片的 URL 或文件路径
+                .into(holder.image); // 将图片加载到 ImageView
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

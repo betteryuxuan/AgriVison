@@ -17,8 +17,10 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.module.homepageview.R;
 import com.example.module.homepageview.contract.IHomeFirstContract;
 import com.example.module.libBase.bean.Crop;
+import com.example.module.homepageview.model.HomeFirstModel;
 import com.example.module.homepageview.model.classes.News;
 import com.example.module.homepageview.model.classes.Proverb;
+import com.example.module.homepageview.presenter.HomeFirstPresenter;
 import com.example.module.homepageview.view.adapter.CropRecyclerViewAdapter;
 import com.example.module.homepageview.view.adapter.NewsRecyclerViewAdapter;
 import com.example.module.homepageview.view.adapter.ProverbViewPagerAdapter;
@@ -53,6 +55,13 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // 确保 mPresenter 被初始化
+        if (mPresenter == null) {
+            // 如果 mPresenter 为 null，初始化它
+            mPresenter = new HomeFirstPresenter(this, new HomeFirstModel(getContext()), getContext());
+        }
+
         banner = view.findViewById(R.id.banner_homepage_top);
         cropRecyclerView = view.findViewById(R.id.rv_homepage_crop);
         newsRecyclerView = view.findViewById(R.id.rv_homepage_news);
@@ -99,16 +108,17 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
     }
 
     @Override
-    public void setupCropRecyclerView(List<Crop> list) {
+    public void setupCropRecyclerView(List<Crop.DataItem> list) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         cropRecyclerView.setAdapter(new CropRecyclerViewAdapter(list, new CropRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Crop crop) {
+            public void onItemClick(Crop.DataItem crop) {
                 ARouter.getInstance()
                         .build("/HomePageView/CropDetailsActivity")
+                        .withParcelable("dataItem", crop)
                         .navigation();
             }
-        }));
+        }, getContext()));
         cropRecyclerView.setLayoutManager(linearLayoutManager);
     }
 

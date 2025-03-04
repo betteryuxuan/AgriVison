@@ -8,7 +8,8 @@ public class Video {
     private String msg; // 返回消息
     private List<Item> data; // 返回的数据列表
 
-    public class Item {
+    // 将 Item 类定义为静态内部类
+    public static class Item {
 
         private String url;
 

@@ -16,10 +16,11 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.module.homepageview.R;
-import com.example.module.libBase.bean.Crop;
 import com.example.module.homepageview.view.adapter.CategoryDetailsRecyclerViewAdapter;
 import com.example.module.homepageview.view.adapter.CropCategoryRecyclerViewAdapter;
+import com.example.module.libBase.bean.Crop;
 
 import java.util.List;
 
@@ -58,21 +59,23 @@ public class CategoryDetailsActivity extends AppCompatActivity {
         title = findViewById(R.id.tv_category_title);
 
         Intent intent = getIntent();
-        List<Crop> list = intent.getParcelableArrayListExtra("list");
+        List<Crop.CropDetail> list = intent.getParcelableArrayListExtra("list");
         title.setText(intent.getStringExtra("title"));
         setupRecyclerView(list);
     }
 
-    private void setupRecyclerView(List<Crop> list) {
+    private void setupRecyclerView(List<Crop.CropDetail> list) {
         StaggeredGridLayoutManager staggeredGridLayoutManager =
                 new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         cropsRecyclerView.setAdapter(new CategoryDetailsRecyclerViewAdapter(list, new CropCategoryRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Crop crop) {
-                Intent intent = new Intent(getApplicationContext(), CropDetailsActivity.class);
-                startActivity(intent);
+            public void onItemClick(Crop.CropDetail crop) {
+                ARouter.getInstance()
+                        .build("/HomePageView/CropDetailsActivity")
+                        .withParcelable("cropDetail", crop)
+                        .navigation();
             }
-        }));
+        }, getApplicationContext()));
         cropsRecyclerView.setLayoutManager(staggeredGridLayoutManager);
 
     }

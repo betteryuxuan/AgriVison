@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.module.libBase.bean.Crop;
-import com.example.personalinfoview.R;
 import com.example.personalinfoview.adapter.CropAdapter;
 import com.example.personalinfoview.databinding.ActivityMyFavoritesBinding;
 
@@ -45,6 +44,7 @@ public class MyFavoritesActivity extends AppCompatActivity {
         initData();
 
         setupCropRecyclerView(favoritesCropsList);
+
         binding.imgFavoritesBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,15 +55,15 @@ public class MyFavoritesActivity extends AppCompatActivity {
 
     private void initData() {
         favoritesCropsList = new ArrayList<>();
-        favoritesCropsList.add(new Crop("小麦", R.drawable.ic_wheat));
-        favoritesCropsList.add(new Crop("玉米", R.drawable.ic_corn));
-        favoritesCropsList.add(new Crop("水稻", R.drawable.ic_barley));
-        favoritesCropsList.add(new Crop("小麦", R.drawable.ic_wheat));
-        favoritesCropsList.add(new Crop("玉米", R.drawable.ic_corn));
-        favoritesCropsList.add(new Crop("水稻", R.drawable.ic_barley));
-        favoritesCropsList.add(new Crop("小麦", R.drawable.ic_wheat));
-        favoritesCropsList.add(new Crop("玉米", R.drawable.ic_corn));
-        favoritesCropsList.add(new Crop("水稻", R.drawable.ic_barley));
+//        favoritesCropsList.add(new Crop("小麦", R.drawable.ic_wheat));
+//        favoritesCropsList.add(new Crop("玉米", R.drawable.ic_corn));
+//        favoritesCropsList.add(new Crop("水稻", R.drawable.ic_barley));
+//        favoritesCropsList.add(new Crop("小麦", R.drawable.ic_wheat));
+//        favoritesCropsList.add(new Crop("玉米", R.drawable.ic_corn));
+//        favoritesCropsList.add(new Crop("水稻", R.drawable.ic_barley));
+//        favoritesCropsList.add(new Crop("小麦", R.drawable.ic_wheat));
+//        favoritesCropsList.add(new Crop("玉米", R.drawable.ic_corn));
+//        favoritesCropsList.add(new Crop("水稻", R.drawable.ic_barley));
     }
 
     public void setupCropRecyclerView(List<Crop> list) {

@@ -29,7 +29,7 @@ ext {
             "chatpage"        : "com.example.chatpageview",
             "personalinfopage": "com.example.personalinfoview",
             "shopping" : "com.example.module.shoppingview",
-            "videopage":"com.example.module.videoview"
+            "videopage" : "com.example.module.videoview"
 
     ]
 

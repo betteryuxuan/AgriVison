@@ -29,8 +29,9 @@ import okhttp3.ResponseBody;
 
 public class HomeFirstModel implements IHomeFirstContract.IHomeFirstModel<HomePagePresenter> {
 
-    private static final String PROVERB_URL = "http://101.200.122.3:8080/firstPage/proverb";
-    private static final String NEWS_URL = "http://101.200.122.3:8080/firstPage/news";
+    private static final String CROP_URL = "http://101.200.122.3:8080/firstpage/crop";
+    private static final String PROVERB_URL = "http://101.200.122.3:8080/firstpage/proverb";
+    private static final String NEWS_URL = "http://101.200.122.3:8080/firstpage/news";
 
     private Context mContext;
     private static final String TAG = "HomeFirstModel";
@@ -49,23 +50,61 @@ public class HomeFirstModel implements IHomeFirstContract.IHomeFirstModel<HomePa
 
         return list;
     }
-
     @Override
-    public List<Crop> getCropRecyclerViewDatas() {
-        List<Crop> crops = new ArrayList<>();
-        crops.add(new Crop("小麦", R.drawable.ic_wheat));
-        crops.add(new Crop("玉米", R.drawable.ic_corn));
-        crops.add(new Crop("水稻", R.drawable.ic_barley));
-        crops.add(new Crop("小麦", R.drawable.ic_wheat));
-        crops.add(new Crop("玉米", R.drawable.ic_corn));
-        crops.add(new Crop("水稻", R.drawable.ic_barley));
-        crops.add(new Crop("小麦", R.drawable.ic_wheat));
-        crops.add(new Crop("玉米", R.drawable.ic_corn));
-        crops.add(new Crop("水稻", R.drawable.ic_barley));
-        crops.add(new Crop("小麦", R.drawable.ic_wheat));
-        crops.add(new Crop("玉米", R.drawable.ic_corn));
-        crops.add(new Crop("水稻", R.drawable.ic_barley));
-        return crops;
+    public void getCropRecyclerViewDatas(CropsCallback callback) {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        String token = TokenManager.getToken(mContext);
+        Log.d(TAG, "Token为：" + token);
+
+        Request.Builder builder = new Request.Builder();
+        builder.url(CROP_URL);
+        if (token != null) {
+            builder.addHeader("Authorization", "Bearer " + token);
+        }
+        Request request = builder.build();
+
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                Log.e(TAG, "请求失败", e);
+                if (callback != null) {
+                    callback.onError(e);
+                }
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if (!response.isSuccessful()) {
+                    Log.e(TAG, "请求失败，状态码：" + response.code());
+                    if (callback != null) {
+                        callback.onError(new IOException("请求失败，状态码：" + response.code()));
+                    }
+                    return;
+                }
+
+                ResponseBody body = response.body();
+                if (body == null) {
+                    Log.e(TAG, "响应体为空");
+                    if (callback != null) {
+                        callback.onError(new IOException("响应体为空"));
+                    }
+                    return;
+                }
+
+                String responseBody = body.string();
+                Log.d(TAG, "解析前的数据：" + responseBody);
+
+                Gson gson = new Gson();
+                Crop crop = gson.fromJson(responseBody, Crop.class);
+                Log.d(TAG, "解析后的数据：" + crop);
+
+                // 确保回调在主线程中执行
+                if (callback != null) {
+                    new Handler(Looper.getMainLooper()).post(() -> callback.onCropsLoaded(crop.getData()));
+                }
+            }
+
+        });
     }
 
     @Override
@@ -110,11 +149,11 @@ public class HomeFirstModel implements IHomeFirstContract.IHomeFirstModel<HomePa
                 }
 
                 String responseBody = body.string();
-                Log.d(TAG, "解析前的数据：" + responseBody);
+//                Log.d(TAG, "解析前的数据：" + responseBody);
 
                 Gson gson = new Gson();
                 News news = gson.fromJson(responseBody, News.class);
-                Log.d(TAG, "解析后的数据：" + news);
+//                Log.d(TAG, "解析后的数据：" + news);
 
                 // 确保回调在主线程中执行
                 if (callback != null) {
@@ -168,11 +207,11 @@ public class HomeFirstModel implements IHomeFirstContract.IHomeFirstModel<HomePa
                 }
 
                 String responseBody = body.string();
-                Log.d(TAG, "解析前的数据：" + responseBody);
+//                Log.d(TAG, "解析前的数据：" + responseBody);
 
                 Gson gson = new Gson();
                 Proverb proverb = gson.fromJson(responseBody, Proverb.class);
-                Log.d(TAG, "解析后的数据：" + proverb);
+//                Log.d(TAG, "解析后的数据：" + proverb);
 
                 // 确保回调在主线程中执行
                 if (callback != null) {

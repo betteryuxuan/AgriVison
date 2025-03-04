@@ -20,7 +20,7 @@ public interface IHomeFirstContract {
 
         void setupBanner(List<Integer> list);
 
-        void setupCropRecyclerView(List<Crop> list);
+        void setupCropRecyclerView(List<Crop.DataItem> list);
 
         void setupNewsRecyclerView(List<News.Item> list);
 
@@ -42,11 +42,16 @@ public interface IHomeFirstContract {
 
         List<Integer> getBannerDatas();
 
-        List<Crop> getCropRecyclerViewDatas();
+        void getCropRecyclerViewDatas(CropsCallback callback);
 
         void getNewsRecyclerViewDatas(NewsCallback callback);
 
         void getProverbViewPagerDatas(ProverbCallback callback);
+
+        interface CropsCallback {
+            void onCropsLoaded(List<Crop.DataItem> data);
+            void onError(IOException e);
+        }
 
         interface NewsCallback {
             void onNewsLoaded(List<News.Item> data);

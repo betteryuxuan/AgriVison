@@ -14,10 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.module.homepageview.R;
 import com.example.module.homepageview.contract.ICategoryContract;
-import com.example.module.libBase.bean.Crop;
 import com.example.module.homepageview.view.adapter.CropCategoryRecyclerViewAdapter;
+import com.example.module.libBase.bean.Crop;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,13 +58,9 @@ public class CategoryFragment extends Fragment implements ICategoryContract.ICat
 
     @Override
     public void initView() {
-        presenter.loadFoodCategoryData();
-        presenter.loadOilCategoryData();
-        presenter.loadVegetableCategoryData();
-        presenter.loadFruitCategoryData();
-        presenter.loadWildFruitCategoryData();
-        presenter.loadSeedCategoryData();
-        presenter.loadMedicinalCategoryData();
+
+        presenter.loadCategoryDatas();
+
     }
 
     @Override
@@ -72,16 +69,18 @@ public class CategoryFragment extends Fragment implements ICategoryContract.ICat
     }
 
     @Override
-    public void setupFoodCatrgoryRecyclerView(List<Crop> list) {
+    public void setupFoodCatergoryRecyclerView(List<Crop.CropDetail> list) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         foodRecyclerView.setLayoutManager(linearLayoutManager);
         foodRecyclerView.setAdapter(new CropCategoryRecyclerViewAdapter(list, new CropCategoryRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Crop crop) {
-                Intent intent = new Intent(getContext(), CropDetailsActivity.class);
-                startActivity(intent);
+            public void onItemClick(Crop.CropDetail crop) {
+                ARouter.getInstance()
+                        .build("/HomePageView/CropDetailsActivity")
+                        .withParcelable("cropDetail", crop)
+                        .navigation();
             }
-        }));
+        }, getContext()));
 
         foodButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,16 +94,18 @@ public class CategoryFragment extends Fragment implements ICategoryContract.ICat
     }
 
     @Override
-    public void setupOilCatrgoryRecyclerView(List<Crop> list) {
+    public void setupOilCatergoryRecyclerView(List<Crop.CropDetail> list) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         oilRecyclerView.setLayoutManager(linearLayoutManager);
         oilRecyclerView.setAdapter(new CropCategoryRecyclerViewAdapter(list, new CropCategoryRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Crop crop) {
-                Intent intent = new Intent(getContext(), CropDetailsActivity.class);
-                startActivity(intent);
+            public void onItemClick(Crop.CropDetail crop) {
+                ARouter.getInstance()
+                        .build("/HomePageView/CropDetailsActivity")
+                        .withParcelable("cropDetail", crop)
+                        .navigation();
             }
-        }));
+        }, getContext()));
 
         oilButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,16 +119,18 @@ public class CategoryFragment extends Fragment implements ICategoryContract.ICat
     }
 
     @Override
-    public void setupVegetableCatrgoryRecyclerView(List<Crop> list) {
+    public void setupVegetableCatergoryRecyclerView(List<Crop.CropDetail> list) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         vegetableRecyclerView.setLayoutManager(linearLayoutManager);
         vegetableRecyclerView.setAdapter(new CropCategoryRecyclerViewAdapter(list, new CropCategoryRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Crop crop) {
-                Intent intent = new Intent(getContext(), CropDetailsActivity.class);
-                startActivity(intent);
+            public void onItemClick(Crop.CropDetail crop) {
+                ARouter.getInstance()
+                        .build("/HomePageView/CropDetailsActivity")
+                        .withParcelable("cropDetail", crop)
+                        .navigation();
             }
-        }));
+        }, getContext()));
 
         vegetableButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,16 +144,18 @@ public class CategoryFragment extends Fragment implements ICategoryContract.ICat
     }
 
     @Override
-    public void setupFruitCatrgoryRecyclerView(List<Crop> list) {
+    public void setupFruitCatergoryRecyclerView(List<Crop.CropDetail> list) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         fruitRecyclerView.setLayoutManager(linearLayoutManager);
         fruitRecyclerView.setAdapter(new CropCategoryRecyclerViewAdapter(list, new CropCategoryRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Crop crop) {
-                Intent intent = new Intent(getContext(), CropDetailsActivity.class);
-                startActivity(intent);
+            public void onItemClick(Crop.CropDetail crop) {
+                ARouter.getInstance()
+                        .build("/HomePageView/CropDetailsActivity")
+                        .withParcelable("cropDetail", crop)
+                        .navigation();
             }
-        }));
+        }, getContext()));
 
         fruitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,16 +169,18 @@ public class CategoryFragment extends Fragment implements ICategoryContract.ICat
     }
 
     @Override
-    public void setupWildFruitCatrgoryRecyclerView(List<Crop> list) {
+    public void setupWildFruitCatergoryRecyclerView(List<Crop.CropDetail> list) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         wildFruitRecyclerView.setLayoutManager(linearLayoutManager);
         wildFruitRecyclerView.setAdapter(new CropCategoryRecyclerViewAdapter(list, new CropCategoryRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Crop crop) {
-                Intent intent = new Intent(getContext(), CropDetailsActivity.class);
-                startActivity(intent);
+            public void onItemClick(Crop.CropDetail crop) {
+                ARouter.getInstance()
+                        .build("/HomePageView/CropDetailsActivity")
+                        .withParcelable("cropDetail", crop)
+                        .navigation();
             }
-        }));
+        }, getContext()));
 
         wildFruitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,16 +194,18 @@ public class CategoryFragment extends Fragment implements ICategoryContract.ICat
     }
 
     @Override
-    public void setupSeedCatrgoryRecyclerView(List<Crop> list) {
+    public void setupSeedCatergoryRecyclerView(List<Crop.CropDetail> list) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         seedRecyclerView.setLayoutManager(linearLayoutManager);
         seedRecyclerView.setAdapter(new CropCategoryRecyclerViewAdapter(list, new CropCategoryRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Crop crop) {
-                Intent intent = new Intent(getContext(), CropDetailsActivity.class);
-                startActivity(intent);
+            public void onItemClick(Crop.CropDetail crop) {
+                ARouter.getInstance()
+                        .build("/HomePageView/CropDetailsActivity")
+                        .withParcelable("cropDetail", crop)
+                        .navigation();
             }
-        }));
+        }, getContext()));
 
         seedButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,16 +219,18 @@ public class CategoryFragment extends Fragment implements ICategoryContract.ICat
     }
 
     @Override
-    public void setupMedicinalCatrgoryRecyclerView(List<Crop> list) {
+    public void setupMedicinalCatergoryRecyclerView(List<Crop.CropDetail> list) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         medicinalRecyclerView.setLayoutManager(linearLayoutManager);
         medicinalRecyclerView.setAdapter(new CropCategoryRecyclerViewAdapter(list, new CropCategoryRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Crop crop) {
-                Intent intent = new Intent(getContext(), CropDetailsActivity.class);
-                startActivity(intent);
+            public void onItemClick(Crop.CropDetail crop) {
+                ARouter.getInstance()
+                        .build("/HomePageView/CropDetailsActivity")
+                        .withParcelable("cropDetail", crop)
+                        .navigation();
             }
-        }));
+        }, getContext()));
 
         medicinalButton.setOnClickListener(new View.OnClickListener() {
             @Override

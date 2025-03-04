@@ -12,15 +12,19 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.module.shoppingview.R;
 import com.example.module.shoppingview.contract.IShoppingContract;
 import com.example.module.shoppingview.custom.ShoppingCartFragment;
+import com.example.module.shoppingview.model.ShoppingModel;
 import com.example.module.shoppingview.model.classes.Commodity;
+import com.example.module.shoppingview.presenter.ShoppingPresenter;
 import com.example.module.shoppingview.view.adapter.CommoditiesRecyclerViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+@Route(path = "/shoppingview/ShoppingFragment")
 public class ShoppingFragment extends Fragment implements IShoppingContract.IShoppingView{
 
     private RecyclerView recyclerView;
@@ -36,6 +40,9 @@ public class ShoppingFragment extends Fragment implements IShoppingContract.ISho
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (presenter == null) {
+            presenter = new ShoppingPresenter(this, new ShoppingModel());
+        }
         recyclerView = view.findViewById(R.id.rv_shopping_commodities);
         fab = view.findViewById(R.id.fab_shopping_cart);
 
@@ -60,7 +67,7 @@ public class ShoppingFragment extends Fragment implements IShoppingContract.ISho
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShoppingCartFragment shoppingCartFragment = ShoppingCartFragment.newInstance("购物车", "");
+                ShoppingCartFragment shoppingCartFragment = ShoppingCartFragment.newInstance();
                 shoppingCartFragment.show(getChildFragmentManager(), "shoppingCartFragment");
             }
         });
