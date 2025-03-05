@@ -183,4 +183,10 @@
     <string name="searchview_navigation_content_description">برگشتن</string>
     <string name="side_sheet_accessibility_pane_title">برگ کناری</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="ucrop_crop">برش</string>
+    <string name="ucrop_label_edit_photo">ویرایش عکس</string>
+    <string name="ucrop_label_original">اصلی</string>
+    <string name="ucrop_menu_crop">برش</string>
+    <string name="ucrop_rotate">چرخش</string>
+    <string name="ucrop_scale">اندازه</string>
 </resources>

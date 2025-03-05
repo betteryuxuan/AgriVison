@@ -2,6 +2,9 @@ package com.example.personalinfoview.presenter;
 
 import android.content.DialogInterface;
 import android.net.Uri;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -49,7 +52,7 @@ public class PersonalInfoPresenter implements IInfoContract.Presenter {
                 break;
             case 1:
                 ARouter.getInstance()
-                        .build( "/personalinfoview/MyFavoritesActivity")
+                        .build("/personalinfoview/MyFavoritesActivity")
                         .navigation();
                 break;
             case 2:
@@ -61,19 +64,30 @@ public class PersonalInfoPresenter implements IInfoContract.Presenter {
             case 4:
                 if (mView.getUser() == null) {
                     Toast.makeText(mView.getContext(), "请先登录", Toast.LENGTH_SHORT).show();
-                    Logout();
+                    logout();
                 } else {
+                    LayoutInflater inflater = LayoutInflater.from(mView.getContext());
+                    View customView = inflater.inflate(R.layout.dialog_logout_layout, null);
                     AlertDialog dialog = new AlertDialog.Builder(mView.getContext())
-                            .setTitle("提示")
-                            .setMessage("确定要退出登录吗？")
-                            .setNegativeButton("确定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Logout();
-                                }
-                            })
-                            .setPositiveButton("取消", null)
+                            .setView(customView)
                             .create();
+
+                    Button btnConfirm = customView.findViewById(R.id.btn_logout_confirm);
+                    Button btnCancel = customView.findViewById(R.id.btn_logout_cancel);
+
+                    btnConfirm.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            logout();
+                            dialog.dismiss();
+                        }
+                    });
+                    btnCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
                     dialog.show();
                 }
                 break;
@@ -82,7 +96,7 @@ public class PersonalInfoPresenter implements IInfoContract.Presenter {
         }
     }
 
-    private void Logout() {
+    private void logout() {
         mModel.Logout();
         mView.getActivity().runOnUiThread(new Runnable() {
             @Override
@@ -110,7 +124,7 @@ public class PersonalInfoPresenter implements IInfoContract.Presenter {
         return mModel.getUserAvatar();
     }
 
-    public void updateUserInfo(User  user) {
+    public void updateUserInfo(User user) {
         mView.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {

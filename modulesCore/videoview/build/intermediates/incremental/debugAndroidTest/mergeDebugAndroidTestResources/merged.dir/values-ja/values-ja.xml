@@ -183,4 +183,10 @@
     <string name="searchview_navigation_content_description">戻る</string>
     <string name="side_sheet_accessibility_pane_title">サイドシート</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="ucrop_crop">比率</string>
+    <string name="ucrop_label_edit_photo">画像編集</string>
+    <string name="ucrop_label_original">オリジナル</string>
+    <string name="ucrop_menu_crop">切り抜き</string>
+    <string name="ucrop_rotate">回転</string>
+    <string name="ucrop_scale">拡大</string>
 </resources>

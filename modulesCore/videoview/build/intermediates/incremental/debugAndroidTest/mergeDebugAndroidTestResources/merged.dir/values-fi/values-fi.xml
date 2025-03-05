@@ -183,4 +183,8 @@
     <string name="searchview_navigation_content_description">Takaisin</string>
     <string name="side_sheet_accessibility_pane_title">Sivupalkki</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="ucrop_error_input_data_is_absent">Sekä sisäänmeno- että ulostulo-Urit täytyy olla määritettyinä</string>
+    <string name="ucrop_label_edit_photo">Muokkaa kuvaa</string>
+    <string name="ucrop_menu_crop">Rajaa</string>
+    <string name="ucrop_mutate_exception_hint"/>
 </resources>

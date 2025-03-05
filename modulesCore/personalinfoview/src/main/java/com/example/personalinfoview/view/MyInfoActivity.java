@@ -4,14 +4,18 @@ import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -35,6 +39,9 @@ import com.example.personalinfoview.R;
 import com.example.personalinfoview.contract.IMyInfoContract;
 import com.example.personalinfoview.databinding.ActivityInfoBinding;
 import com.example.personalinfoview.presenter.MyInfoPresenter;
+import com.yalantis.ucrop.UCrop;
+
+import java.io.File;
 
 @Route(path = "/personalinfoview/MyInfoActivity")
 public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract.View {
@@ -48,6 +55,7 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
     @Autowired
     public User user;
     private ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
+    private AlertDialog imageDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +87,10 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
                 Log.d(TAG, "有图片 " + avatarUri);
                 Glide.with(this)
                         .load(avatarUri)
+                        .error(R.drawable.default_user2)
+                        .fallback(R.drawable.default_user2)
                         .into(binding.imgInfoPhoto);
-            }else {
+            } else {
                 Log.d(TAG, "无图片: " + avatarUri);
                 Glide.with(this)
                         .load(R.drawable.default_user2)
@@ -93,14 +103,26 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
 
         pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
             if (uri != null) {
-                binding.imgInfoPhoto.setImageURI(uri);
-                mPresenter.saveUserAvatar(uri);
                 // 获取 ContentResolver 实例
                 ContentResolver contentResolver = getApplicationContext().getContentResolver();
-
                 // 持久化URI访问权限
                 contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                mPresenter.modifyUserAvatar(FileUtils.getRealPathFromUri(MyInfoActivity.this, uri));
+
+                // 配置uCrop
+                UCrop.Options options = new UCrop.Options();
+                options.setCompressionFormat(Bitmap.CompressFormat.JPEG); // 压缩格式
+                options.setCompressionQuality(100); // 压缩质量
+
+                // 构造裁剪后图片的保存地址
+                Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "cropped_" + System.currentTimeMillis() + ".jpg"));
+
+                // 启动 uCrop 裁剪活动，并传入配置选项
+                UCrop.of(uri, destinationUri)
+                        .withAspectRatio(1, 1)
+                        .withMaxResultSize(512, 512)
+                        .withOptions(options)
+                        .start(MyInfoActivity.this);
+
             }
         });
 
@@ -136,18 +158,83 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
                 }
             }
         });
+
+
         binding.rlPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (user != null) {
-                    requestPermissions();
-                } else {
+                if (user == null) {
                     Toast.makeText(MyInfoActivity.this, "请先登录", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+               setImageDialog();
+            }
+        });
+    }
+
+    private void setImageDialog() {
+        String imageUri = mPresenter.getUserAvatar();
+        AlertDialog.Builder builder = new AlertDialog.Builder(MyInfoActivity.this);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_image_viewer, null);
+        ImageView photoView = dialogView.findViewById(R.id.photo_view_dialog);
+        Button changeBtn = dialogView.findViewById(R.id.btn_change);
+        changeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestPermissions();
             }
         });
 
+        Glide.with(MyInfoActivity.this)
+                .load(imageUri)
+                .error(R.drawable.default_user2)
+                .into(photoView);
+        builder.setView(dialogView);
+        imageDialog = builder.create();
+
+        imageDialog.show();
+
+        if (imageDialog.getWindow() != null) {
+            imageDialog.getWindow().setGravity(Gravity.CENTER);
+            imageDialog.getWindow().setWindowAnimations(0);
+            int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.95);
+            imageDialog.getWindow().setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+
+        dialogView.setOnClickListener(v1 -> imageDialog.dismiss());
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == UCrop.REQUEST_CROP && resultCode == RESULT_OK) {
+            Uri resultUri = UCrop.getOutput(data);
+            if (resultUri != null) {
+                // 更新头像
+                binding.imgInfoPhoto.setImageURI(resultUri);
+
+                // 存本地
+                mPresenter.saveUserAvatar(resultUri);
+
+                // 存网络
+                String realPath = FileUtils.getRealPathFromUri(MyInfoActivity.this, resultUri);
+                mPresenter.modifyUserAvatar(realPath);
+
+                // 如果原来的 dialog 正在显示，则关闭它
+                if (imageDialog != null && imageDialog.isShowing()) {
+                    imageDialog.dismiss();
+                }
+                setImageDialog();
+            }
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            Throwable cropError = UCrop.getError(data);
+            Toast.makeText(this, "裁剪出错：图片格式不支持", Toast.LENGTH_SHORT).show();
+            Log.e("MyInfoActivityTAG", "onActivityResult: " + cropError);
+        }
+    }
+
 
     private ActivityResultLauncher<String[]> permissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {

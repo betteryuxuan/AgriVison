@@ -22,3 +22,7 @@
 -keep class com.alibaba.android.arouter.** { *; }
 -keep interface com.alibaba.android.arouter.** { *; }
 -keep public class * implements com.alibaba.android.arouter.facade.template.ISyringe { *; }
+
+-dontwarn com.yalantis.ucrop**
+-keep class com.yalantis.ucrop** { *; }
+-keep interface com.yalantis.ucrop** { *; }

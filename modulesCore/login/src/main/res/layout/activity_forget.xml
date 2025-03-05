@@ -95,6 +95,7 @@
                     android:background="@drawable/shape_all_corners"
                     android:inputType="textEmailAddress"
                     android:padding="10dp"
+                    android:maxLength="30"
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:textStyle="bold" />
@@ -120,6 +121,7 @@
                     android:background="@drawable/shape_all_corners"
                     android:inputType="textPassword"
                     android:padding="10dp"
+                    android:maxLength="22"
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:textStyle="bold" />
@@ -146,6 +148,7 @@
                     android:inputType="textPassword"
                     android:padding="10dp"
                     android:textColor="@color/black"
+                    android:maxLength="22"
                     android:textSize="20dp"
                     android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>

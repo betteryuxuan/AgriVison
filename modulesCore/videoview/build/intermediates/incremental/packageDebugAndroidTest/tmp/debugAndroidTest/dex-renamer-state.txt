@@ -1,15 +1,15 @@
-#Sun Feb 23 22:18:16 CST 2025
-base.0=F\:\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeExtDexDebugAndroidTest\\classes.dex
-base.1=F\:\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeLibDexDebugAndroidTest\\10\\classes.dex
-base.10=F\:\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeExtDexDebugAndroidTest\\classes2.dex
-base.2=F\:\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeLibDexDebugAndroidTest\\11\\classes.dex
-base.3=F\:\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeLibDexDebugAndroidTest\\14\\classes.dex
-base.4=F\:\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeLibDexDebugAndroidTest\\1\\classes.dex
-base.5=F\:\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeLibDexDebugAndroidTest\\3\\classes.dex
-base.6=F\:\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeLibDexDebugAndroidTest\\4\\classes.dex
-base.7=F\:\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeLibDexDebugAndroidTest\\9\\classes.dex
-base.8=F\:\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
-base.9=F\:\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\2\\classes.dex
+#Wed Mar 05 19:53:19 GMT+08:00 2025
+base.0=E\:\\CODE\\AndroidStudioProjects\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeExtDexDebugAndroidTest\\classes.dex
+base.1=E\:\\CODE\\AndroidStudioProjects\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeLibDexDebugAndroidTest\\10\\classes.dex
+base.10=E\:\\CODE\\AndroidStudioProjects\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeExtDexDebugAndroidTest\\classes2.dex
+base.2=E\:\\CODE\\AndroidStudioProjects\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeLibDexDebugAndroidTest\\11\\classes.dex
+base.3=E\:\\CODE\\AndroidStudioProjects\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeLibDexDebugAndroidTest\\14\\classes.dex
+base.4=E\:\\CODE\\AndroidStudioProjects\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeLibDexDebugAndroidTest\\1\\classes.dex
+base.5=E\:\\CODE\\AndroidStudioProjects\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeLibDexDebugAndroidTest\\3\\classes.dex
+base.6=E\:\\CODE\\AndroidStudioProjects\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeLibDexDebugAndroidTest\\4\\classes.dex
+base.7=E\:\\CODE\\AndroidStudioProjects\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeLibDexDebugAndroidTest\\9\\classes.dex
+base.8=E\:\\CODE\\AndroidStudioProjects\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
+base.9=E\:\\CODE\\AndroidStudioProjects\\AgriVison\\modulesCore\\videoview\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\2\\classes.dex
 path.0=classes.dex
 path.1=10/classes.dex
 path.10=classes2.dex

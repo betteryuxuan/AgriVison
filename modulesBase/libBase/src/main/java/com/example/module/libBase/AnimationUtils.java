@@ -114,8 +114,8 @@ public class AnimationUtils {
 
     public static void setLikeAnimate(View view) {
         // 放大并缩小
-        ObjectAnimator scaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.3f, 1f);  // 水平方向放大并还原
-        ObjectAnimator scaleY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.3f, 1f);  // 垂直方向放大并还原
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.1f, 1f);  // 水平方向放大并还原
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.1f, 1f);  // 垂直方向放大并还原
 
         scaleX.setDuration(400);
         scaleY.setDuration(400);

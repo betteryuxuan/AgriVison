@@ -2,13 +2,12 @@
 <resources>
 
     <style name="BottomNavItemTextStyleInactive">
-        <item name="android:textSize">13sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/black2</item>
     </style>
 
     <style name="BottomNavItemTextStyleActive">
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@android:color/holo_red_light</item>
     </style>

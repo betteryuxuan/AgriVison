@@ -3,15 +3,20 @@ package com.example.personalinfoview.view;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -70,14 +75,41 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
         presenter.setUserInfo();
 
         imgAvatar.setOnClickListener(v -> {
-            AnimationUtils.setAnimateView(v);
+//            AnimationUtils.setAnimateView(v);
             if (user == null) {
-//                getActivity().finish();
                 ARouter.getInstance().build("/login/LoginActivity")
                         .withTransition(R.anim.slide_in_left, R.anim.slide_out_left)
                         .navigation();
+                return;
             }
+
+            String imageUri = presenter.getUserAvatar();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            View dialogView = getLayoutInflater().inflate(R.layout.dialog_image_viewer, null);
+            ImageView photoView = dialogView.findViewById(R.id.photo_view_dialog);
+            Button changeBtn = dialogView.findViewById(R.id.btn_change);
+            changeBtn.setVisibility(View.GONE);
+            Glide.with(getContext())
+                    .load(imageUri)
+                    .error(R.drawable.default_user2)
+                    .into(photoView);
+            builder.setView(dialogView);
+            AlertDialog dialog = builder.create();
+
+
+            dialog.show();
+
+            // 调整 Dialog 的宽高和位置
+            if (dialog.getWindow() != null) {
+                dialog.getWindow().setGravity(Gravity.CENTER);
+                dialog.getWindow().setWindowAnimations(0);
+                int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.95);
+                dialog.getWindow().setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT);
+            }
+
+            dialogView.setOnClickListener(v1 -> dialog.dismiss());
         });
+
         tvUsername.setOnClickListener(v -> {
             if (user == null) {
 //                getActivity().finish();
@@ -85,7 +117,6 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
                         .withTransition(R.anim.slide_in_left, R.anim.slide_out_left)
                         .navigation();
             }
-//            AnimationUtils.setShakeAnimateView(v);
             AnimationUtils.setLikeAnimate(v);
         });
     }
@@ -102,7 +133,15 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
         presenter.setUserInfo();
         String avatarUri = presenter.getUserAvatar();
         if (avatarUri != null && user != null) {
-            imgAvatar.setImageURI(Uri.parse(avatarUri));
+            Glide.with(this)
+                    .load(avatarUri)
+                    .error(R.drawable.default_user2)
+                    .fallback(R.drawable.default_user2)
+                    .into(imgAvatar);
+        } else {
+            Glide.with(this)
+                    .load(R.drawable.default_user2)
+                    .into(imgAvatar);
         }
     }
 
@@ -121,6 +160,8 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
                 Log.d(TAG, "有图片 " + avatarUri);
                 Glide.with(this)
                         .load(avatarUri)
+                        .error(R.drawable.default_user2)
+                        .fallback(R.drawable.default_user2)
                         .into(imgAvatar);
             } else {
                 Log.d(TAG, "无图片: " + avatarUri);

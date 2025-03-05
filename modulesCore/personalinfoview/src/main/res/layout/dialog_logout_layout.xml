@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:clipToOutline="true"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:text="提示"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:text="确定要退出登录吗？"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btn_logout_confirm"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/shape_button_bg2"
+            android:text="确定"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_logout_cancel"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/shape_button_bg2"
+            android:text="取消"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

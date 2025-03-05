@@ -17,13 +17,15 @@
         android:id="@+id/bnv_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:foregroundGravity="center_vertical"
         android:background="@color/white_gray"
         app:itemIconTint="@color/main_color_selector"
-        app:itemRippleColor="@color/wx_green"
+        app:itemTextColor="@color/main_color_selector"
+        app:itemRippleColor="@color/dark_white"
+        app:itemPaddingTop="9dp"
+        app:itemPaddingBottom="7dp"
         app:itemTextAppearanceActive="@style/BottomNavItemTextStyleActive"
         app:itemTextAppearanceInactive="@style/BottomNavItemTextStyleInactive"
-        app:labelVisibilityMode="labeled"
+        app:labelVisibilityMode="selected"
         app:menu="@menu/main_menu" />
 
 </LinearLayout>

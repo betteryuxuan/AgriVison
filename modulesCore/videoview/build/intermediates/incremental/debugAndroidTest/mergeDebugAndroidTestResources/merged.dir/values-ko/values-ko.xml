@@ -183,4 +183,7 @@
     <string name="searchview_navigation_content_description">뒤로</string>
     <string name="side_sheet_accessibility_pane_title">사이드 시트</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="ucrop_label_edit_photo">사진 편집</string>
+    <string name="ucrop_label_original">원본</string>
+    <string name="ucrop_menu_crop">확인</string>
 </resources>

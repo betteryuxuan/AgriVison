@@ -66,6 +66,7 @@ dependencies {
     implementation 'com.github.centerzx:ShapeBlurView:1.0.5'
 
     implementation  'com.github.dhaval2404:imagepicker:2.1'
+    implementation 'com.github.yalantis:ucrop:2.2.9-native'
 
     implementation libs.appcompat
     implementation libs.material

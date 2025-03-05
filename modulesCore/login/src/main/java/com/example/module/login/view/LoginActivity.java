@@ -394,7 +394,10 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
         if (password.length() < 6) {
             tilPassword.setError("密码长度不能小于6");
             return false;
+        } else if (password.length() > 20) {
+            tilPassword.setError("密码长度不能大于20");
         }
+
         tilPassword.setErrorEnabled(false);
         return true;
     }
@@ -422,6 +425,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
         if (twicePassword.length() < 6) {
             tilTwicePassword.setError("密码长度不能小于6");
             return false;
+        } else if (password.length() > 20) {
+            tilPassword.setError("密码长度不能大于20");
+            return false;
         }
         if (!twicePassword.equals(password)) {
             tilTwicePassword.setError("两次密码不一致");
@@ -438,7 +444,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
         if (username.isEmpty()) {
             etUsername.setError("用户名不能为空");
             return false;
-        }else if (username.length() > 10) {
+        } else if (username.length() > 10) {
             etUsername.setError("用户名长度不能大于10");
             return false;
         }
@@ -576,7 +582,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
             if (v instanceof EditText) {
                 Rect outRect = new Rect();
                 v.getGlobalVisibleRect(outRect);
-                if (!outRect.contains((int)ev.getRawX(), (int)ev.getRawY())) {
+                if (!outRect.contains((int) ev.getRawX(), (int) ev.getRawY())) {
                     v.clearFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     if (imm != null) {

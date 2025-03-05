@@ -189,4 +189,7 @@
     <string name="searchview_navigation_content_description">Späť</string>
     <string name="side_sheet_accessibility_pane_title">Bočný hárok</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="ucrop_label_edit_photo">Upraviť fotografiu</string>
+    <string name="ucrop_label_original">Pôvodná</string>
+    <string name="ucrop_menu_crop">Orezať</string>
 </resources>

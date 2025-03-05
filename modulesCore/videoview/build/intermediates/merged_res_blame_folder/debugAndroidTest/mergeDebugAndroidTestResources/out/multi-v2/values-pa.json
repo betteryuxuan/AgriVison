@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.module.videoview.test.videoview-mergeDebugAndroidTestResources-37:/values-pa/values-pa.xml",
+            "outputFile": "com.example.module.videoview.test.videoview-mergeDebugAndroidTestResources-38:/values-pa/values-pa.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Lenovo\\.gradle\\caches\\8.9\\transforms\\18135c0e1ce84d4638a7d777786b5b11\\transformed\\jetified-exoplayer-core-2.18.1\\res\\values-pa\\values-pa.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,126,191,268,334,409,475,574,670",
-                        "endColumns": "70,64,76,65,74,65,98,95,84",
-                        "endOffsets": "121,186,263,329,404,470,569,665,750"
-                    },
-                    "to": {
-                        "startLines": "91,92,93,94,95,96,97,98,99",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "7108,7179,7244,7321,7387,7462,7528,7627,7723",
-                        "endColumns": "70,64,76,65,74,65,98,95,84",
-                        "endOffsets": "7174,7239,7316,7382,7457,7523,7622,7718,7803"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Lenovo\\.gradle\\caches\\8.9\\transforms\\e2d1279729cde4ea29d18b083fd9c5f5\\transformed\\appcompat-1.7.0\\res\\values-pa\\values-pa.xml",
+                    "source": "D:\\Android\\.gradle\\caches\\8.9\\transforms\\e2d1279729cde4ea29d18b083fd9c5f5\\transformed\\appcompat-1.7.0\\res\\values-pa\\values-pa.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Lenovo\\.gradle\\caches\\8.9\\transforms\\ac2072a6565ffcbda827ae2d4bd49b92\\transformed\\jetified-exoplayer-ui-2.18.1\\res\\values-pa\\values-pa.xml",
+                    "source": "D:\\Android\\.gradle\\caches\\8.9\\transforms\\ac2072a6565ffcbda827ae2d4bd49b92\\transformed\\jetified-exoplayer-ui-2.18.1\\res\\values-pa\\values-pa.xml",
                     "from": {
                         "startLines": "2,11,15,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -57,7 +40,41 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Lenovo\\.gradle\\caches\\8.9\\transforms\\a75a88d57b5b90a2ff0a3ad7e1c61f7f\\transformed\\material-1.12.0\\res\\values-pa\\values-pa.xml",
+                    "source": "D:\\Android\\.gradle\\caches\\8.9\\transforms\\c62aad7d7eb243486b073810116eebfa\\transformed\\core-1.13.0\\res\\values-pa\\values-pa.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,255,358,459,561,659,788",
+                        "endColumns": "97,101,102,100,101,97,128,100",
+                        "endOffsets": "148,250,353,454,556,654,783,884"
+                    },
+                    "to": {
+                        "startLines": "55,56,57,58,59,60,61,184",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "4012,4110,4212,4315,4416,4518,4616,14077",
+                        "endColumns": "97,101,102,100,101,97,128,100",
+                        "endOffsets": "4105,4207,4310,4411,4513,4611,4740,14173"
+                    }
+                },
+                {
+                    "source": "D:\\Android\\.gradle\\caches\\8.9\\transforms\\18135c0e1ce84d4638a7d777786b5b11\\transformed\\jetified-exoplayer-core-2.18.1\\res\\values-pa\\values-pa.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,126,191,268,334,409,475,574,670",
+                        "endColumns": "70,64,76,65,74,65,98,95,84",
+                        "endOffsets": "121,186,263,329,404,470,569,665,750"
+                    },
+                    "to": {
+                        "startLines": "91,92,93,94,95,96,97,98,99",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "7108,7179,7244,7321,7387,7462,7528,7627,7723",
+                        "endColumns": "70,64,76,65,74,65,98,95,84",
+                        "endOffsets": "7174,7239,7316,7382,7457,7523,7622,7718,7803"
+                    }
+                },
+                {
+                    "source": "D:\\Android\\.gradle\\caches\\8.9\\transforms\\a75a88d57b5b90a2ff0a3ad7e1c61f7f\\transformed\\material-1.12.0\\res\\values-pa\\values-pa.xml",
                     "from": {
                         "startLines": "2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -73,23 +90,6 @@
                         "endLines": "22,50,51,52,53,54,62,63,64,65,66,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,181,182,183",
                         "endColumns": "12,76,78,80,98,88,107,111,82,55,63,91,68,58,84,62,61,57,63,60,53,113,57,59,53,69,126,80,89,98,96,78,134,75,76,128,83,81,54,54,65,68,76,70,78,67,75,69,64,101,94,72,93,92,73,68,93,55,82,66,83,87,61,63,62,66,96,105,90,101,58,58,76,84,75,72",
                         "endOffsets": "920,3659,3738,3819,3918,4007,4848,4960,5043,5099,5163,9001,9070,9129,9214,9277,9339,9397,9461,9522,9576,9690,9748,9808,9862,9932,10059,10140,10230,10329,10426,10505,10640,10716,10793,10922,11006,11088,11143,11198,11264,11333,11410,11481,11560,11628,11704,11774,11839,11941,12036,12109,12203,12296,12370,12439,12533,12589,12672,12739,12823,12911,12973,13037,13100,13167,13264,13370,13461,13563,13622,13681,13758,13923,13999,14072"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Lenovo\\.gradle\\caches\\8.9\\transforms\\c62aad7d7eb243486b073810116eebfa\\transformed\\core-1.13.0\\res\\values-pa\\values-pa.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,255,358,459,561,659,788",
-                        "endColumns": "97,101,102,100,101,97,128,100",
-                        "endOffsets": "148,250,353,454,556,654,783,884"
-                    },
-                    "to": {
-                        "startLines": "55,56,57,58,59,60,61,184",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "4012,4110,4212,4315,4416,4518,4616,14077",
-                        "endColumns": "97,101,102,100,101,97,128,100",
-                        "endOffsets": "4105,4207,4310,4411,4513,4611,4740,14173"
                     }
                 }
             ]

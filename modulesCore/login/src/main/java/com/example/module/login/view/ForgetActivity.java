@@ -88,10 +88,12 @@ public class ForgetActivity extends AppCompatActivity implements IForgetContract
                 lastKeyboardHeight = height;
                 adjustLayoutForKeyboard(true, height);
             }
+
             public void onClose() {
                 // 在键盘关闭时恢复布局
                 adjustLayoutForKeyboard(false, 0);
             }
+
             public void onHeightChanged(int height) {
                 // 键盘高度变化时，动态调整布局
                 adjustLayoutForKeyboard(true, height);
@@ -138,6 +140,9 @@ public class ForgetActivity extends AppCompatActivity implements IForgetContract
         } else if (password.length() < 6) {
             binding.tilForgetPassword.setError("密码长度不能小于6");
             return false;
+        } else if (password.length() > 20) {
+            binding.tilForgetPassword.setError("密码长度不能大于20");
+            return false;
         }
         binding.tilForgetPassword.setErrorEnabled(false);
         return true;
@@ -153,6 +158,9 @@ public class ForgetActivity extends AppCompatActivity implements IForgetContract
             return false;
         } else if (twicePassword.length() < 6) {
             binding.tilForgetPasswordtwo.setError("密码长度不能小于6");
+            return false;
+        } else if (password.length() > 20) {
+            binding.tilForgetPassword.setError("密码长度不能大于20");
             return false;
         } else if (!twicePassword.equals(password)) {
             binding.tilForgetPasswordtwo.setError("两次密码不一致");
@@ -324,7 +332,7 @@ public class ForgetActivity extends AppCompatActivity implements IForgetContract
             if (v instanceof EditText) {
                 Rect outRect = new Rect();
                 v.getGlobalVisibleRect(outRect);
-                if (!outRect.contains((int)ev.getRawX(), (int)ev.getRawY())) {
+                if (!outRect.contains((int) ev.getRawX(), (int) ev.getRawY())) {
                     v.clearFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     if (imm != null) {

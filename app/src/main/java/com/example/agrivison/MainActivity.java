@@ -3,6 +3,7 @@ package com.example.agrivison;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -111,6 +112,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        // 适配底部小白条颜色
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.white_gray));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+            }
+        }
+
 
     }
 

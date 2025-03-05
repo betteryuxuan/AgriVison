@@ -38,7 +38,8 @@
 
         <activity
             android:name="com.example.module.videoview.view.VideoActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity
             android:name="androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity"

@@ -183,4 +183,10 @@
     <string name="searchview_navigation_content_description">Geri</string>
     <string name="side_sheet_accessibility_pane_title">Yan Sayfa</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="ucrop_crop">Kırp</string>
+    <string name="ucrop_label_edit_photo">Fotoğrafı Düzenle</string>
+    <string name="ucrop_label_original">Orijinal</string>
+    <string name="ucrop_menu_crop">Kırp</string>
+    <string name="ucrop_rotate">Döndürme</string>
+    <string name="ucrop_scale">Ölçek </string>
 </resources>
