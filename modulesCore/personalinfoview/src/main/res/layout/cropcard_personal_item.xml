@@ -8,7 +8,6 @@
     android:layout_marginTop="5dp"
     android:layout_marginRight="20dp"
     android:layout_marginBottom="20dp"
-    app:cardBackgroundColor="#00000000"
     app:cardCornerRadius="30dp"
     app:cardElevation="5dp">
 
@@ -17,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:background="@drawable/shape_crop_bg">
+        android:background="@drawable/ripple_cropcard">
 
         <ImageView
             android:id="@+id/iv_personal_cropimage"

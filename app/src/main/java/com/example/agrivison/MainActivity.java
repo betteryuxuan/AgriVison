@@ -66,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
 
         fragments = new ArrayList<>();
         fragments.add(fragment);
-        fragments.add(chatpageFragment);
-        fragments.add(videoFragment);
         fragments.add(shoppingFragment);
+        fragments.add(videoFragment);
+        fragments.add(chatpageFragment);
         fragments.add(personalInfoFragment);
 
         PagesAdapter pagesAdapter = new PagesAdapter(getSupportFragmentManager(), getLifecycle(), fragments);

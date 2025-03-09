@@ -1,6 +1,8 @@
 package com.example.personalinfoview.presenter;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,7 +73,7 @@ public class PersonalInfoPresenter implements IInfoContract.Presenter {
                     AlertDialog dialog = new AlertDialog.Builder(mView.getContext())
                             .setView(customView)
                             .create();
-
+                    dialog.getWindow().setBackgroundDrawableResource(R.drawable.default_dialog_background);
                     Button btnConfirm = customView.findViewById(R.id.btn_logout_confirm);
                     Button btnCancel = customView.findViewById(R.id.btn_logout_cancel);
 

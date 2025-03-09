@@ -18,7 +18,6 @@
         android:textSize="22sp"
         android:textStyle="bold" />
 
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_dialog_email"
         android:layout_width="match_parent"

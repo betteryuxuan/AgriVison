@@ -49,13 +49,16 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
 
     private ActivityInfoBinding binding;
     private MyInfoPresenter mPresenter;
-    private static final int CAMERA_REQUEST_CODE = 1;
-    private static final int READ_STORAGE_REQUEST_CODE = 2;
 
     @Autowired
     public User user;
+    private Uri cameraImageUri;
+    private ActivityResultLauncher<Uri> cameraLauncher;
+    private ActivityResultLauncher<String> cameraPermissionLauncher;
     private ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
     private AlertDialog imageDialog;
+    private AlertDialog.Builder builder;
+    private AlertDialog dialogPick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,31 +104,6 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
             binding.tvInfoUsername.setText("未登录");
         }
 
-        pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
-            if (uri != null) {
-                // 获取 ContentResolver 实例
-                ContentResolver contentResolver = getApplicationContext().getContentResolver();
-                // 持久化URI访问权限
-                contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-                // 配置uCrop
-                UCrop.Options options = new UCrop.Options();
-                options.setCompressionFormat(Bitmap.CompressFormat.JPEG); // 压缩格式
-                options.setCompressionQuality(100); // 压缩质量
-
-                // 构造裁剪后图片的保存地址
-                Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "cropped_" + System.currentTimeMillis() + ".jpg"));
-
-                // 启动 uCrop 裁剪活动，并传入配置选项
-                UCrop.of(uri, destinationUri)
-                        .withAspectRatio(1, 1)
-                        .withMaxResultSize(512, 512)
-                        .withOptions(options)
-                        .start(MyInfoActivity.this);
-
-            }
-        });
-
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,30 +137,127 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
             }
         });
 
+        // 注册拍照权限请求
+        cameraPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), result -> {
+            if (result) {
+                launchCamera();
+            } else {
+                Toast.makeText(MyInfoActivity.this, "请允许摄像头权限以拍照", Toast.LENGTH_SHORT).show();
+            }
+        });
 
+        // 注册拍照Launcher
+        cameraLauncher = registerForActivityResult(new ActivityResultContracts.TakePicture(), result -> {
+            if (result) {
+                // 裁剪
+                UCrop.Options options = new UCrop.Options();
+                options.setCompressionFormat(Bitmap.CompressFormat.JPEG);
+                options.setCompressionQuality(100);
+                Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "cropped_" + System.currentTimeMillis() + ".jpg"));
+                UCrop.of(cameraImageUri, destinationUri)
+                        .withAspectRatio(1, 1)
+                        .withMaxResultSize(512, 512)
+                        .withOptions(options)
+                        .start(MyInfoActivity.this);
+            }
+        });
+
+        // 相册选择
+        pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
+            if (uri != null) {
+                // 获取 ContentResolver 实例 ，持久化URI访问权限
+                ContentResolver contentResolver = getApplicationContext().getContentResolver();
+                contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                // 配置uCrop
+                UCrop.Options options = new UCrop.Options();
+                options.setCompressionFormat(Bitmap.CompressFormat.JPEG); // 压缩格式
+                options.setCompressionQuality(100); // 压缩质量
+
+                // 构造裁剪后图片的保存地址
+                Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "cropped_" + System.currentTimeMillis() + ".jpg"));
+
+                // 启动 uCrop 裁剪活动，并传入配置选项
+                UCrop.of(uri, destinationUri)
+                        .withAspectRatio(1, 1)
+                        .withMaxResultSize(512, 512)
+                        .withOptions(options)
+                        .start(MyInfoActivity.this);
+            }
+        });
+
+        // 修改头像
         binding.rlPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (user == null) {
                     Toast.makeText(MyInfoActivity.this, "请先登录", Toast.LENGTH_SHORT).show();
                     return;
+                } else {
+                    setImageDialog();
                 }
-
-               setImageDialog();
             }
         });
     }
 
+    // 选择更换图片方式
+    private void showSelectImageSourceDialog() {
+//        new AlertDialog.Builder(MyInfoActivity.this,R.style.CustomAlertDialogTheme)
+//                .setTitle("选择图片来源")
+//                .setItems(new String[]{"拍照", "从相册选择"}, (dialog, which) -> {
+//                    if (which == 0) { // 拍照
+//                        if (ContextCompat.checkSelfPermission(MyInfoActivity.this, Manifest.permission.CAMERA)
+//                                != PackageManager.PERMISSION_GRANTED) {
+//                            cameraPermissionLauncher.launch(Manifest.permission.CAMERA);
+//                        } else {
+//                            launchCamera();
+//                        }
+//                    } else if (which == 1) { // 相册
+//                        requestPermissions();
+//                    }
+//                }).show();
+
+        builder = new AlertDialog.Builder(MyInfoActivity.this);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_pick_layout, null);
+        Button btnCamera = dialogView.findViewById(R.id.btn_camera);
+        Button btnGallery = dialogView.findViewById(R.id.btn_gallery);
+
+        btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(MyInfoActivity.this, Manifest.permission.CAMERA)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    cameraPermissionLauncher.launch(Manifest.permission.CAMERA);
+                } else {
+                    launchCamera();
+                }
+            }
+        });
+        btnGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestPermissions();
+            }
+        });
+
+        builder.setView(dialogView);
+        dialogPick = builder.create();
+        dialogPick.getWindow().setBackgroundDrawableResource(R.drawable.default_dialog_background);
+//        imageDialog.dismiss();
+        dialogPick.show();
+    }
+
+    // 展示当前照片
     private void setImageDialog() {
         String imageUri = mPresenter.getUserAvatar();
-        AlertDialog.Builder builder = new AlertDialog.Builder(MyInfoActivity.this);
+
+        builder = new AlertDialog.Builder(MyInfoActivity.this);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_image_viewer, null);
         ImageView photoView = dialogView.findViewById(R.id.photo_view_dialog);
         Button changeBtn = dialogView.findViewById(R.id.btn_change);
         changeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestPermissions();
+                showSelectImageSourceDialog();
             }
         });
 
@@ -190,21 +265,24 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
                 .load(imageUri)
                 .error(R.drawable.default_user2)
                 .into(photoView);
+
         builder.setView(dialogView);
         imageDialog = builder.create();
-
+        imageDialog.getWindow().setBackgroundDrawableResource(R.drawable.default_dialog_background);
         imageDialog.show();
 
-        if (imageDialog.getWindow() != null) {
-            imageDialog.getWindow().setGravity(Gravity.CENTER);
-            imageDialog.getWindow().setWindowAnimations(0);
-            int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.95);
-            imageDialog.getWindow().setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT);
-        }
-
-        dialogView.setOnClickListener(v1 -> imageDialog.dismiss());
+        photoView.setOnClickListener(v1 -> imageDialog.dismiss());
     }
 
+    // 打开相机
+    private void launchCamera() {
+        // 创建用于存储拍照图片的临时文件，需要配置FileProvider，在res/xml下添加fileprovider_paths.xml文件
+        File imageFile = new File(getCacheDir(), "camera_" + System.currentTimeMillis() + ".jpg");
+        cameraImageUri = androidx.core.content.FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", imageFile);
+        cameraLauncher.launch(cameraImageUri);
+    }
+
+    // 拍照和相册裁剪选择回调
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -226,6 +304,9 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
                 if (imageDialog != null && imageDialog.isShowing()) {
                     imageDialog.dismiss();
                 }
+                if(dialogPick != null && dialogPick.isShowing()){
+                    dialogPick.dismiss();
+                }
                 setImageDialog();
             }
         } else if (resultCode == UCrop.RESULT_ERROR) {
@@ -235,7 +316,7 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
         }
     }
 
-
+    // 相册权限
     private ActivityResultLauncher<String[]> permissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
                 boolean granted = true;
@@ -252,6 +333,8 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
                 }
             });
 
+
+    // 根据版本判断请求权限来打开相册
     private void requestPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             permissionLauncher.launch(new String[]{
@@ -271,31 +354,22 @@ public class MyInfoActivity extends AppCompatActivity implements IMyInfoContract
         }
     }
 
-    private void checkPermissionResult() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-                && (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED
-                || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VIDEO) == PackageManager.PERMISSION_GRANTED)) {
-            launchImagePicker();
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE
-                && ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED) == PackageManager.PERMISSION_GRANTED) {
-            launchImagePicker();
-        } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            launchImagePicker();
-        }
-    }
-
+    // 从相册选择图片
     private void launchImagePicker() {
         pickMedia.launch(new PickVisualMediaRequest.Builder()
                 .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
                 .build());
     }
 
+    // 修改用户名
     private void showUpdateUsernameDialog() {
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_username_layout, null);
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setView(dialogView)
                 .create();
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.default_dialog_background);
         dialog.show();
+
 
         EditText usernameEt = dialogView.findViewById(R.id.et_dialog_email);
         Button confiemBtn = dialogView.findViewById(R.id.btn_dialog_confirm);

@@ -1,5 +1,7 @@
 package com.example.personalinfoview.view;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -95,8 +97,7 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
                     .into(photoView);
             builder.setView(dialogView);
             AlertDialog dialog = builder.create();
-
-
+            dialog.getWindow().setBackgroundDrawableResource(R.drawable.default_dialog_background);
             dialog.show();
 
             // 调整 Dialog 的宽高和位置

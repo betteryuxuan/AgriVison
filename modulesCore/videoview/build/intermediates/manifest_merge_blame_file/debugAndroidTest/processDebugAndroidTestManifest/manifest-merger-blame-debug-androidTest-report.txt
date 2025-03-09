@@ -3,24 +3,24 @@
 3    package="com.example.module.videoview.test" >
 4
 5    <uses-sdk
-5-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest17173472534554843766.xml:5:5-74
+5-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest6562883772045756168.xml:5:5-74
 6        android:minSdkVersion="28"
-6-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest17173472534554843766.xml:5:15-41
+6-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest6562883772045756168.xml:5:15-41
 7        android:targetSdkVersion="34" />
-7-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest17173472534554843766.xml:5:42-71
+7-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest6562883772045756168.xml:5:42-71
 8
 9    <instrumentation
-9-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest17173472534554843766.xml:11:5-15:83
+9-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest6562883772045756168.xml:11:5-15:83
 10        android:name="androidx.test.runner.AndroidJUnitRunner"
-10-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest17173472534554843766.xml:11:22-76
+10-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest6562883772045756168.xml:11:22-76
 11        android:functionalTest="false"
-11-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest17173472534554843766.xml:14:22-52
+11-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest6562883772045756168.xml:14:22-52
 12        android:handleProfiling="false"
-12-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest17173472534554843766.xml:13:22-53
+12-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest6562883772045756168.xml:13:22-53
 13        android:label="Tests for com.example.module.videoview.test"
-13-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest17173472534554843766.xml:15:22-81
+13-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest6562883772045756168.xml:15:22-81
 14        android:targetPackage="com.example.module.videoview.test" />
-14-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest17173472534554843766.xml:12:22-79
+14-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest6562883772045756168.xml:12:22-79
 15
 16    <uses-permission android:name="android.permission.INTERNET" />
 16-->[:modulesCore:videoview] E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-67
@@ -58,14 +58,14 @@
 31-->[androidx.core:core:1.13.0] D:\Android\.gradle\caches\8.9\transforms\c62aad7d7eb243486b073810116eebfa\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
 32
 33    <application
-33-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest17173472534554843766.xml:7:5-9:19
+33-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest6562883772045756168.xml:7:5-9:19
 34        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 34-->[androidx.core:core:1.13.0] D:\Android\.gradle\caches\8.9\transforms\c62aad7d7eb243486b073810116eebfa\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
 35        android:debuggable="true"
 36        android:extractNativeLibs="false" >
 37        <uses-library android:name="android.test.runner" />
-37-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest17173472534554843766.xml:8:9-60
-37-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest17173472534554843766.xml:8:23-57
+37-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest6562883772045756168.xml:8:9-60
+37-->E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest6562883772045756168.xml:8:23-57
 38
 39        <activity
 39-->[:modulesCore:videoview] E:\CODE\AndroidStudioProjects\AgriVison\modulesCore\videoview\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:9-14:20
