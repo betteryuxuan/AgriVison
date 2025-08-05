@@ -8,9 +8,9 @@ import android.util.Log;
 import com.example.chatpageview.bean.Msg;
 import com.example.chatpageview.contract.IChatContract;
 import com.example.chatpageview.presenter.ChatPresenterImpl;
-import com.example.module.libBase.SPUtils;
-import com.example.module.libBase.TimeUtils;
-import com.example.module.libBase.TokenManager;
+import com.example.module.libBase.utils.SPUtils;
+import com.example.module.libBase.utils.TimeUtils;
+import com.example.module.libBase.utils.TokenManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -19,7 +19,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -51,7 +50,6 @@ public class ChatModelImpl implements IChatContract.Model {
         String[] welcomeMessages = getInitWelcomeMessages(role);
 
         if (msgList == null || msgList.isEmpty()) {
-
             Random random = new Random();
             int index = random.nextInt(3);
             String selectedMessage = welcomeMessages[index];
@@ -60,7 +58,6 @@ public class ChatModelImpl implements IChatContract.Model {
             msgList = new ArrayList<>();
             msgList.add(msg);
         }
-
         return msgList;
     }
 

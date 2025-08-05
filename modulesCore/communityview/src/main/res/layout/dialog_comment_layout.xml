@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#55b786"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_dialog_comment_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/ziti2"
+            android:text="评论内容"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_dialog_comment_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:paddingStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/ziti2"
+            android:text="2025.8.21 17:35"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_dialog_comment_delete"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/ripple_effect"
+            android:elevation="0dp"
+            android:paddingTop="2dp"
+            android:fontFamily="@font/ziti2"
+            android:gravity="start|center_vertical"
+            android:paddingLeft="20dp"
+            android:text="删除"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btn_dialog_comment_copy"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/ripple_effect"
+            android:elevation="0dp"
+            android:fontFamily="@font/ziti2"
+            android:gravity="start|center_vertical"
+            android:paddingLeft="20dp"
+            android:text="复制"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btn_dialog_comment_share"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/ripple_effect"
+            android:elevation="0dp"
+            android:fontFamily="@font/ziti2"
+            android:gravity="start|center_vertical"
+            android:paddingLeft="20dp"
+            android:paddingBottom="5dp"
+            android:text="分享"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

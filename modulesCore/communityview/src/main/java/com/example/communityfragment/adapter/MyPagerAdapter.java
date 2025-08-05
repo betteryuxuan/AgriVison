@@ -5,30 +5,26 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.module.libBase.inter.Scrollable;
 
 import java.util.List;
 
 public class MyPagerAdapter extends FragmentStateAdapter {
     public static final String TAG = "MyPagerAdapterTAG";
-    private List<String> categories;
-
-    public MyPagerAdapter(@NonNull Fragment fragment, List<String> categories) {
+    private List<Fragment> fragments;
+    public MyPagerAdapter(@NonNull Fragment fragment, List<Fragment> fragments) {
         super(fragment);
-        this.categories = categories;
+        this.fragments = fragments;
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        Fragment fragment = (Fragment) ARouter.getInstance()
-                .build("/communityPageView/PostsFragment")
-                .withString("category", categories.get(position))
-                .navigation();
-        return fragment;
+        return fragments.get(position);
     }
 
     @Override
     public int getItemCount() {
-        return categories.size();
+        return fragments.size();
     }
 }

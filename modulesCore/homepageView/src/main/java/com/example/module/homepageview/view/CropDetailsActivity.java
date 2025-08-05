@@ -21,7 +21,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.example.module.homepageview.R;
-import com.example.module.libBase.SPUtils;
+import com.example.module.libBase.utils.SPUtils;
 import com.example.module.libBase.bean.Crop;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

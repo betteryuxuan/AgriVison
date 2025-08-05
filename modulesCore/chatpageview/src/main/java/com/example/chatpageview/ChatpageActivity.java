@@ -1,8 +1,6 @@
 package com.example.chatpageview;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,8 +29,8 @@ import com.example.chatpageview.bean.Msg;
 import com.example.chatpageview.contract.IChatContract;
 import com.example.chatpageview.databinding.ActivityChatpageBinding;
 import com.example.chatpageview.presenter.ChatPresenterImpl;
-import com.example.module.libBase.AnimationUtils;
-import com.example.module.libBase.SoftHideKeyBoardUtil;
+import com.example.module.libBase.utils.AnimationUtils;
+import com.example.module.libBase.utils.SoftHideKeyBoardUtil;
 
 import java.util.List;
 import java.util.Random;

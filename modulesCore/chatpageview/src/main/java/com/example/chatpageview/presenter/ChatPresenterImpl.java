@@ -1,35 +1,16 @@
 package com.example.chatpageview.presenter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.example.chatpageview.bean.Msg;
 import com.example.chatpageview.contract.IChatContract;
 import com.example.chatpageview.model.ChatModelImpl;
-import com.example.module.libBase.SPUtils;
-import com.example.module.libBase.TimeUtils;
-import com.example.module.libBase.TokenManager;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.example.module.libBase.utils.TimeUtils;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
-import okhttp3.Call;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class ChatPresenterImpl implements IChatContract.Presenter {
     private IChatContract.View mView;
@@ -89,7 +70,8 @@ public class ChatPresenterImpl implements IChatContract.Presenter {
 
     @Override
     public void removeThinkingMsg() {
-        mView.removeThinkingMsg();
+        if (mView != null)
+            mView.removeThinkingMsg();
     }
 
     @Override

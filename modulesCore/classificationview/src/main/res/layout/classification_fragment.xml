@@ -77,14 +77,14 @@
                         android:background="@drawable/ic_more" />
                 </LinearLayout>
 
-                <com.example.module.libBase.MyView
+                <com.example.module.libBase.customview.MyView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_category_food"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-                </com.example.module.libBase.MyView>
+                </com.example.module.libBase.customview.MyView>
 
 
                 <LinearLayout
@@ -112,14 +112,14 @@
                         android:background="@drawable/ic_more" />
                 </LinearLayout>
 
-                <com.example.module.libBase.MyView
+                <com.example.module.libBase.customview.MyView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_category_oil"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-                </com.example.module.libBase.MyView>
+                </com.example.module.libBase.customview.MyView>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -147,14 +147,14 @@
                         android:background="@drawable/ic_more" />
                 </LinearLayout>
 
-                <com.example.module.libBase.MyView
+                <com.example.module.libBase.customview.MyView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_category_vegetable"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-                </com.example.module.libBase.MyView>
+                </com.example.module.libBase.customview.MyView>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -181,14 +181,14 @@
                         android:background="@drawable/ic_more" />
                 </LinearLayout>
 
-                <com.example.module.libBase.MyView
+                <com.example.module.libBase.customview.MyView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_category_fruit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-                </com.example.module.libBase.MyView>
+                </com.example.module.libBase.customview.MyView>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -215,14 +215,14 @@
                         android:background="@drawable/ic_more" />
                 </LinearLayout>
 
-                <com.example.module.libBase.MyView
+                <com.example.module.libBase.customview.MyView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_category_wild_fruit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-                </com.example.module.libBase.MyView>
+                </com.example.module.libBase.customview.MyView>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -249,14 +249,14 @@
                         android:background="@drawable/ic_more" />
                 </LinearLayout>
 
-                <com.example.module.libBase.MyView
+                <com.example.module.libBase.customview.MyView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_category_seed"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-                </com.example.module.libBase.MyView>
+                </com.example.module.libBase.customview.MyView>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -283,14 +283,14 @@
                         android:background="@drawable/ic_more" />
                 </LinearLayout>
 
-                <com.example.module.libBase.MyView
+                <com.example.module.libBase.customview.MyView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_category_medicinal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-                </com.example.module.libBase.MyView>
+                </com.example.module.libBase.customview.MyView>
 
             </LinearLayout>
 

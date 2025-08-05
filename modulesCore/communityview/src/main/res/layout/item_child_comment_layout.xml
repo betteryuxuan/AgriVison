@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/cl_child_comment"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_card"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingStart="15dp"
+    android:paddingTop="3dp"
+    android:paddingEnd="15dp"
+    android:paddingBottom="3dp">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_child_comment_useravatar"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="44dp"
+        android:elevation="1dp"
+        android:padding="2dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_child_comment_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/misans"
+        android:text="用户12345"
+        android:textColor="@color/grenn1"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/img_child_comment_useravatar"
+        app:layout_constraintTop_toTopOf="@id/img_child_comment_useravatar" />
+
+    <TextView
+        android:id="@+id/tv_child_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/misans"
+        android:text="▶ "
+        android:gravity="center"
+        android:textColor="@color/grenn1"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_child_comment_username"
+        app:layout_constraintStart_toEndOf="@id/tv_child_comment_username"
+        app:layout_constraintTop_toTopOf="@id/tv_child_comment_username" />
+
+
+    <TextView
+        android:id="@+id/tv_child_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:fontFamily="@font/misans"
+        android:text="用户16789"
+        android:textColor="@color/grenn1"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/tv_child_icon"
+        app:layout_constraintTop_toTopOf="@id/tv_child_comment_username" />
+
+    <TextView
+        android:id="@+id/tv_child_comment_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/misans"
+        android:gravity="start"
+        android:letterSpacing="0.01"
+        android:lineSpacingMultiplier="1.2"
+        android:maxLines="15"
+        android:paddingEnd="14dp"
+        android:text="子评论子评论子评论子评论子评论子评论子评论子评论子评论"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_child_comment_username"
+        app:layout_constraintTop_toBottomOf="@id/tv_child_comment_username" />
+
+    <TextView
+        android:id="@+id/tv_child_comment_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingEnd="15dp"
+        android:text="2025.8.21 17:35"
+        android:textColor="@color/gray4"
+        android:textStyle="bold"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_child_comment_username"
+        app:layout_constraintTop_toBottomOf="@id/tv_child_comment_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

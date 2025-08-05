@@ -13,14 +13,17 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.communityfragment.adapter.MyPagerAdapter;
 import com.example.communityfragment.databinding.FragmentCommunityBinding;
+import com.example.module.libBase.inter.Scrollable;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.List;
 
 @Route(path = "/communityPageView/CommunityFragment")
-public class CommunityFragemnt extends Fragment {
+public class CommunityFragemnt extends Fragment implements Scrollable {
     private static final String TAG = "CommunityFragemntTAG";
     private FragmentCommunityBinding binding;
+    private MyPagerAdapter adapter;
+    private List<Fragment> fragments;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,32 +42,24 @@ public class CommunityFragemnt extends Fragment {
 
         List<String> titles = List.of("全部", "热榜", "农友杂谈", "种植交流", "农业资讯");
 
-        MyPagerAdapter adapter = new MyPagerAdapter(this, titles);
+        Fragment fragment1 = (Fragment) ARouter.getInstance().build("/communityPageView/PostsFragment").withString("category", titles.get(0)).navigation();
+        Fragment fragment2 = (Fragment) ARouter.getInstance().build("/communityPageView/PostsFragment").withString("category", titles.get(1)).navigation();
+        Fragment fragment3 = (Fragment) ARouter.getInstance().build("/communityPageView/PostsFragment").withString("category", titles.get(2)).navigation();
+        Fragment fragment4 = (Fragment) ARouter.getInstance().build("/communityPageView/PostsFragment").withString("category", titles.get(3)).navigation();
+        Fragment fragment5 = (Fragment) ARouter.getInstance().build("/communityPageView/PostsFragment").withString("category", titles.get(4)).navigation();
+
+        fragments = List.of(fragment1, fragment2, fragment3, fragment4, fragment5);
+        adapter = new MyPagerAdapter(this, fragments);
         binding.vpCommunity.setAdapter(adapter);
         binding.vpCommunity.setOffscreenPageLimit(1);
 
         new TabLayoutMediator(binding.tbCommunity, binding.vpCommunity,
                 (tab, position) -> tab.setText(titles.get(position))
         ).attach();
-
-//        binding.tbCommunity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                binding.tbCommunity.setScrollPosition(tab.getPosition(), 0, true);
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
-
     }
 
-
+    @Override
+    public void scrollToTop() {
+        ((Scrollable) fragments.get(binding.vpCommunity.getCurrentItem())).scrollToTop();
+    }
 }

@@ -16,6 +16,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.module.homepageview.R;
 import com.example.module.homepageview.contract.IHomePageContract;
 import com.example.module.homepageview.view.adapter.MyViewPagerAdapter;
+import com.example.module.libBase.inter.Scrollable;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Route(path = "/HomePageView/HomePageFragment")
-public class HomePageFragment extends Fragment implements IHomePageContract.IHomePageView {
+public class HomePageFragment extends Fragment implements IHomePageContract.IHomePageView, Scrollable {
 
     private IHomePageContract.IHomePagePresenter mPresenter;
     private ViewPager2 viewPager2;
@@ -31,9 +32,11 @@ public class HomePageFragment extends Fragment implements IHomePageContract.IHom
     private List<Fragment> fragmentList;
     private HomeFirstFragment homeFirstFragment;
     private LinearLayout layout;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Nullable
@@ -99,4 +102,8 @@ public class HomePageFragment extends Fragment implements IHomePageContract.IHom
         this.mPresenter = presenter;
     }
 
+    @Override
+    public void scrollToTop() {
+        ((Scrollable) fragmentList.get(viewPager2.getCurrentItem())).scrollToTop();
+    }
 }

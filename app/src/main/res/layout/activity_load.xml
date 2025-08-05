@@ -9,7 +9,7 @@
         android:id="@+id/cl_main"
         android:layout_width="1200dp"
         android:layout_height="match_parent"
-        android:background="@drawable/load_bac"
+        android:background="@drawable/load_bg_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

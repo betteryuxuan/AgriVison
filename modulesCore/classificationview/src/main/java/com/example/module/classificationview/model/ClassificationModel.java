@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 
 import com.example.module.classificationview.R;
 import com.example.module.classificationview.contract.IClassificationContract;
-import com.example.module.libBase.TokenManager;
+import com.example.module.libBase.utils.TokenManager;
 import com.example.module.libBase.bean.Crop;
 import com.google.gson.Gson;
 

@@ -6,16 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.example.module.libBase.SPUtils;
+import com.example.module.libBase.utils.SPUtils;
 import com.example.module.libBase.bean.Crop;
 import com.example.personalinfoview.adapter.CropAdapter;
 import com.example.personalinfoview.databinding.FragmentMyFavoritesBinding;

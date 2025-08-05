@@ -30,7 +30,7 @@ import com.example.module.homepageview.R;
 import com.example.module.homepageview.model.classes.CropBack;
 import com.example.module.homepageview.model.classes.Keyword;
 import com.example.module.homepageview.view.adapter.SearchRecyclerViewAdapter;
-import com.example.module.libBase.TokenManager;
+import com.example.module.libBase.utils.TokenManager;
 import com.example.module.libBase.bean.Crop;
 import com.google.gson.Gson;
 

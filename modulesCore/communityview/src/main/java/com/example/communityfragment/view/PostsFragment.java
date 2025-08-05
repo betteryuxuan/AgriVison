@@ -6,12 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.SimpleItemAnimator;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -23,7 +24,8 @@ import com.example.communityfragment.bean.PostPublishedEvent;
 import com.example.communityfragment.contract.IPostsContract;
 import com.example.communityfragment.databinding.FragmentPostsBinding;
 import com.example.communityfragment.presenter.PostsPresenter;
-import com.example.module.libBase.TokenManager;
+import com.example.module.libBase.inter.Scrollable;
+import com.example.module.libBase.utils.TokenManager;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
@@ -37,7 +39,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.List;
 
 @Route(path = "/communityPageView/PostsFragment")
-public class PostsFragment extends Fragment implements IPostsContract.View {
+public class PostsFragment extends Fragment implements IPostsContract.View, Scrollable {
     public static final String TAG = "PostsFuctionTAG";
     private PostsPresenter mPresenter;
     private FragmentPostsBinding binding;
@@ -198,10 +200,8 @@ public class PostsFragment extends Fragment implements IPostsContract.View {
                     binding.rlvPosts.setVisibility(View.GONE);
                     binding.tvPostsEmpty.setVisibility(View.VISIBLE);
                 } else {
-                    if (currentPage == 1) {
-                        binding.tvPostsEmpty.setVisibility(View.GONE);
-                        binding.rlvPosts.setVisibility(View.VISIBLE);
-                    }
+                    binding.tvPostsEmpty.setVisibility(View.GONE);
+                    binding.rlvPosts.setVisibility(View.VISIBLE);
                     binding.swipePostsRefresh.finishLoadMore(true);
                     binding.swipePostsRefresh.finishRefresh(true);
                 }
@@ -233,10 +233,13 @@ public class PostsFragment extends Fragment implements IPostsContract.View {
             public void run() {
                 binding.swipePostsRefresh.finishLoadMore(true);
                 binding.swipePostsRefresh.finishRefresh(true);
-                if (currentPage == 1) {
+                if (currentPage == 2) {
                     adapter.clearData();
+                    binding.rlvPosts.setVisibility(View.GONE);
                     binding.tvPostsEmpty.setVisibility(View.VISIBLE);
                     binding.tvPostsEmpty.setText("加载失败，请稍后重试");
+                } else {
+                    Toast.makeText(getContext(), "加载失败，请稍后重试", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -250,5 +253,22 @@ public class PostsFragment extends Fragment implements IPostsContract.View {
                 adapter.removeData(postId);
             }
         });
+    }
+
+    @Override
+    public void scrollToTop() {
+        binding.rlvPosts.smoothScrollToPosition(0);
+        binding.rlvPosts.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                int firstVisiblePos = layoutManager.findFirstCompletelyVisibleItemPosition();
+                if (firstVisiblePos == 0) {
+                    recyclerView.removeOnScrollListener(this);
+                    binding.swipePostsRefresh.autoRefresh();
+                }
+            }
+        });
+
     }
 }

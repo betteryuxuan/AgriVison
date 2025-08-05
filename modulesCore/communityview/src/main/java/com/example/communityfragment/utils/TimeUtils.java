@@ -19,7 +19,7 @@ public class TimeUtils {
         Matcher matcher = pattern.matcher(createdTime);
         if (matcher.find()) {
             String year = matcher.group(1);
-            String month =matcher.group(2);
+            String month = matcher.group(2);
             String day = matcher.group(3);
             String hour = matcher.group(4);
             String minute = matcher.group(5);
@@ -42,8 +42,9 @@ public class TimeUtils {
         int day = Integer.parseInt(matcher.group(3));
         int hour = Integer.parseInt(matcher.group(4));
         int minute = Integer.parseInt(matcher.group(5));
+        int second = Integer.parseInt(matcher.group(6));
 
-        LocalDateTime parsedTime = LocalDateTime.of(year, month, day, hour, minute);
+        LocalDateTime parsedTime = LocalDateTime.of(year, month, day, hour, minute,second);
         LocalDateTime now = LocalDateTime.now();
 
         Duration duration = Duration.between(parsedTime, now);
@@ -57,14 +58,19 @@ public class TimeUtils {
         long diffHours = diffSeconds / 3600;
         long diffDays = diffSeconds / (3600 * 24);
 
-        if (diffSeconds < 3600) {
+        if (diffSeconds < 60) {
+            return "刚刚";
+        } else if (diffSeconds < 3600) {
             return diffMinutes + "分钟前";
         } else if (diffSeconds < 3600 * 24) {
             return diffHours + "小时前";
-        } else if (diffDays < 3) {
+        } else if (diffDays <= 1) {
             return diffDays + "天前";
+        } else if (diffDays < 365) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M.d H:m:ss");
+            return parsedTime.format(formatter);
         } else {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.M.d H:m:ss");
             return parsedTime.format(formatter);
         }
     }

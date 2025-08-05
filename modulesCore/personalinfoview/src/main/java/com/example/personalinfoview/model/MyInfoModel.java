@@ -3,9 +3,8 @@ package com.example.personalinfoview.model;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.module.libBase.SPUtils;
-import com.example.module.libBase.TokenManager;
-import com.example.module.libBase.bean.User;
+import com.example.module.libBase.utils.SPUtils;
+import com.example.module.libBase.utils.TokenManager;
 import com.example.personalinfoview.contract.IMyInfoContract;
 import com.example.personalinfoview.presenter.MyInfoPresenter;
 

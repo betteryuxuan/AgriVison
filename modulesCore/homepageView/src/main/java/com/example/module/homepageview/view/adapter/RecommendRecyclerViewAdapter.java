@@ -1,7 +1,7 @@
 package com.example.module.homepageview.view.adapter;
 
 
-import static com.example.module.libBase.AnimationUtils.applyClickAnimation;
+import static com.example.module.libBase.utils.AnimationUtils.applyClickAnimation;
 
 import android.content.Context;
 import android.view.LayoutInflater;

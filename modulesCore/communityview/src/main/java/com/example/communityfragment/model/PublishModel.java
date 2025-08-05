@@ -8,7 +8,7 @@ import com.example.communityfragment.contract.IPublishContract;
 import com.example.communityfragment.presenter.PublishPresenter;
 import com.example.communityfragment.utils.FileUtils;
 import com.example.communityfragment.utils.URLUtils;
-import com.example.module.libBase.TokenManager;
+import com.example.module.libBase.utils.TokenManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -147,7 +147,7 @@ public class PublishModel implements IPublishContract.Model {
             public void onFailure(Call call, IOException e) {
                 if (retryCount < 3) {
                     Log.d(TAG, "上传图片失败，重试第 " + (retryCount + 1) + " 次: " + e.getMessage());
-                    uploadImageWithRetry(path, token, uploadedImageUrls, uploadCount, totalImages, callback, 0, retryCount + 1);
+                    uploadImageWithRetry(path, token, uploadedImageUrls, uploadCount, totalImages, callback, retryCount + 1, index);
                 } else {
                     Log.e(TAG, "上传图片失败，已达到最大重试次数: " + e.getMessage());
                     callback.onError(e);
@@ -173,7 +173,7 @@ public class PublishModel implements IPublishContract.Model {
                 } else {
                     if (retryCount < 3) {
                         Log.d(TAG, "上传图片响应失败，重试第 " + (retryCount + 1) + " 次: 响应码 " + response.code());
-                        uploadImageWithRetry(path, token, uploadedImageUrls, uploadCount, totalImages, callback, 0, retryCount + 1);
+                        uploadImageWithRetry(path, token, uploadedImageUrls, uploadCount, totalImages, callback, retryCount + 1, index);
                         return;
                     } else {
                         callback.onError(new Exception("图片上传失败，响应码：" + response.code()));

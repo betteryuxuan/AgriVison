@@ -29,6 +29,8 @@ ext {
             "chatpage"        : "com.example.chatpageview",
             "personalinfopage": "com.example.personalinfoview",
             "videopage"       : "com.example.module.videoview",
+            "communityview"   : "com.example.communityfragment",
+            "videopage"       : "com.example.module.videoview",
             "classification"       : "com.example.module.classificationview",
             "videopage"       : "com.example.module.videoview",
             "communityview"   : "com.example.communityfragment"
@@ -50,6 +52,7 @@ ext {
             "ucrop"           : "com.github.yalantis:ucrop:2.2.9-native",
             "blurview"        : "com.github.centerzx:ShapeBlurView:1.0.5",
             "drag"            : "com.github.uin3566:DragFooterView:v1.0.2",
+
 
     ]
 

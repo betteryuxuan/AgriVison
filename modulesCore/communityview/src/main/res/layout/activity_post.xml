@@ -52,8 +52,9 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray2" />
+        android:layout_height="0.6dp"
+        android:background="#eaedf2" />
+
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -70,81 +71,81 @@
                 android:id="@+id/tv_mypost_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/misans"
+                android:gravity="fill_horizontal"
+                android:justificationMode="inter_word"
                 android:letterSpacing="0.01"
                 android:lineSpacingMultiplier="1.2"
                 android:paddingLeft="20dp"
-                android:fontFamily="@font/misans"
                 android:paddingTop="15dp"
-                android:justificationMode="inter_word"
-                android:gravity="fill_horizontal"
                 android:paddingRight="20dp"
                 android:text="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"
                 android:textColor="@color/black"
-                android:textSize="17dp"/>
+                android:textSize="17dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rlv_mypost_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="16dp" />
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="16dp"
+                android:nestedScrollingEnabled="false" />
 
-                <com.google.android.material.card.MaterialCardView
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="2dp"
+                android:elevation="0dp"
+                app:cardBackgroundColor="#00000000"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="0dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginEnd="2dp"
-                    android:elevation="0dp"
-                    app:cardBackgroundColor="#00000000"
-                    android:layout_marginTop="5dp"
-                    app:cardCornerRadius="4dp"
-                    app:cardElevation="0dp"
-                    app:cardUseCompatPadding="true">
+                    android:background="#f3f4f6"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
 
-                    <LinearLayout
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_margin="2dp"
+                        android:src="@drawable/ic_communityid" />
+
+                    <TextView
+                        android:id="@+id/tv_mypost_communityid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#f3f4f6"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:padding="3dp">
-
-                        <ImageView
-                            android:layout_width="12dp"
-                            android:layout_height="12dp"
-                            android:layout_margin="2dp"
-                            android:src="@drawable/ic_communityid" />
-
-                        <TextView
-                            android:id="@+id/tv_mypost_communityid"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="农友杂谈"
-                            android:fontFamily="@font/misans"
-                            android:textColor="#64696e"
-                            android:textSize="12sp"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/misans"
+                        android:text="农友杂谈"
+                        android:textColor="#64696e"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/tv_mypost_createtime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/misans"
                 android:paddingStart="20dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="10dp"
-                android:textColor="#A3A9AF"
-                android:fontFamily="@font/misans"
                 android:text="发布于 2025.8.21 17:35"
+                android:textColor="#A3A9AF"
                 android:textSize="14dp" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray2" />
+                android:layout_height="5dp"
+                android:background="#eaedf2" />
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
@@ -156,9 +157,9 @@
                     android:id="@+id/tv_mypost_reply"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/misans"
                     android:gravity="start|center_vertical"
                     android:paddingStart="20dp"
-                    android:fontFamily="@font/misans"
                     android:text="共 309 回复"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -168,6 +169,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_mypost_reply"
+                android:paddingBottom="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -175,9 +177,9 @@
                 android:id="@+id/tv_mypost_empty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/misans"
                 android:gravity="center"
                 android:minHeight="130dp"
-                android:fontFamily="@font/misans"
                 android:text="当前暂无评论"
                 android:textColor="@color/gray3"
                 android:textSize="20sp" />
@@ -189,7 +191,6 @@
         android:id="@+id/bottom_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:background="#eaedf2"
         android:minHeight="60dp">
 
@@ -204,7 +205,7 @@
             android:layout_weight="1"
             android:background="@drawable/et_background"
             android:ellipsize="end"
-            android:hint="请输入消息"
+            android:hint="说说你的想法"
             android:inputType="textMultiLine"
             android:maxLines="4"
             android:minHeight="40dp"

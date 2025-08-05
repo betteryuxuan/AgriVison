@@ -18,6 +18,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 
+import java.util.Random;
+
 @Route(path = "/app/LoadActivity")
 public class LoadActivity extends AppCompatActivity {
 
@@ -37,6 +39,7 @@ public class LoadActivity extends AppCompatActivity {
                 isNavigated = true;
                 ARouter.getInstance().build("/login/LoginActivity")
                         .navigation(getApplicationContext());
+                finish();
             }
         }
     };
@@ -55,6 +58,17 @@ public class LoadActivity extends AppCompatActivity {
         });
         cl_main = findViewById(R.id.cl_main);
         iv_main = findViewById(R.id.iv_main);
+
+        int[] backgroundImages = new int[]{
+                R.drawable.load_bg_1,
+                R.drawable.load_bg_2,
+        };
+        Random random = new Random();
+
+        int randomImageId = backgroundImages[random.nextInt(backgroundImages.length)];
+
+        cl_main.setBackgroundResource(randomImageId);
+
 
         // 创建平移动画
         ObjectAnimator translateY = ObjectAnimator.ofFloat(cl_main, "translationX", 800f, 0f);
@@ -95,6 +109,7 @@ public class LoadActivity extends AppCompatActivity {
             isNavigated = true;
             ARouter.getInstance().build("/login/LoginActivity")
                     .navigation(getApplicationContext());
+            finish();
         }
     }
 }

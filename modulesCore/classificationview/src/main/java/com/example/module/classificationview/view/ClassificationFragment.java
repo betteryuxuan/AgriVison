@@ -25,6 +25,7 @@ import com.example.module.classificationview.presenter.ClassificationPresenter;
 import com.example.module.classificationview.view.adapter.CropCategoryRecyclerViewAdapter;
 import com.example.module.libBase.bean.Crop;
 import com.example.module.libBase.bean.SpaceItemDecoration;
+import com.example.module.libBase.inter.Scrollable;
 import com.youth.banner.Banner;
 import com.youth.banner.adapter.BannerImageAdapter;
 import com.youth.banner.holder.BannerImageHolder;
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Route(path = "/classificationView/ClassificationFragment")
-public class ClassificationFragment extends Fragment implements IClassificationContract.IClassificationView {
+public class ClassificationFragment extends Fragment implements IClassificationContract.IClassificationView, Scrollable {
 
     private static final String TAG = "ClassificationFragment";
     private IClassificationContract.IClassificationPresenter presenter;
@@ -45,6 +46,7 @@ public class ClassificationFragment extends Fragment implements IClassificationC
     private float scaleFactor = 1f; // 初始缩放比例
     private final float MIN_SCALE = 1f; // 最小缩放比例
     private final float MAX_SCALE = 2f; // 最大缩放比例
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -405,5 +407,10 @@ public class ClassificationFragment extends Fragment implements IClassificationC
     @Override
     public void setPresenter(IClassificationContract.IClassificationPresenter presenter) {
 
+    }
+
+    @Override
+    public void scrollToTop() {
+        nestedScrollView.smoothScrollTo(0, 0);
     }
 }

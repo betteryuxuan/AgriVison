@@ -29,5 +29,9 @@ public class URLUtils {
     public static final String PUBLISH_COMMENT_URL = BASE_URL + "/community-post/comment";
     // 查询一级评论
     public static final String GET_FIRST_LEVEL_COMMENTS_URL = BASE_URL + "/community-post/first-level-comment";
+    // 查询所有评论
+    public static final String GET_ALL_COMMENTS_URL = BASE_URL + "/community-post/comment";
+    // 删除评论
+    public static final String DELETE_COMMENT_URL = BASE_URL + "/community-post/comment";
 
 }

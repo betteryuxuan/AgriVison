@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +28,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.module.libBase.bean.SwitchPageEvent;
+import com.example.module.libBase.inter.Scrollable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -41,7 +43,6 @@ import java.util.TimerTask;
 
 @Route(path = "/main/MainActivity")
 public class MainActivity extends AppCompatActivity {
-
     private static final String TAG = "MainActivityTAG";
     private BottomNavigationView bottomNavigationView;
     private List<Fragment> fragments;
@@ -69,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-
         viewPager2 = findViewById(R.id.vp_main);
         bottomNavigationView = findViewById(R.id.bnv_main);
         add = findViewById(R.id.iv_main_add);
@@ -78,11 +78,9 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         Fragment fragment = (Fragment) ARouter.getInstance().build("/HomePageView/HomePageFragment").navigation(this);
-        Fragment chatpageFragment = (Fragment) ARouter.getInstance().build("/chatpageview/chatPage").navigation(this);
         Fragment personalInfoFragment = (Fragment) ARouter.getInstance().build("/personalinfoview/PersonalInfoFragment").navigation(this);
         Fragment videoFragment = (Fragment) ARouter.getInstance().build("/videoview/VideoFragment").navigation(this);
         Fragment communityFragment = (Fragment) ARouter.getInstance().build("/communityPageView/CommunityFragment").navigation(this);
-        Fragment classificationFragment = (Fragment) ARouter.getInstance().build("/classificationView/ClassificationFragment").navigation(this);
 
         fragments = new ArrayList<>();
         fragments.add(fragment);
@@ -98,14 +96,20 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.navigation_item1) {
                     viewPager2.setCurrentItem(0, false);
+                    if (viewPager2.getCurrentItem() == 0) {
+                        scrollToTop(0);
+                    }
                 } else if (item.getItemId() == R.id.navigation_item2) {
-                    viewPager2.setCurrentItem(1);
+                    viewPager2.setCurrentItem(1, false);
                 } else if (item.getItemId() == R.id.navigation_item3) {
-                    viewPager2.setCurrentItem(2);
+                    viewPager2.setCurrentItem(2, false);
                 } else if (item.getItemId() == R.id.navigation_item4) {
-                    viewPager2.setCurrentItem(3);
+                    viewPager2.setCurrentItem(3, false);
+                    if (viewPager2.getCurrentItem() == 3) {
+                        scrollToTop(3);
+                    }
                 } else if (item.getItemId() == R.id.navigation_item5) {
-                    viewPager2.setCurrentItem(4);
+                    viewPager2.setCurrentItem(4, false);
                 }
                 return true;
             }
@@ -144,6 +148,15 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+
+    }
+
+    private void scrollToTop(int position) {
+        Fragment fragment = fragments.get(position);
+        if (fragment instanceof Scrollable) {
+            ((Scrollable) fragment).scrollToTop();
+        }
     }
 
     @Override

@@ -36,8 +36,9 @@ import com.example.module.homepageview.view.adapter.NewsRecyclerViewAdapter;
 import com.example.module.homepageview.view.adapter.PoetryRecyclerViewAdapter;
 import com.example.module.homepageview.view.adapter.ProverbViewPagerAdapter;
 import com.example.module.homepageview.view.adapter.RecommendRecyclerViewAdapter;
-import com.example.module.libBase.SPUtils;
-import com.example.module.libBase.TimeUtils;
+import com.example.module.libBase.inter.Scrollable;
+import com.example.module.libBase.utils.SPUtils;
+import com.example.module.libBase.utils.TimeUtils;
 import com.example.module.libBase.bean.Crop;
 import com.example.module.libBase.bean.SpaceItemDecoration;
 import com.example.module.libBase.bean.SwitchPageEvent;
@@ -57,7 +58,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Route(path = "/HomePageView/HomeFirstFragment")
-public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IHomeFirstView{
+public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IHomeFirstView, Scrollable {
 
     private final String TAG = "HomeFirstFragment";
 
@@ -70,6 +71,7 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
     private Banner banner;
     private float startX = 0;
     private float startY = 0;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -162,7 +164,6 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
             }
         });
 
-        
 
     }
 
@@ -305,5 +306,10 @@ public class HomeFirstFragment extends Fragment implements IHomeFirstContract.IH
     @Override
     public void setPresenter(IHomeFirstContract.IHomeFirstPresenter presenter) {
         this.mPresenter = presenter;
+    }
+
+    @Override
+    public void scrollToTop() {
+        scrollView.smoothScrollTo(0, 0);
     }
 }

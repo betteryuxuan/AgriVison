@@ -29,8 +29,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.example.module.libBase.AnimationUtils;
-import com.example.module.libBase.TokenManager;
+import com.example.module.libBase.utils.AnimationUtils;
+import com.example.module.libBase.utils.TokenManager;
 import com.example.module.login.R;
 import com.example.module.login.contract.ILoginContract;
 import com.example.module.login.presenter.LoginPresenter;
@@ -552,11 +552,16 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
     }
 
     public void startMainActivity() {
-        ARouter.getInstance()
-                .build("/main/MainActivity")
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ARouter.getInstance()
+                        .build("/main/MainActivity")
 //                .withTransition(R.anim.slide_in_left, R.anim.slide_out_left)
-                .navigation();
-        finish();
+                        .navigation();
+                finish();
+            }
+        });
     }
 
     @Override

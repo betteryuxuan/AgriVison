@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,9 +41,8 @@ import com.example.communityfragment.bean.PostPublishedEvent;
 import com.example.communityfragment.contract.IPublishContract;
 import com.example.communityfragment.databinding.ActivityPublishBinding;
 import com.example.communityfragment.presenter.PublishPresenter;
-import com.example.communityfragment.utils.FileUtils;
-import com.example.module.libBase.SPUtils;
-import com.example.module.libBase.SoftHideKeyBoardUtil;
+import com.example.module.libBase.utils.SPUtils;
+import com.example.module.libBase.utils.TokenManager;
 import com.yalantis.ucrop.UCrop;
 
 import org.greenrobot.eventbus.EventBus;
@@ -73,6 +71,9 @@ public class PublishActivity extends AppCompatActivity implements IPublishContra
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        overridePendingTransition(R.anim.publish_in, 0);
+
         binding = ActivityPublishBinding.inflate(getLayoutInflater());
         EdgeToEdge.enable(this);
         setContentView(binding.getRoot());
@@ -88,11 +89,20 @@ public class PublishActivity extends AppCompatActivity implements IPublishContra
                 .load(getAvatar())
                 .error(R.drawable.default_user2)
                 .into(binding.imgPublishAvatar);
-        binding.tvPublishUsername.setText(getUserName());
+        if (getLoginStatus(PublishActivity.this)) {
+            binding.tvPublishUsername.setText(getUserName());
+        } else {
+            binding.tvPublishUsername.setText("未登录");
+            Toast.makeText(PublishActivity.this, "登录后即可发帖", Toast.LENGTH_SHORT).show();
+        }
 
         binding.imgPublishSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!getLoginStatus(PublishActivity.this)) {
+                    Toast.makeText(PublishActivity.this, "请先登录", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String content = binding.etPublishContent.getText().toString();
                 if (content.trim().isEmpty()) {
                     Toast.makeText(PublishActivity.this, "请输入内容", Toast.LENGTH_SHORT).show();
@@ -251,6 +261,10 @@ public class PublishActivity extends AppCompatActivity implements IPublishContra
                 return 3;
         }
         return 1;
+    }
+
+    private boolean getLoginStatus(Context context) {
+        return TokenManager.getLoginStatus(PublishActivity.this);
     }
 
     private String getAvatar() {
@@ -413,7 +427,6 @@ public class PublishActivity extends AppCompatActivity implements IPublishContra
                 .build());
     }
 
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
@@ -431,5 +444,11 @@ public class PublishActivity extends AppCompatActivity implements IPublishContra
             }
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, R.anim.publish_out);
     }
 }

@@ -1,7 +1,5 @@
 package com.example.communityfragment.adapter;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -26,7 +24,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
-import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,8 +32,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.communityfragment.R;
 import com.example.communityfragment.bean.Post;
-import com.example.module.libBase.SPUtils;
-import com.example.module.libBase.TokenManager;
+import com.example.module.libBase.utils.SPUtils;
+import com.example.module.libBase.utils.TokenManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;

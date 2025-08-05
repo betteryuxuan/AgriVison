@@ -26,7 +26,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.module.libBase.SPUtils;
+import com.example.module.libBase.utils.SPUtils;
 import com.example.module.videoview.R;
 import com.example.module.videoview.custom.CommentCommitFragment;
 import com.example.module.videoview.model.classes.Comment;

@@ -1,7 +1,6 @@
 package com.example.personalinfoview.view;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,16 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
-import com.example.module.libBase.AnimationUtils;
+import com.example.module.libBase.inter.Scrollable;
+import com.example.module.libBase.utils.AnimationUtils;
 import com.example.module.libBase.bean.User;
 import com.example.personalinfoview.R;
 import com.example.personalinfoview.adapter.MyVPAdapter;
-import com.example.personalinfoview.bean.MenuItem;
 import com.example.personalinfoview.contract.IInfoContract;
 import com.example.personalinfoview.databinding.FragmentPersonalInfoBinding;
 import com.example.personalinfoview.presenter.PersonalInfoPresenter;
@@ -212,5 +210,4 @@ public class PersonalInfoFragment extends Fragment implements IInfoContract.View
         super.onDestroyView();
         presenter = null;
     }
-
 }

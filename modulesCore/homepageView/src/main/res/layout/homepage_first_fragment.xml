@@ -50,7 +50,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/banner_homefirst_top" />
 
-            <com.example.module.libBase.MyView
+            <com.example.module.libBase.customview.MyView
                 android:id="@+id/myview1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false" />
-            </com.example.module.libBase.MyView>
+            </com.example.module.libBase.customview.MyView>
 
 
             <TextView
@@ -93,7 +93,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/myview1"/>
 
-            <com.example.module.libBase.MyView
+            <com.example.module.libBase.customview.MyView
                 android:id="@+id/myview2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:nestedScrollingEnabled="false" />
                 </com.fangxu.library.DragContainer>
-            </com.example.module.libBase.MyView>
+            </com.example.module.libBase.customview.MyView>
 
             <TextView
                 android:id="@+id/homepage_text4"
@@ -127,7 +127,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/myview2" />
 
-            <com.example.module.libBase.MyView
+            <com.example.module.libBase.customview.MyView
                 android:id="@+id/myview3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
                         android:background="#C8E3C4"
                         android:nestedScrollingEnabled="false" />
                 </androidx.cardview.widget.CardView>
-            </com.example.module.libBase.MyView>
+            </com.example.module.libBase.customview.MyView>
 
             <TextView
                 android:id="@+id/homepage_text5"

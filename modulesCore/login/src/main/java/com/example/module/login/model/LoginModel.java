@@ -3,8 +3,8 @@ package com.example.module.login.model;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.module.libBase.SPUtils;
-import com.example.module.libBase.TokenManager;
+import com.example.module.libBase.utils.SPUtils;
+import com.example.module.libBase.utils.TokenManager;
 import com.example.module.login.contract.ILoginContract;
 
 import org.json.JSONObject;

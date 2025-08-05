@@ -9,8 +9,8 @@ import com.example.communityfragment.bean.Post;
 import com.example.communityfragment.contract.IPostsContract;
 import com.example.communityfragment.presenter.PostsPresenter;
 import com.example.communityfragment.utils.URLUtils;
-import com.example.module.libBase.SPUtils;
-import com.example.module.libBase.TokenManager;
+import com.example.module.libBase.utils.SPUtils;
+import com.example.module.libBase.utils.TokenManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,15 +81,14 @@ public class PostsModel implements IPostsContract.Model {
                 if (response.isSuccessful()) {
                     try {
                         JSONObject object = new JSONObject(responseBody);
-                        if (object.getInt("code") == 1) {
-                            JSONArray data = object.getJSONObject("data").getJSONArray("posts");
-                            List<Post> posts = new ArrayList<>();
-                            for (int i = 0; i < data.length(); i++) {
-                                posts.add(fromJson(data.getJSONObject(i)));
-                                Log.d(TAG, "onResponse: " + posts.get(i).toString());
-                            }
-                            mPresenter.onDataReceived(posts);
+                        JSONArray data = object.getJSONObject("data").getJSONArray("posts");
+                        List<Post> posts = new ArrayList<>();
+                        for (int i = 0; i < data.length(); i++) {
+                            posts.add(fromJson(data.getJSONObject(i)));
+                            Log.d(TAG, "onResponse: " + posts.get(i).toString());
                         }
+                        mPresenter.onDataReceived(posts);
+
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
@@ -104,7 +103,7 @@ public class PostsModel implements IPostsContract.Model {
     public void getGuestData(int communityId, int page, int pageSize) {
         String URL;
 
-         if (communityId == 5) {
+        if (communityId == 5) {
             // 热榜
             URL = URLUtils.GET_GUEST_POSTS_URL + "?page=" + page + "&size=" + pageSize + "&order=" + "time";
         } else if (communityId == 4) {
